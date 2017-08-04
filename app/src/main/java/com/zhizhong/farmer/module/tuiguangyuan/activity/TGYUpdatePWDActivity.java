@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.my.activity;
+package com.zhizhong.farmer.module.tuiguangyuan.activity;
 
 import android.view.View;
 
@@ -9,12 +9,12 @@ import com.zhizhong.farmer.base.BaseActivity;
  * Created by administartor on 2017/8/1.
  */
 
-public class FarmerRegisterActivity extends BaseActivity {
+public class TGYUpdatePWDActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("注册");
-        return R.layout.act_tgy_register;
+        setAppTitle("修改密码");
+        return R.layout.act_tgy_update_pwd;
     }
 
     @Override

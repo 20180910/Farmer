@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.my.activity;
+package com.zhizhong.farmer.module.tuiguangyuan.activity;
 
 import android.view.View;
 
@@ -6,15 +6,19 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 
 /**
- * Created by administartor on 2017/8/1.
+ * Created by administartor on 2017/8/4.
  */
 
-public class FarmerRegisterActivity extends BaseActivity {
+public class TGYTiXianActivity extends BaseActivity {
+    @Override
+    public void again() {
+
+    }
 
     @Override
     protected int getContentView() {
-        setAppTitle("注册");
-        return R.layout.act_tgy_register;
+        setAppTitle("提现");
+        return R.layout.act_ti_xian;
     }
 
     @Override
@@ -29,11 +33,6 @@ public class FarmerRegisterActivity extends BaseActivity {
 
     @Override
     protected void onViewClick(View v) {
-
-    }
-
-    @Override
-    public void again() {
 
     }
 }

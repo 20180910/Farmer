@@ -49,7 +49,7 @@ public class MyFragment extends BaseFragment {
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.iv_my_set://设置
-//                STActivity(LoginActivity.class);
+//                STActivity(TGYLoginActivity.class);
                 break;
             case R.id.tv_my_wallet://我的钱包
                 break;
