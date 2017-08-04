@@ -3,7 +3,6 @@ package com.zhizhong.farmer.module.zengzhi.fragment;
 import android.os.Bundle;
 import android.view.View;
 
-import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 
 /**
@@ -13,7 +12,7 @@ import com.zhizhong.farmer.base.BaseFragment;
 public class ZengZhiFragment extends BaseFragment {
     @Override
     protected int getContentView() {
-        return R.layout.frag_zeng_zhi;
+        return 1;
     }
 
     public static ZengZhiFragment newInstance() {

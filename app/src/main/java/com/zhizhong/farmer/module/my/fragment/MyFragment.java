@@ -6,8 +6,6 @@ import android.view.View;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.module.my.activity.MyOrderActivity;
-import com.zhizhong.farmer.module.my.activity.MyWalletActivity;
-import com.zhizhong.farmer.module.my.activity.MyToolListActivity;
 
 import butterknife.OnClick;
 
@@ -47,15 +45,13 @@ public class MyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.iv_my_set,R.id.tv_my_wallet,R.id.tv_my_all, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
+    @OnClick({R.id.iv_my_set,R.id.tv_my_wallet})
     public void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.iv_my_set://设置
-                STActivity(MyToolListActivity.class);
 //                STActivity(LoginActivity.class);
                 break;
             case R.id.tv_my_wallet://我的钱包
-                STActivity(MyWalletActivity.class);
                 break;
             case R.id.tv_my_all:
                 STActivity(MyOrderActivity.class);

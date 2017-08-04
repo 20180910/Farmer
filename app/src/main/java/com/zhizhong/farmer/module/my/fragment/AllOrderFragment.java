@@ -31,7 +31,7 @@ public class AllOrderFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        allOrderAdapter=new AllOrderAdapter(mContext,R.layout.item_all_order,0);
+        allOrderAdapter=new AllOrderAdapter(mContext,1,0);
         allOrderAdapter.setTestListSize(10);
 
         rv_all_order.setLayoutManager(new LinearLayoutManager(mContext));

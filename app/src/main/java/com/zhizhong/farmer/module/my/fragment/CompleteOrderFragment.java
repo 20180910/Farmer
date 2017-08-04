@@ -31,7 +31,7 @@ public class CompleteOrderFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        adapter=new CompleteOrderAdapter(mContext,R.layout.item_complete_order,0);
+        adapter=new CompleteOrderAdapter(mContext,1,0);
         adapter.setTestListSize(10);
 
         rv_complete_order.setLayoutManager(new LinearLayoutManager(mContext));

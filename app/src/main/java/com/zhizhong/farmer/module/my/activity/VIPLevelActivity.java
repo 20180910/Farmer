@@ -2,7 +2,6 @@ package com.zhizhong.farmer.module.my.activity;
 
 import android.view.View;
 
-import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 
 /**
@@ -18,7 +17,7 @@ public class VIPLevelActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        return R.layout.act_vip_level;
+        return 1;
     }
 
     @Override

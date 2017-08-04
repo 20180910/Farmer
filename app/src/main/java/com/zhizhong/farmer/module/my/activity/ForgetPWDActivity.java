@@ -2,7 +2,6 @@ package com.zhizhong.farmer.module.my.activity;
 
 import android.view.View;
 
-import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 
 /**
@@ -14,7 +13,7 @@ public class ForgetPWDActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         setAppTitle("忘记密码");
-        return R.layout.act_forget_pwd;
+        return 1;
     }
 
     @Override

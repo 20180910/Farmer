@@ -44,33 +44,36 @@
             style="@style/radio_main"
             android:checked="true"
             android:text="任务大厅"
-            app:my_radio_checked="@drawable/rwdt_select"
+            app:my_radio_checked="@drawable/home_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
-            app:my_radio_normal="@drawable/rwdt_normal"
+            app:my_radio_normal="@drawable/home_select"
             app:my_radio_normal_color="@color/gray_99"
+            android:button="@null"
             />
 
         <com.github.customview.MyRadioButton
             android:id="@+id/rb_home_zzfw"
             style="@style/radio_main"
             android:text="增值服务"
-            app:my_radio_checked="@drawable/zzfw_select"
+            app:my_radio_checked="@drawable/home_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
-            app:my_radio_normal="@drawable/zzfw_normal"
+            app:my_radio_normal="@drawable/home_select"
             app:my_radio_normal_color="@color/gray_99"
+            android:button="@null"
             />
 
         <com.github.customview.MyRadioButton
             android:id="@+id/rb_home_my"
             style="@style/radio_main"
             android:text="我的"
-            app:my_radio_checked="@drawable/my_select"
+            app:my_radio_checked="@drawable/my_normal"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
             app:my_radio_normal="@drawable/my_normal"
             app:my_radio_normal_color="@color/gray_99"
+            android:button="@null"
             />
     </RadioGroup>
 </RelativeLayout>

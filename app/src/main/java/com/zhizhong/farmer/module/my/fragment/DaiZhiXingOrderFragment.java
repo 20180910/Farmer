@@ -31,7 +31,7 @@ public class DaiZhiXingOrderFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        adapter=new DaiZhiXingOrderAdapter(mContext,R.layout.item_daizhixing_order,0);
+        adapter=new DaiZhiXingOrderAdapter(mContext,1,0);
         adapter.setTestListSize(10);
 
         rv_dzx_order.setLayoutManager(new LinearLayoutManager(mContext));

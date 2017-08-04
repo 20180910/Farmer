@@ -31,7 +31,7 @@ public class DaiJieDanOrderFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        adapter=new DaiJieDanOrderAdapter(mContext,R.layout.item_daijiedan_order,0);
+        adapter=new DaiJieDanOrderAdapter(mContext,1,0);
         adapter.setTestListSize(10);
 
         rv_djd_order.setLayoutManager(new LinearLayoutManager(mContext));
