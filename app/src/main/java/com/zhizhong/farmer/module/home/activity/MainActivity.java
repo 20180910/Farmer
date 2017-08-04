@@ -10,7 +10,6 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.module.home.fragment.HomeFragment;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
-import com.zhizhong.farmer.module.renwu.fragment.RenWuFragment;
 import com.zhizhong.farmer.module.zengzhi.fragment.ZengZhiFragment;
 
 import butterknife.BindView;
@@ -82,7 +81,7 @@ public class MainActivity extends BaseActivity {
             case R.id.rb_home_rwdt:
                 selectButton = rb_home_rwdt;
                 if (homeFragment == null) {
-                    homeFragment = new RenWuFragment();
+                    homeFragment = new HomeFragment();
                     getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commit();
                 } else {
                     showFragment(homeFragment);
