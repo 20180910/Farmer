@@ -2,6 +2,7 @@ package com.zhizhong.farmer.module.my.activity;
 
 import android.view.View;
 
+import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 
 /**
@@ -13,8 +14,7 @@ public class LoginActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         setAppTitle("登录");
-        return 1;
-//        return R.layout.act_login;
+        return R.layout.act_login;
     }
 
     @Override
