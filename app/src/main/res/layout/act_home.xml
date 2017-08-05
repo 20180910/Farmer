@@ -40,40 +40,47 @@
         >
 
         <com.github.customview.MyRadioButton
-            android:id="@+id/rb_home_rwdt"
-            style="@style/radio_main"
+            android:id="@+id/rb_home_shouye"
+            style="@style/radio_home"
             android:checked="true"
-            android:text="任务大厅"
+            android:text="首页"
             app:my_radio_checked="@drawable/home_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
             app:my_radio_normal="@drawable/home_select"
             app:my_radio_normal_color="@color/gray_99"
-            android:button="@null"
             />
 
         <com.github.customview.MyRadioButton
-            android:id="@+id/rb_home_zzfw"
-            style="@style/radio_main"
-            android:text="增值服务"
+            android:id="@+id/rb_home_zixun"
+            style="@style/radio_home"
+            android:text="咨询"
             app:my_radio_checked="@drawable/home_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
             app:my_radio_normal="@drawable/home_select"
             app:my_radio_normal_color="@color/gray_99"
-            android:button="@null"
             />
 
         <com.github.customview.MyRadioButton
-            android:id="@+id/rb_home_my"
-            style="@style/radio_main"
-            android:text="我的"
-            app:my_radio_checked="@drawable/my_normal"
+            android:id="@+id/rb_home_xdd"
+            style="@style/radio_home"
+            android:text="下订单"
+            app:my_radio_checked="@drawable/home_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
             app:my_radio_normal="@drawable/my_normal"
             app:my_radio_normal_color="@color/gray_99"
-            android:button="@null"
+            />
+        <com.github.customview.MyRadioButton
+            android:id="@+id/rb_home_my"
+            style="@style/radio_home"
+            android:text="我的"
+            app:my_radio_checked="@drawable/home_select"
+            app:my_radio_checked_color="@color/blue"
+            app:my_radio_checked_drawable="top"
+            app:my_radio_normal="@drawable/my_normal"
+            app:my_radio_normal_color="@color/gray_99"
             />
     </RadioGroup>
 </RelativeLayout>
