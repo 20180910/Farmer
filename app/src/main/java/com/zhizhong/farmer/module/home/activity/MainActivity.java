@@ -10,7 +10,8 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.module.home.fragment.HomeFragment;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
-import com.zhizhong.farmer.module.zengzhi.fragment.ZengZhiFragment;
+import com.zhizhong.farmer.module.order.fragment.XiaDingDanFragment;
+import com.zhizhong.farmer.module.zixun.fragment.ZiXunFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -22,17 +23,19 @@ public class MainActivity extends BaseActivity {
 
 
     HomeFragment homeFragment;
-    ZengZhiFragment zengZhiFragment;
+    ZiXunFragment ziXunFragment;
+    XiaDingDanFragment xiaDingDanFragment;
     MyFragment myFragment;
-
-    @BindView(R.id.rb_home_rwdt)
-    MyRadioButton rb_home_rwdt;
-
-    @BindView(R.id.rb_home_zzfw)
-    MyRadioButton rb_home_zzfw;
-
+    
+    @BindView(R.id.rb_home_shouye)
+    MyRadioButton rb_home_shouye;
+    @BindView(R.id.rb_home_zixun)
+    MyRadioButton rb_home_zixun;
+    @BindView(R.id.rb_home_xdd)
+    MyRadioButton rb_home_xdd;
     @BindView(R.id.rb_home_my)
     MyRadioButton rb_home_my;
+
 
     private MyRadioButton selectButton;
 
@@ -58,7 +61,7 @@ public class MainActivity extends BaseActivity {
         status_bar.setLayoutParams(layoutParams);
         status_bar.setBackgroundColor(getResources().getColor(R.color.white));
 
-        selectButton = rb_home_rwdt;
+        selectButton = rb_home_shouye;
         homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commit();
 
@@ -75,28 +78,42 @@ public class MainActivity extends BaseActivity {
     protected void initData() {
     }
 
-    @OnClick({R.id.rb_home_rwdt, R.id.rb_home_zzfw, R.id.rb_home_my})
+    @OnClick({R.id.rb_home_shouye, R.id.rb_home_zixun, R.id.rb_home_xdd,R.id.rb_home_my})
     protected void onViewClick(View v) {
         switch (v.getId()) {
-            case R.id.rb_home_rwdt:
-                selectButton = rb_home_rwdt;
+            case R.id.rb_home_shouye:
+                selectButton = rb_home_shouye;
                 if (homeFragment == null) {
                     homeFragment = new HomeFragment();
                     getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commit();
                 } else {
                     showFragment(homeFragment);
                 }
-                hideFragment(zengZhiFragment);
+                hideFragment(ziXunFragment);
+                hideFragment(xiaDingDanFragment);
                 hideFragment(myFragment);
                 break;
-            case R.id.rb_home_zzfw:
-                selectButton = rb_home_zzfw;
-                if (zengZhiFragment == null) {
-                    zengZhiFragment = new ZengZhiFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, zengZhiFragment).commit();
+            case R.id.rb_home_zixun:
+                selectButton = rb_home_zixun;
+                if (ziXunFragment == null) {
+                    ziXunFragment = new ZiXunFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, ziXunFragment).commit();
                 } else {
-                    showFragment(zengZhiFragment);
+                    showFragment(ziXunFragment);
                 }
+                hideFragment(homeFragment);
+                hideFragment(xiaDingDanFragment);
+                hideFragment(myFragment);
+                break;
+            case R.id.rb_home_xdd:
+                selectButton = rb_home_xdd;
+                if (xiaDingDanFragment == null) {
+                    xiaDingDanFragment = new XiaDingDanFragment();
+                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, xiaDingDanFragment).commit();
+                } else {
+                    showFragment(xiaDingDanFragment);
+                }
+                hideFragment(ziXunFragment);
                 hideFragment(homeFragment);
                 hideFragment(myFragment);
                 break;
@@ -108,7 +125,8 @@ public class MainActivity extends BaseActivity {
                 } else {
                     showFragment(myFragment);
                 }
-                hideFragment(zengZhiFragment);
+                hideFragment(ziXunFragment);
+                hideFragment(xiaDingDanFragment);
                 hideFragment(homeFragment);
                 break;
         }

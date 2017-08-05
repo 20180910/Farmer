@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.zengzhi.network;
+package com.zhizhong.farmer.module.order.network;
 
 import com.github.retrofitutil.NetWorkManager;
 
@@ -16,9 +16,9 @@ public class ApiRequest {
         return NetWorkManager.getGeneralClient().create(IRequest.class);
     }
     //返回String无缓存
-    private static IRequest getGeneralStringClient(){
-        return NetWorkManager.getGeneralStringClient().create(IRequest.class);
-    }
+
+
+
 
 
 

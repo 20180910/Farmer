@@ -47,7 +47,7 @@
             app:my_radio_checked="@drawable/home_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
-            app:my_radio_normal="@drawable/home_select"
+            app:my_radio_normal="@drawable/home_normal"
             app:my_radio_normal_color="@color/gray_99"
             />
 
@@ -55,10 +55,10 @@
             android:id="@+id/rb_home_zixun"
             style="@style/radio_home"
             android:text="咨询"
-            app:my_radio_checked="@drawable/home_select"
+            app:my_radio_checked="@drawable/zixun_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
-            app:my_radio_normal="@drawable/home_select"
+            app:my_radio_normal="@drawable/zixun_normal"
             app:my_radio_normal_color="@color/gray_99"
             />
 
@@ -66,10 +66,10 @@
             android:id="@+id/rb_home_xdd"
             style="@style/radio_home"
             android:text="下订单"
-            app:my_radio_checked="@drawable/home_select"
+            app:my_radio_checked="@drawable/order_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
-            app:my_radio_normal="@drawable/my_normal"
+            app:my_radio_normal="@drawable/order_normal"
             app:my_radio_normal_color="@color/gray_99"
             />
         <com.github.customview.MyRadioButton
