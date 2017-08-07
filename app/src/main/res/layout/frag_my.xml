@@ -81,6 +81,7 @@
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:gravity="center_vertical"
+        android:background="@color/white"
         >
         <TextView
             android:layout_weight="1"
@@ -105,6 +106,7 @@
         android:orientation="horizontal"
         android:background="@color/white"
         android:gravity="center_vertical"
+        android:layout_marginTop="2px"
         >
         <TextView
             android:id="@+id/tv_my_all"

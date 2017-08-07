@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
-import com.zhizhong.farmer.module.my.activity.MyOrderActivity;
+import com.zhizhong.farmer.module.my.activity.MyOrderListActivity;
 
 import butterknife.OnClick;
 
@@ -54,16 +54,16 @@ public class MyFragment extends BaseFragment {
             case R.id.tv_my_wallet://我的钱包
                 break;
             case R.id.tv_my_all:
-                STActivity(MyOrderActivity.class);
+                STActivity(MyOrderListActivity.class);
                 break;
             case R.id.tv_my_djd:
-                STActivity(MyOrderActivity.class);
+                STActivity(MyOrderListActivity.class);
                 break;
             case R.id.tv_my_yjd:
-                STActivity(MyOrderActivity.class);
+                STActivity(MyOrderListActivity.class);
                 break;
             case R.id.tv_my_complete:
-                STActivity(MyOrderActivity.class);
+                STActivity(MyOrderListActivity.class);
                 break;
         }
     }

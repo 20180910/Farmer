@@ -14,7 +14,7 @@ import butterknife.BindView;
  * Created by administartor on 2017/8/2.
  */
 
-public class DaiJieSuanOrderFragment extends BaseFragment{
+public class YiJieDanOrderFragment extends BaseFragment{
     @BindView(R.id.rv_djs_order)
     RecyclerView rv_djs_order;
 
@@ -31,7 +31,7 @@ public class DaiJieSuanOrderFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-        adapter=new DaiJieSuanOrderAdapter(mContext,1,0);
+        adapter=new DaiJieSuanOrderAdapter(mContext,R.layout.item_order_list,0);
         adapter.setTestListSize(10);
 
         rv_djs_order.setLayoutManager(new LinearLayoutManager(mContext));

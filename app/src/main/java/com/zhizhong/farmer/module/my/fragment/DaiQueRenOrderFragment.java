@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
-import com.zhizhong.farmer.module.my.adapter.DaiZhiXingOrderAdapter;
+import com.zhizhong.farmer.module.my.adapter.DaiJieDanOrderAdapter;
 
 import butterknife.BindView;
 
@@ -14,11 +14,11 @@ import butterknife.BindView;
  * Created by administartor on 2017/8/2.
  */
 
-public class DaiZhiXingOrderFragment extends BaseFragment{
-    @BindView(R.id.rv_dzx_order)
-    RecyclerView rv_dzx_order;
+public class DaiQueRenOrderFragment extends BaseFragment{
+    @BindView(R.id.rv_djd_order)
+    RecyclerView rv_djd_order;
 
-    DaiZhiXingOrderAdapter adapter;
+    DaiJieDanOrderAdapter adapter;
     @Override
     public void again() {
 
@@ -26,16 +26,16 @@ public class DaiZhiXingOrderFragment extends BaseFragment{
 
     @Override
     protected int getContentView() {
-        return R.layout.frag_daizhixing_order;
+        return R.layout.frag_daijiedan_order;
     }
 
     @Override
     protected void initView() {
-        adapter=new DaiZhiXingOrderAdapter(mContext,1,0);
+        adapter=new DaiJieDanOrderAdapter(mContext,R.layout.item_order_list,0);
         adapter.setTestListSize(10);
 
-        rv_dzx_order.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_dzx_order.setAdapter(adapter);
+        rv_djd_order.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_djd_order.setAdapter(adapter);
 
     }
 

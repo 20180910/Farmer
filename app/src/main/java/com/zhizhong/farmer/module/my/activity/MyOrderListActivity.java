@@ -11,8 +11,9 @@ import com.zhizhong.farmer.module.my.adapter.OrderFragmentAdapter;
 import com.zhizhong.farmer.module.my.fragment.AllOrderFragment;
 import com.zhizhong.farmer.module.my.fragment.CompleteOrderFragment;
 import com.zhizhong.farmer.module.my.fragment.DaiJieDanOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.DaiJieSuanOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.DaiZhiXingOrderFragment;
+import com.zhizhong.farmer.module.my.fragment.DaiQueRenOrderFragment;
+import com.zhizhong.farmer.module.my.fragment.DaiWanShanOrderFragment;
+import com.zhizhong.farmer.module.my.fragment.YiJieDanOrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import butterknife.BindView;
  * Created by administartor on 2017/8/2.
  */
 
-public class MyOrderActivity extends BaseActivity {
+public class MyOrderListActivity extends BaseActivity {
 
     @BindView(R.id.tl_my_order)
     TabLayout tl_all_order;
@@ -34,9 +35,10 @@ public class MyOrderActivity extends BaseActivity {
     List<Fragment> list;
 
     AllOrderFragment allOrderFragment;
+    DaiWanShanOrderFragment daiWanShanOrderFragment;
+    DaiQueRenOrderFragment daiQueRenOrderFragment;
     DaiJieDanOrderFragment daiJieDanOrderFragment;
-    DaiZhiXingOrderFragment daiZhiXingOrderFragment;
-    DaiJieSuanOrderFragment daiJieSuanOrderFragment;
+    YiJieDanOrderFragment yiJieDanOrderFragment;
     CompleteOrderFragment completeOrderFragment;
 
     @Override
@@ -55,17 +57,19 @@ public class MyOrderActivity extends BaseActivity {
         adapter = new OrderFragmentAdapter(getSupportFragmentManager());
 
         allOrderFragment = new AllOrderFragment();
+        daiWanShanOrderFragment = new DaiWanShanOrderFragment();
+        daiQueRenOrderFragment = new DaiQueRenOrderFragment();
         daiJieDanOrderFragment = new DaiJieDanOrderFragment();
-        daiZhiXingOrderFragment = new DaiZhiXingOrderFragment();
-        daiJieSuanOrderFragment = new DaiJieSuanOrderFragment();
-        completeOrderFragment = new CompleteOrderFragment();
+        yiJieDanOrderFragment  = new YiJieDanOrderFragment();
+        completeOrderFragment  = new CompleteOrderFragment();
 
         list = new ArrayList<>();
         list.add(allOrderFragment);
-        list.add(daiJieDanOrderFragment);
-        list.add(daiZhiXingOrderFragment);
-        list.add(daiJieSuanOrderFragment);
-        list.add(completeOrderFragment);
+        list.add(daiWanShanOrderFragment);
+        list.add(daiQueRenOrderFragment );
+        list.add(daiJieDanOrderFragment );
+        list.add(yiJieDanOrderFragment  );
+        list.add(completeOrderFragment  );
 
         adapter.setList(list);
         vp_my_order.setAdapter(adapter);

@@ -6,7 +6,7 @@ import android.view.View;
 
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
-import com.zhizhong.farmer.module.my.adapter.CompleteOrderAdapter;
+import com.zhizhong.farmer.module.my.adapter.DaiJieDanOrderAdapter;
 
 import butterknife.BindView;
 
@@ -14,11 +14,11 @@ import butterknife.BindView;
  * Created by administartor on 2017/8/2.
  */
 
-public class CompleteOrderFragment extends BaseFragment{
-    @BindView(R.id.rv_complete_order)
-    RecyclerView rv_complete_order;
+public class DaiWanShanOrderFragment extends BaseFragment{
+    @BindView(R.id.rv_djd_order)
+    RecyclerView rv_djd_order;
 
-    CompleteOrderAdapter adapter;
+    DaiJieDanOrderAdapter adapter;
     @Override
     public void again() {
 
@@ -26,16 +26,16 @@ public class CompleteOrderFragment extends BaseFragment{
 
     @Override
     protected int getContentView() {
-        return R.layout.frag_complete_order;
+        return R.layout.frag_daijiedan_order;
     }
 
     @Override
     protected void initView() {
-        adapter=new CompleteOrderAdapter(mContext,R.layout.item_order_list,0);
+        adapter=new DaiJieDanOrderAdapter(mContext,1,0);
         adapter.setTestListSize(10);
 
-        rv_complete_order.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_complete_order.setAdapter(adapter);
+        rv_djd_order.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_djd_order.setAdapter(adapter);
 
     }
 
