@@ -47,6 +47,7 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     protected TextView app_title,app_right_tv;
     protected ImageView app_right_iv;
     private View status_bar;
+    protected boolean hiddenBottomLine;
 //    protected PtrClassicFrameLayout pcfl;
 
 //    protected ProgressLayout pl_load;
@@ -56,6 +57,9 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
     protected abstract void initData();
     protected abstract void onViewClick(View v);
     protected void initRxBus(){};
+    protected void hiddenBottomLine(boolean flag){
+        hiddenBottomLine=flag;
+    }
     protected void setAppTitle(String title){
         appTitle=title;
         if(app_title!=null){
@@ -132,11 +136,12 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         if(null!=findViewById(R.id.app_title)){
             app_title= (TextView) findViewById(R.id.app_title);
             app_title.setText(appTitle==null?"":appTitle);
-            if(TextUtils.isEmpty(appTitle)){
-                if(null!=findViewById(R.id.v_bottom_line)){
+            if(null!=findViewById(R.id.v_bottom_line)){
+                if(TextUtils.isEmpty(appTitle)||hiddenBottomLine){
                     findViewById(R.id.v_bottom_line).setVisibility(View.GONE);
                 }
             }
+
             if(appTitleColor!=0){
                 app_title.setTextColor(appTitleColor);
             }

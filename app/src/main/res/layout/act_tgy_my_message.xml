@@ -8,7 +8,7 @@
     >
 <include layout="@layout/app_title"/>
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_my_message"
+        android:id="@+id/rv_tgy_my_message"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         

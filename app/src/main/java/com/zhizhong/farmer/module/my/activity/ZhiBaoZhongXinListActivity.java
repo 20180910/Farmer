@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.tuiguangyuan.activity;
+package com.zhizhong.farmer.module.my.activity;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,15 +12,14 @@ import com.zhizhong.farmer.base.BaseActivity;
 import butterknife.BindView;
 
 /**
- * Created by administartor on 2017/8/4.
+ * Created by administartor on 2017/8/8.
  */
 
-public class TGYMyYongJinActivity extends BaseActivity {
-    @BindView(R.id.rv_tgy_my_yong_jin)
-    RecyclerView rv_tgy_my_yong_jin;
+public class ZhiBaoZhongXinListActivity extends BaseActivity {
+    @BindView(R.id.rv_zhi_bao)
+    RecyclerView rv_zhi_bao;
 
     LoadMoreAdapter adapter;
-
 
     @Override
     public void again() {
@@ -29,20 +28,21 @@ public class TGYMyYongJinActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("我的佣金");
-        return R.layout.act_tgy_my_yong_jin;
+        setAppTitle("植保中心");
+        return R.layout.act_zhi_bao_zhong_xin_list;
     }
-
     @Override
     protected void initView() {
-        adapter=new LoadMoreAdapter(mContext,R.layout.item_tgy_yong_jin_mingxi,0) {
+        adapter=new LoadMoreAdapter(mContext,R.layout.item_zhi_bao,0) {
             @Override
             public void bindData(LoadMoreViewHolder loadMoreViewHolder, int i, Object o) {
 
             }
         };
         adapter.setTestListSize(10);
-        rv_tgy_my_yong_jin.setLayoutManager(new LinearLayoutManager(mContext));
+
+        rv_zhi_bao.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_zhi_bao.setAdapter(adapter);
 
     }
 

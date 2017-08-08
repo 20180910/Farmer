@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.my.activity;
+package com.zhizhong.farmer.module.order.activity;
 
 import android.view.View;
 
@@ -6,10 +6,10 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 
 /**
- * Created by administartor on 2017/8/3.
+ * Created by administartor on 2017/8/7.
  */
 
-public class MyDataActivity extends BaseActivity {
+public class OfflinePayActivity extends BaseActivity {
     @Override
     public void again() {
 
@@ -17,8 +17,8 @@ public class MyDataActivity extends BaseActivity {
 
     @Override
     protected int getContentView() {
-        setAppTitle("我的资料");
-        return R.layout.act_my_data;
+        setAppTitle("线下付款");
+        return R.layout.act_offline_pay;
     }
 
     @Override

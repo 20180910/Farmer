@@ -28,7 +28,7 @@ public class TGYMyMessageActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         setAppTitle("我的消息");
-        return R.layout.act_my_message;
+        return R.layout.act_tgy_my_message;
     }
 
     @Override

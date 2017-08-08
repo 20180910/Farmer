@@ -18,7 +18,7 @@ public class TGYTiXianActivity extends BaseActivity {
     @Override
     protected int getContentView() {
         setAppTitle("提现");
-        return R.layout.act_ti_xian;
+        return R.layout.act_tgy_ti_xian;
     }
 
     @Override
