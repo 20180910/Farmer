@@ -8,9 +8,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.github.androidtools.ClickUtils;
+import com.github.androidtools.SPUtils;
 import com.github.baseclass.fragment.IBaseFragment;
 import com.github.baseclass.rx.RxBus;
+import com.zhizhong.farmer.Config;
+import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.view.ProgressLayout;
+
+import java.util.List;
+import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -100,5 +106,33 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
         super.onDestroy();
         mUnBind.unbind();
         RxBus.getInstance().removeAllStickyEvents();
+    }
+
+    @Override
+    public void again() {
+        initData();
+    }
+    public int getUserType(){
+        return SPUtils.getPrefInt(mContext, Config.userType,-1);
+    }
+    protected String getUserId(){
+        return SPUtils.getPrefString(mContext,Config.user_id,null);
+    }
+    protected String getSign(){
+        return getSign("user_id",getUserId());
+    }
+    protected String getSign(String key,String value){
+        return GetSign.getSign(key,value);
+    }
+    protected boolean isEmpty(List list){
+        return list == null || list.size() == 0;
+    }
+    protected boolean notEmpty(List list){
+        return !(list == null || list.size() == 0);
+    }
+    protected String getRnd(){
+        Random random = new Random();
+        int rnd = random.nextInt(9000) + 1000;
+        return rnd+"";
     }
 }

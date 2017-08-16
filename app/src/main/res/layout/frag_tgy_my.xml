@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -20,7 +21,7 @@
         android:layout_centerInParent="true"
         />
         <ImageView
-            android:id="@+id/iv_my_set"
+            android:id="@+id/iv_tgy_my_set"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:src="@drawable/img32"
@@ -38,13 +39,15 @@
         android:orientation="vertical"
         >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_tgy_my_img"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
             android:src="@drawable/img34"
             />
 
         <TextView
+            android:id="@+id/tv_tgy_my_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="张三丰"
@@ -63,10 +66,18 @@
             <com.github.customview.MyTextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="推广码:#234234#"
+                android:text="推广码:"
                 android:textColor="@color/white"
                 android:textSize="14sp"
                 android:layout_marginLeft="6dp"
+                />
+            <TextView
+                android:id="@+id/tv_info_tgm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="#234234#"
+                android:textColor="@color/white"
+                android:textSize="14sp"
                 />
         </LinearLayout>
     </LinearLayout>
@@ -90,7 +101,7 @@
                 android:src="@drawable/img53"
                 />
             <com.github.customview.MyTextView
-                android:id="@+id/tv_my_wallet"
+                android:id="@+id/tv_tgy_my_yongjin"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的佣金"
@@ -111,6 +122,7 @@
                 android:src="@drawable/img30"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_tgy_my_farmer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的农户"
@@ -131,6 +143,7 @@
                 android:src="@drawable/img54"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_tgy_my_msg"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的消息"

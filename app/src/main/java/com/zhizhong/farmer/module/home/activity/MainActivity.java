@@ -1,16 +1,24 @@
 package com.zhizhong.farmer.module.home.activity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.support.v4.content.LocalBroadcastManager;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.github.androidtools.StatusBarUtils;
 import com.github.customview.MyRadioButton;
+import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
+import com.zhizhong.farmer.broadcast.MyOperationBro;
 import com.zhizhong.farmer.module.home.fragment.HomeFragment;
+import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
 import com.zhizhong.farmer.module.order.fragment.XiaDingDanFragment;
+import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity;
+import com.zhizhong.farmer.module.tuiguangyuan.fragment.TGYMyFragment;
 import com.zhizhong.farmer.module.zixun.fragment.ZiXunFragment;
 
 import butterknife.BindView;
@@ -26,7 +34,8 @@ public class MainActivity extends BaseActivity {
     ZiXunFragment ziXunFragment;
     XiaDingDanFragment xiaDingDanFragment;
     MyFragment myFragment;
-    
+    TGYMyFragment TGYMyFragment;
+
     @BindView(R.id.rb_home_shouye)
     MyRadioButton rb_home_shouye;
     @BindView(R.id.rb_home_zixun)
@@ -39,6 +48,8 @@ public class MainActivity extends BaseActivity {
 
     private MyRadioButton selectButton;
 
+    private LocalBroadcastManager localBroadcastManager;
+    private MyOperationBro myOperationBro;
     @Override
     protected int getContentView() {
         return R.layout.act_home;
@@ -55,6 +66,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        setBroadcast();
         int statusBarHeight = StatusBarUtils.getStatusBarHeight(this);
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.height = statusBarHeight;
@@ -63,16 +75,56 @@ public class MainActivity extends BaseActivity {
 
         selectButton = rb_home_shouye;
         homeFragment = new HomeFragment();
-        getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commit();
+        getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commitAllowingStateLoss();
 
     }
 
+    private void setBroadcast() {
+        localBroadcastManager = LocalBroadcastManager.getInstance( this );
+        myOperationBro =new MyOperationBro(new MyOperationBro.LoginBroInter() {
+            @Override
+            public void loginSuccess() {
+                selectMy();
+                selectButton.setChecked(true);
+            }
 
-    @Override
-    protected void initRxBus() {
-        super.initRxBus();
+            @Override
+            public void exitLogin() {
+                selectHome();
+                selectButton.setChecked(true);
+                if(getUserType()== Config.userType_farmer){
+                    myFragment=null;
+                }else if(getUserType()==Config.userType_tgy){
+                    TGYMyFragment = null;
+                }
+            }
+            @Override
+            public void addHomeworkSuccess() {
 
+            }
+        });
+        localBroadcastManager.registerReceiver(myOperationBro,new IntentFilter(Config.Bro.operation));
     }
+
+    private void selectHome() {
+        selectButton = rb_home_shouye;
+        if (homeFragment == null) {
+            homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commitAllowingStateLoss();
+        } else {
+            showFragment(homeFragment);
+        }
+        hideFragment(ziXunFragment);
+        hideFragment(xiaDingDanFragment);
+        if(getUserType()== Config.userType_farmer){
+            hideFragment(myFragment);
+        }else if(getUserType()==Config.userType_tgy){
+            hideFragment(TGYMyFragment);
+        }
+    }
+
+
+
 
     @Override
     protected void initData() {
@@ -82,56 +134,85 @@ public class MainActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.rb_home_shouye:
-                selectButton = rb_home_shouye;
-                if (homeFragment == null) {
-                    homeFragment = new HomeFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commit();
-                } else {
-                    showFragment(homeFragment);
-                }
-                hideFragment(ziXunFragment);
-                hideFragment(xiaDingDanFragment);
-                hideFragment(myFragment);
+                selectHome();
                 break;
             case R.id.rb_home_zixun:
                 selectButton = rb_home_zixun;
                 if (ziXunFragment == null) {
                     ziXunFragment = new ZiXunFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, ziXunFragment).commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, ziXunFragment).commitAllowingStateLoss();
                 } else {
                     showFragment(ziXunFragment);
                 }
                 hideFragment(homeFragment);
                 hideFragment(xiaDingDanFragment);
-                hideFragment(myFragment);
+                if(getUserType()== Config.userType_farmer){
+                    hideFragment(myFragment);
+                }else if(getUserType()==Config.userType_tgy){
+                    hideFragment(TGYMyFragment);
+                }
                 break;
             case R.id.rb_home_xdd:
                 selectButton = rb_home_xdd;
                 if (xiaDingDanFragment == null) {
                     xiaDingDanFragment = new XiaDingDanFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, xiaDingDanFragment).commit();
+                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, xiaDingDanFragment).commitAllowingStateLoss();
                 } else {
                     showFragment(xiaDingDanFragment);
                 }
                 hideFragment(ziXunFragment);
                 hideFragment(homeFragment);
-                hideFragment(myFragment);
+                if(getUserType()== Config.userType_farmer){
+                    hideFragment(myFragment);
+                }else if(getUserType()==Config.userType_tgy){
+                    hideFragment(TGYMyFragment);
+                }
                 break;
             case R.id.rb_home_my:
-                selectButton = rb_home_my;
-                if (myFragment == null) {
-                    myFragment = new MyFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, myFragment).commit();
-                } else {
-                    showFragment(myFragment);
+                if(TextUtils.isEmpty(getUserId())){
+                    selectButton.setChecked(true);
+                    if(getUserType()== Config.userType_farmer){
+                        STActivity(LoginActivity.class);
+                    }else if(getUserType()==Config.userType_tgy){
+                        STActivity(TGYLoginActivity.class);
+                    }
+                    return;
                 }
-                hideFragment(ziXunFragment);
-                hideFragment(xiaDingDanFragment);
-                hideFragment(homeFragment);
+                selectMy();
                 break;
         }
     }
+    public void selectMy(){
+        selectButton = rb_home_my;
+        if(getUserType()== Config.userType_farmer){
+            if (myFragment == null) {
+                myFragment = new MyFragment();
+                getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, myFragment).commitAllowingStateLoss();
+            } else {
+                showFragment(myFragment);
+            }
+        }else if(getUserType()==Config.userType_tgy){
+            if (TGYMyFragment == null) {
+                TGYMyFragment = new TGYMyFragment();
+                getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, TGYMyFragment).commitAllowingStateLoss();
+            } else {
+                showFragment(TGYMyFragment);
+            }
+        }
 
+
+        hideFragment(ziXunFragment);
+        hideFragment(xiaDingDanFragment);
+        hideFragment(homeFragment);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (localBroadcastManager != null) {
+            localBroadcastManager.unregisterReceiver(myOperationBro);
+        }
+    }
     private long mExitTime;
 
     @Override
@@ -145,8 +226,5 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @Override
-    public void again() {
 
-    }
 }

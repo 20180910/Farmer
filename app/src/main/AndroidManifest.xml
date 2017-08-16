@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.zhizhong.farmer"
           xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:allowBackup="true"
@@ -8,9 +13,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".MyApplication"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.zhizhong.farmer.module.home.activity.MainActivity"
+            android:name="com.zhizhong.farmer.module.home.activity.SelectUserActivity"
             android:label="@string/app_name"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme.NoActionBar">
@@ -20,7 +26,55 @@
             </intent-filter>
         </activity>
 
+        <!--home-->
+        <activity android:name="com.zhizhong.farmer.module.home.activity.CityActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.home.activity.MainActivity" android:launchMode="singleTask"/>
+        <activity android:name="com.zhizhong.farmer.module.home.activity.WebActivity"/>
+        <!--my_farmer-->
+        <activity android:name="com.zhizhong.farmer.module.my.activity.AccountListActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.AddBankCardActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.AddJuZhuDiActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.CropActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.FenXiaoCodeActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.ForgetPWDActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.JuZhuDiActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.LoginActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyDataActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyFarmerActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyFenXiaoActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyMessageActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyMessageDetailActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyOrderListActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyVouchersActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyXiaJiActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.MyYongJinActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.OrderDetailsActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.RegisterActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.TiXianActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.UpdatePWDActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.VIPLevelActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.ZhiBaoZhongXinDetailActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.ZhiBaoZhongXinListActivity"/>
+        <!--下订单-->
+        <activity android:name="com.zhizhong.farmer.module.order.activity.AddFarmerActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.order.activity.OfflinePayActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.order.activity.PaySuccessActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.order.activity.XiaDingDanActivity"/>
 
+        <!--资讯-->
+        <activity android:name="com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity"/>
+        <!--推广员-->
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyDataActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYForgetPWDActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyFarmerActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyMessageActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyMessageDetailActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyYongJinActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYRegisterActivity" android:windowSoftInputMode="adjustResize"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYTiXianActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYUpdatePWDActivity"/>
     </application>
 
 </manifest>
