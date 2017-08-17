@@ -18,7 +18,6 @@ import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
 import com.zhizhong.farmer.module.order.fragment.XiaDingDanFragment;
 import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity;
-import com.zhizhong.farmer.module.tuiguangyuan.fragment.TGYMyFragment;
 import com.zhizhong.farmer.module.zixun.fragment.ZiXunFragment;
 
 import butterknife.BindView;
@@ -34,8 +33,6 @@ public class MainActivity extends BaseActivity {
     ZiXunFragment ziXunFragment;
     XiaDingDanFragment xiaDingDanFragment;
     MyFragment myFragment;
-    TGYMyFragment TGYMyFragment;
-
     @BindView(R.id.rb_home_shouye)
     MyRadioButton rb_home_shouye;
     @BindView(R.id.rb_home_zixun)
@@ -58,7 +55,9 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (intent != null && "login".equals(intent.getAction())) {
+        if (intent != null && Config.exitAPP.equals(intent.getAction())) {
+            STActivity(SelectUserActivity.class);
+            finish();
 //            selectPerson();
 //            selectButton.setChecked(true);
         }
@@ -90,13 +89,10 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void exitLogin() {
-                selectHome();
+                /*selectHome();
                 selectButton.setChecked(true);
-                if(getUserType()== Config.userType_farmer){
-                    myFragment=null;
-                }else if(getUserType()==Config.userType_tgy){
-                    TGYMyFragment = null;
-                }
+                myFragment=null;*/
+
             }
             @Override
             public void addHomeworkSuccess() {
@@ -116,11 +112,8 @@ public class MainActivity extends BaseActivity {
         }
         hideFragment(ziXunFragment);
         hideFragment(xiaDingDanFragment);
-        if(getUserType()== Config.userType_farmer){
-            hideFragment(myFragment);
-        }else if(getUserType()==Config.userType_tgy){
-            hideFragment(TGYMyFragment);
-        }
+        hideFragment(myFragment);
+
     }
 
 
@@ -146,11 +139,7 @@ public class MainActivity extends BaseActivity {
                 }
                 hideFragment(homeFragment);
                 hideFragment(xiaDingDanFragment);
-                if(getUserType()== Config.userType_farmer){
-                    hideFragment(myFragment);
-                }else if(getUserType()==Config.userType_tgy){
-                    hideFragment(TGYMyFragment);
-                }
+                hideFragment(myFragment);
                 break;
             case R.id.rb_home_xdd:
                 selectButton = rb_home_xdd;
@@ -162,11 +151,7 @@ public class MainActivity extends BaseActivity {
                 }
                 hideFragment(ziXunFragment);
                 hideFragment(homeFragment);
-                if(getUserType()== Config.userType_farmer){
-                    hideFragment(myFragment);
-                }else if(getUserType()==Config.userType_tgy){
-                    hideFragment(TGYMyFragment);
-                }
+                hideFragment(myFragment);
                 break;
             case R.id.rb_home_my:
                 if(TextUtils.isEmpty(getUserId())){
@@ -184,21 +169,13 @@ public class MainActivity extends BaseActivity {
     }
     public void selectMy(){
         selectButton = rb_home_my;
-        if(getUserType()== Config.userType_farmer){
-            if (myFragment == null) {
-                myFragment = new MyFragment();
-                getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, myFragment).commitAllowingStateLoss();
-            } else {
-                showFragment(myFragment);
-            }
-        }else if(getUserType()==Config.userType_tgy){
-            if (TGYMyFragment == null) {
-                TGYMyFragment = new TGYMyFragment();
-                getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, TGYMyFragment).commitAllowingStateLoss();
-            } else {
-                showFragment(TGYMyFragment);
-            }
+        if (myFragment == null) {
+            myFragment = new MyFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, myFragment).commitAllowingStateLoss();
+        } else {
+            showFragment(myFragment);
         }
+
 
 
         hideFragment(ziXunFragment);

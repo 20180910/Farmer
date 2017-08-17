@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.home.activity;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.github.androidtools.SPUtils;
@@ -8,6 +9,9 @@ import com.github.customview.MyTextView;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
+import com.zhizhong.farmer.module.my.activity.LoginActivity;
+import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity;
+import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -32,16 +36,19 @@ public class SelectUserActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         action=getIntent().getAction();
-        //第一次进来，或者退出登录
+     /*   //第一次进来，或者退出登录
         if (Config.IParam.selectUser.equals(action)||SPUtils.getPrefBoolean(this,Config.isFirstIntoApp,true)){
 
-        }else{
+        }else{*/
             int userType = SPUtils.getPrefInt(this, Config.userType,-1);
-            if(userType!=-1){
+            if(userType==Config.userType_farmer){
                 STActivity(MainActivity.class);
                 finish();
+            }else if(userType==Config.userType_tgy){
+                STActivity(TGYMyActivity.class);
+                finish();
             }
-        }
+//        }
         super.onCreate(savedInstanceState);
     }
 
@@ -59,17 +66,20 @@ public class SelectUserActivity extends BaseActivity {
     protected void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.tv_select_user_farmer:
-                SPUtils.setPrefBoolean(mContext, Config.isFirstIntoApp,false);
-
-                SPUtils.setPrefInt(mContext, Config.userType,Config.userType_farmer);
-                STActivity(MainActivity.class);
+                if(TextUtils.isEmpty(getUserId())){
+                    //SPUtils.setPrefInt(mContext, Config.userType,Config.userType_farmer);
+                    STActivity(LoginActivity.class);
+                }else{
+                    STActivity(MainActivity.class);
+                }
                 finish();
                 break;
             case R.id.tv_select_user_tgy:
-                SPUtils.setPrefBoolean(mContext, Config.isFirstIntoApp,false);
-
-                SPUtils.setPrefInt(mContext, Config.userType,Config.userType_tgy);
-                STActivity(MainActivity.class);
+                if(TextUtils.isEmpty(getUserId())){
+                    STActivity(TGYLoginActivity.class);
+                }else{
+                    STActivity(TGYMyActivity.class);
+                }
                 finish();
                 break;
         }

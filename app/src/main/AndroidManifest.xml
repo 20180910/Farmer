@@ -68,6 +68,7 @@
         <!--资讯-->
         <activity android:name="com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity"/>
         <!--推广员-->
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyActivity" android:launchMode="singleTask"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyDataActivity"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYForgetPWDActivity"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity" android:windowSoftInputMode="adjustResize"/>

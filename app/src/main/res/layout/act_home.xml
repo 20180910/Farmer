@@ -76,7 +76,7 @@
             android:id="@+id/rb_home_my"
             style="@style/radio_home"
             android:text="我的"
-            app:my_radio_checked="@drawable/home_select"
+            app:my_radio_checked="@drawable/my_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"
             app:my_radio_normal="@drawable/my_normal"

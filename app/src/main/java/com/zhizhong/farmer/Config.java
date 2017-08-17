@@ -17,6 +17,7 @@ public class Config {
     public static final String userType="userType";
     public static final int userType_farmer =2;//农户
     public static final int userType_tgy =3;//推广员
+    public static final String exitAPP ="exitAPP";//退出登录参数名
 
 
     public static final String loginAppType_1 ="1";//飞首app

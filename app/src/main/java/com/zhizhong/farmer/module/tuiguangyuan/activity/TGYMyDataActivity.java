@@ -12,7 +12,6 @@ import android.provider.MediaStore;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -35,7 +34,6 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
-import com.zhizhong.farmer.module.home.activity.SelectUserActivity;
 import com.zhizhong.farmer.module.tuiguangyuan.network.ApiRequest;
 import com.zhizhong.farmer.module.tuiguangyuan.network.request.UploadImgItem;
 import com.zhizhong.farmer.tools.BitmapUtils;
@@ -300,7 +298,8 @@ public class TGYMyDataActivity extends BaseActivity {
 
     private void exitLogin() {
         SPUtils.removeKey(mContext, Config.user_id);
-        Intent intent = new Intent(Config.Bro.operation);
+        SPUtils.removeKey(mContext,Config.userType);
+       /* Intent intent = new Intent(Config.Bro.operation);
         intent.putExtra(Config.Bro.flag, Config.Bro.exit_login);
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(intent);
 
@@ -308,6 +307,9 @@ public class TGYMyDataActivity extends BaseActivity {
         Intent intentSelect=new Intent(Config.IParam.selectUser);
         STActivity(intentSelect,SelectUserActivity.class);
 
+        finish();*/
+        Intent intent=new Intent(Config.exitAPP);
+        STActivity(intent,TGYMyActivity.class);
         finish();
     }
 

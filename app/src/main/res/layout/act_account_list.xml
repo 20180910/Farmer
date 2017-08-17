@@ -21,7 +21,7 @@
             android:layout_height="match_parent"
             app:ptr_resistance="2.1"
             app:ptr_ratio_of_header_height_to_refresh="1.2"
-            android:layout_above="@+id/tv_account_delete"
+            android:layout_above="@+id/tv_account_edit"
             >
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_account"
