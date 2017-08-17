@@ -5,8 +5,8 @@ package com.zhizhong.farmer.module.account.event;
  */
 
 public class DeleteAccountEvent {
-    public int accountId;
-    public DeleteAccountEvent(int accountId) {
-        this.accountId = accountId;
+    public boolean isDeleteDefault;
+    public DeleteAccountEvent(boolean isDeleteDefault) {
+        this.isDeleteDefault = isDeleteDefault;
     }
 }

@@ -71,10 +71,15 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
     @Override
     protected void initRxBus() {
         super.initRxBus();
-        getRxBusEvent(DeleteAccountEvent.class, new MySubscriber() {
+        getRxBusEvent(DeleteAccountEvent.class, new MySubscriber<DeleteAccountEvent>() {
             @Override
-            public void onMyNext(Object o) {
-                isDelete=true;
+            public void onMyNext(DeleteAccountEvent event) {
+                isDelete=event.isDeleteDefault;
+                if(adapter.getList()==null||adapter.getList().size()==0){
+                    tv_account_edit.setVisibility(View.GONE);
+                }else{
+                    tv_account_edit.setVisibility(View.VISIBLE);
+                }
             }
         });
     }
@@ -146,6 +151,11 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
        addSubscription(ApiRequest.getAccount(getUserId(),getSign()).subscribe(new MySub<List<AccountObj>>(mContext,pcfl,pl_load) {
             @Override
             public void onMyNext(List<AccountObj> list) {
+                if(isEmpty(list)){
+                    tv_account_edit.setVisibility(View.GONE);
+                }else{
+                    tv_account_edit.setVisibility(View.VISIBLE);
+                }
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

@@ -66,12 +66,10 @@ public class AccountAdapter extends LoadMoreAdapter<AccountObj> {
                             ApiRequest.deleteAccount(accountId, GetSign.getSign("account_id",accountId)).subscribe(new MySub<BaseObj>(mContext) {
                                 @Override
                                 public void onMyNext(BaseObj obj) {
-                                    if(bean.getIs_default()==1){
-                                        RxBus.getInstance().post(new DeleteAccountEvent(bean.getId()));
-                                    }
                                     ToastUtils.showToast(mContext,obj.getMsg());
                                     getList().remove(i);
                                     notifyDataSetChanged();
+                                    RxBus.getInstance().post(new DeleteAccountEvent(bean.getIs_default()==1));
                                 }
                             });
                         }
