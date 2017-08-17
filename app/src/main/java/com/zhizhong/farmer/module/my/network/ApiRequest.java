@@ -1,6 +1,11 @@
 package com.zhizhong.farmer.module.my.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.farmer.tools.RxResult;
+
+import java.util.Map;
+
+import rx.Observable;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -19,4 +24,17 @@ public class ApiRequest {
     private static IRequest getGeneralStringClient(){
         return NetWorkManager.getGeneralStringClient().create(IRequest.class);
     }
+    public static Observable getRegisterXieYi(String rnd, String sign){
+        return getCommonClient().getRegisterXieYi(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getMsgCode(Map map){
+        return getCommonClient().getMsgCode(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable register(Map map){
+        return getCommonClient().register(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable login(Map map){
+        return getCommonClient().login(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+
 }

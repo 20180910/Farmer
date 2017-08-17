@@ -17,7 +17,6 @@ import com.zhizhong.farmer.module.home.fragment.HomeFragment;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
 import com.zhizhong.farmer.module.order.fragment.XiaDingDanFragment;
-import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity;
 import com.zhizhong.farmer.module.zixun.fragment.ZiXunFragment;
 
 import butterknife.BindView;
@@ -89,9 +88,9 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void exitLogin() {
-                /*selectHome();
+                selectHome();
                 selectButton.setChecked(true);
-                myFragment=null;*/
+                myFragment=null;
 
             }
             @Override
@@ -156,11 +155,7 @@ public class MainActivity extends BaseActivity {
             case R.id.rb_home_my:
                 if(TextUtils.isEmpty(getUserId())){
                     selectButton.setChecked(true);
-                    if(getUserType()== Config.userType_farmer){
-                        STActivity(LoginActivity.class);
-                    }else if(getUserType()==Config.userType_tgy){
-                        STActivity(TGYLoginActivity.class);
-                    }
+                    STActivity(LoginActivity.class);
                     return;
                 }
                 selectMy();

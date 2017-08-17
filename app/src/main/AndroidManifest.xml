@@ -38,7 +38,7 @@
         <activity android:name="com.zhizhong.farmer.module.my.activity.FenXiaoCodeActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.ForgetPWDActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.JuZhuDiActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.LoginActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.LoginActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyDataActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyFarmerActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyFenXiaoActivity"/>
@@ -49,7 +49,7 @@
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyXiaJiActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyYongJinActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.OrderDetailsActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.RegisterActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.RegisterActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.TiXianActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.UpdatePWDActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.VIPLevelActivity"/>

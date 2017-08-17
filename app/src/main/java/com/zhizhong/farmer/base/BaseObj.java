@@ -40,10 +40,19 @@ public class BaseObj implements Serializable {
     private double allmoney;//全部金额
     private String agreement;//提现协议
     private String promoters_agreement;//推广员注册协议
+    private String farmer_agreement;//农户注册协议
     private String realname_authentication;//实名认证协议
 
     public String getPromoters_agreement() {
         return promoters_agreement;
+    }
+
+    public String getFarmer_agreement() {
+        return farmer_agreement;
+    }
+
+    public void setFarmer_agreement(String farmer_agreement) {
+        this.farmer_agreement = farmer_agreement;
     }
 
     public void setPromoters_agreement(String promoters_agreement) {

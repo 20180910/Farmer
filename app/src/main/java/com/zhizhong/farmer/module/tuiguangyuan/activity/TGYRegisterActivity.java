@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.my.activity;
+package com.zhizhong.farmer.module.tuiguangyuan.activity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -21,8 +21,8 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
-import com.zhizhong.farmer.module.my.Constant;
-import com.zhizhong.farmer.module.my.network.ApiRequest;
+import com.zhizhong.farmer.module.tuiguangyuan.Constant;
+import com.zhizhong.farmer.module.tuiguangyuan.network.ApiRequest;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,36 +38,26 @@ import rx.Subscription;
  * Created by administartor on 2017/8/1.
  */
 
-public class RegisterActivity extends BaseActivity {
-
-    @BindView(R.id.et_register_phone)
-    MyEditText et_register_phone;
-    @BindView(R.id.et_register_code)
-    EditText et_register_code;
-    @BindView(R.id.tv_register_getcode)
-    TextView tv_register_getcode;
-    @BindView(R.id.et_register_pwd)
-    MyEditText et_register_pwd;
-    @BindView(R.id.et_register_repwd)
-    MyEditText et_register_repwd;
-    @BindView(R.id.et_register_tgm)
-    MyEditText et_register_tgm;
-    @BindView(R.id.tv_register_xy)
-    TextView tv_register_xy;
-    @BindView(R.id.tv_register_commit)
-    MyTextView tv_register_commit;
-    @BindView(R.id.tv_register_login)
-    TextView tv_register_login;
-
-
+public class TGYRegisterActivity extends BaseActivity {
+    @BindView(R.id.tv_tgy_register_getcode)
+    TextView tv_tgy_register_getcode;
+    @BindView(R.id.et_tgy_register_phone)
+    MyEditText et_tgy_register_phone;
+    @BindView(R.id.et_tgy_register_code)
+    EditText et_tgy_register_code;
+    @BindView(R.id.et_tgy_register_pwd)
+    MyEditText et_tgy_register_pwd;
+    @BindView(R.id.et_tgy_register_repwd)
+    MyEditText et_tgy_register_repwd;
+    @BindView(R.id.tv_tgy_register_commit)
+    MyTextView tv_tgy_register_commit;
     private String smsCode;
     private BottomSheetDialog xieYiDialog;
     private String agreement;
-
     @Override
     protected int getContentView() {
         setAppTitle("注册");
-        return R.layout.act_register;
+        return R.layout.act_tgy_register;
     }
 
     @Override
@@ -79,8 +69,6 @@ public class RegisterActivity extends BaseActivity {
     protected void initData() {
         getXieYi(false);
     }
-
-
     private void showXieYi(String content) {
         View xieYi = LayoutInflater.from(mContext).inflate(R.layout.popu_tx_xieyi, null);
         xieYiDialog = new BottomSheetDialog(mContext);
@@ -113,18 +101,17 @@ public class RegisterActivity extends BaseActivity {
         addSubscription(ApiRequest.getRegisterXieYi(rnd,getSign("rnd",rnd)).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
-                agreement = obj.getFarmer_agreement();
+                agreement = obj.getPromoters_agreement();
                 if(manual){
                     showXieYi(agreement);
                 }
             }
         }));
     }
-
-    @OnClick({R.id.tv_register_getcode, R.id.tv_register_xy, R.id.tv_register_commit, R.id.tv_register_login})
-    protected void onViewClick(View view) {
-        switch (view.getId()) {
-            case R.id.tv_register_xy:
+    @OnClick({R.id.tv_tgy_register_commit,R.id.tv_tgy_register_getcode,R.id.tv_tgy_register_login,R.id.tv_tgy_register_xy})
+    protected void onViewClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_tgy_register_xy:
                 if(TextUtils.isEmpty(agreement)){
                     showLoading();
                     getXieYi(true);
@@ -132,29 +119,29 @@ public class RegisterActivity extends BaseActivity {
                     showXieYi(agreement);
                 }
                 break;
-            case R.id.tv_register_login:
+            case R.id.tv_tgy_register_login:
                 finish();
                 break;
-            case R.id.tv_register_getcode:
-                if(TextUtils.isEmpty(getSStr(et_register_phone))){
+            case R.id.tv_tgy_register_getcode:
+                if(TextUtils.isEmpty(getSStr(et_tgy_register_phone))){
                     showMsg("手机号不能为空");
                     return;
-                }else if(!GetSign.isMobile(getSStr(et_register_phone))){
+                }else if(!GetSign.isMobile(getSStr(et_tgy_register_phone))){
                     showMsg("请输入正确手机号");
                     return;
                 }
                 getMsgCode();
                 break;
-            case R.id.tv_register_commit:
-                String phone=getSStr(et_register_phone);
-                String code=getSStr(et_register_code);
-                String pwd=getSStr(et_register_pwd);
-                String rePwd=getSStr(et_register_repwd);
+            case R.id.tv_tgy_register_commit:
+                String phone=getSStr(et_tgy_register_phone);
+                String code=getSStr(et_tgy_register_code);
+                String pwd=getSStr(et_tgy_register_pwd);
+                String rePwd=getSStr(et_tgy_register_repwd);
 
-                if(TextUtils.isEmpty(getSStr(et_register_phone))){
+                if(TextUtils.isEmpty(getSStr(et_tgy_register_phone))){
                     showMsg("手机号不能为空");
                     return;
-                }else if(!GetSign.isMobile(getSStr(et_register_phone))){
+                }else if(!GetSign.isMobile(getSStr(et_tgy_register_phone))){
                     showMsg("请输入正确手机号");
                     return;
                 }else if(TextUtils.isEmpty(smsCode)||TextUtils.isEmpty(code)||!code.equals(smsCode)){
@@ -176,10 +163,10 @@ public class RegisterActivity extends BaseActivity {
         Map<String,String> map=new HashMap<String,String>();
         map.put("username",phone);
         map.put("password",pwd);
-        map.put("distribution_yard",getSStr(et_register_tgm));
+        map.put("distribution_yard","");
         map.put("usertype", Config.userType_tgy +"");
         map.put("sign",GetSign.getSign(map));
-        addSubscription(ApiRequest.register(map).subscribe(new MySub<BaseObj>(mContext) {
+        addSubscription(ApiRequest.registerTGY(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
                 showMsg(obj.getMsg());
@@ -195,7 +182,7 @@ public class RegisterActivity extends BaseActivity {
     private void getMsgCode() {
         showLoading();
         Map<String, String> map = new HashMap<String, String>();
-        map.put("mobile",getSStr(et_register_phone));
+        map.put("mobile",getSStr(et_tgy_register_phone));
         map.put("rnd",getRnd());
         String sign = GetSign.getSign(map);
         map.put("sign", sign);
@@ -209,7 +196,7 @@ public class RegisterActivity extends BaseActivity {
         }));
     }
     private void countDown() {
-        tv_register_getcode.setEnabled(false);
+        tv_tgy_register_getcode.setEnabled(false);
         final long count = 30;
         Subscription subscribe = Observable.interval(1, TimeUnit.SECONDS)
                 .take(31)//计时次数
@@ -218,12 +205,12 @@ public class RegisterActivity extends BaseActivity {
                 .subscribe(new Observer<Long>() {
                     @Override
                     public void onCompleted() {
-                        tv_register_getcode.setEnabled(true);
-                        tv_register_getcode.setText("获取验证码");
+                        tv_tgy_register_getcode.setEnabled(true);
+                        tv_tgy_register_getcode.setText("获取验证码");
                     }
                     @Override
                     public void onNext(Long aLong) {
-                        tv_register_getcode.setText("剩下" + aLong + "s");
+                        tv_tgy_register_getcode.setText("剩下" + aLong + "s");
                     }
 
                     @Override
@@ -232,4 +219,5 @@ public class RegisterActivity extends BaseActivity {
                 });
         addSubscription(subscribe);
     }
+
 }
