@@ -13,6 +13,7 @@ import com.github.baseclass.fragment.IBaseFragment;
 import com.github.baseclass.rx.RxBus;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
+import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.view.ProgressLayout;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import java.util.Random;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import in.srain.cube.views.ptr.PtrClassicFrameLayout;
 
 /**
  * Created by Administrator on 2017/7/13.
@@ -31,7 +33,7 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
 
     private boolean isFirstLoadData=true;
     private boolean isPrepared;
-//    protected PtrClassicFrameLayout pcfl;
+    protected PtrClassicFrameLayout pcfl;
     /************************************************/
     protected abstract int getContentView();
     protected abstract void initView();
@@ -40,7 +42,7 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
     protected void initRxBus(){};
     protected Unbinder mUnBind;
 
-//    protected ProgressLayout pl_load;
+    protected ProgressLayout pl_load;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,21 +53,21 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        /*if(null!=view.findViewById(R.id.pcfl_refresh)){
+        if(null!=view.findViewById(R.id.pcfl_refresh)){
             pcfl = (PtrClassicFrameLayout) view.findViewById(R.id.pcfl_refresh);
             pcfl.setLastUpdateTimeRelateObject(this);
         }
         if(null!=view.findViewById(R.id.pl_load)){
             pl_load = (ProgressLayout) view.findViewById(R.id.pl_load);
-        }*/
+            pl_load.setInter(this);
+        }
         initView();
         initRxBus();
         isPrepared=true;
         setUserVisibleHint(true);
     }
-    /*public void showProgress(ProgressLayout.OnAgainInter inter){
+    public void showProgress(){
         if (pl_load != null) {
-            pl_load.setInter(inter);
             pl_load.showProgress();
         }
     }
@@ -78,7 +80,7 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
         if (pl_load != null) {
             pl_load.showErrorText();
         }
-    }*/
+    }
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);

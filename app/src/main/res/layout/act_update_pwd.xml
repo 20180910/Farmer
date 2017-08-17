@@ -21,14 +21,14 @@
             android:layout_height="wrap_content"
             android:text="原密码"
             android:ems="4"
-            android:textSize="13sp"
+            android:textSize="15sp"
             />
         <com.github.customview.MyEditText
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:hint="请输入原密码"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:layout_marginRight="30dp"
             android:maxLines="1"
             />
@@ -47,14 +47,14 @@
             android:layout_height="wrap_content"
             android:text="新密码"
             android:ems="4"
-            android:textSize="13sp"
+            android:textSize="15sp"
             />
         <com.github.customview.MyEditText
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:hint="请输入新密码"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:layout_marginRight="30dp"
             android:maxLines="1"
             />
@@ -73,14 +73,14 @@
             android:layout_height="wrap_content"
             android:text="确认密码"
             android:ems="4"
-            android:textSize="13sp"
+            android:textSize="15sp"
             />
         <com.github.customview.MyEditText
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
             android:hint="请再次输入密码"
-            android:textSize="13sp"
+            android:textSize="15sp"
             android:layout_marginRight="30dp"
             android:maxLines="1"
             />
@@ -97,5 +97,6 @@
         app:my_tv_corner_radius="22dp"
         app:my_tv_solid="@color/blue"
         app:my_tv_press="@color/blue_press"
+        android:textSize="@dimen/size_commit"
         />
 </LinearLayout>

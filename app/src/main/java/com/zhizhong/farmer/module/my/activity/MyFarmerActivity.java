@@ -15,8 +15,8 @@ import butterknife.BindView;
  */
 
 public class MyFarmerActivity extends BaseActivity {
-    @BindView(R.id.rv_tgy_my_farmer)
-    RecyclerView rv_tgy_my_farmer;
+    @BindView(R.id.rv_my_farmer)
+    RecyclerView rv_my_farmer;
 
     MyFarmerAdapter adapter;
     @Override
@@ -34,8 +34,8 @@ public class MyFarmerActivity extends BaseActivity {
     protected void initView() {
         adapter=new MyFarmerAdapter(mContext,R.layout.item_my_farmer,0);
 
-        rv_tgy_my_farmer.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_tgy_my_farmer.setAdapter(adapter);
+        rv_my_farmer.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_my_farmer.setAdapter(adapter);
 
 
     }

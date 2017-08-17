@@ -3,6 +3,7 @@ package com.zhizhong.farmer.module.order.fragment;
 import android.os.Bundle;
 import android.view.View;
 
+import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 
 /**
@@ -12,7 +13,7 @@ import com.zhizhong.farmer.base.BaseFragment;
 public class XiaDingDanFragment extends BaseFragment {
     @Override
     protected int getContentView() {
-        return 1;
+        return R.layout._frag_;
     }
 
     public static XiaDingDanFragment newInstance() {

@@ -49,6 +49,21 @@ public class ApiRequest {
     public static Observable setNewPasswordTGY(Map map){
         return getCommonClient().setNewPasswordTGY(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable setForgetPasswordTGY(Map map){
+        return getCommonClient().setForgetPasswordTGY(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getMsgList(Map map){
+        return getCommonClient().getMsgList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getMsgDetail(String msgId,String sign){
+        return getCommonClient().getMsgDetail(msgId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getFarmerList(Map map){
+        return getCommonClient().getFarmerList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getTGYYongJin(Map map){
+        return getCommonClient().getTGYYongJin(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 
 

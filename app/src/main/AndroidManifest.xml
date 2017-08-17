@@ -62,6 +62,9 @@
         <activity android:name="com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.XiaDingDanActivity"/>
 
+        <!--提现账户-->
+        <activity android:name="com.zhizhong.farmer.module.account.activity.AccountListActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.account.activity.AddBankCardActivity"/>
         <!--资讯-->
         <activity android:name="com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity"/>
         <!--推广员-->

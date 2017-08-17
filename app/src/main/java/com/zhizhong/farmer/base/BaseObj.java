@@ -20,7 +20,7 @@ public class BaseObj implements Serializable {
 
     private String SMSCode;
     private String img;
-
+    private double account_balance;//账户余额
     public String getImg() {
         return img;
     }
@@ -60,6 +60,14 @@ public class BaseObj implements Serializable {
 
     public String getAgreement() {
         return agreement;
+    }
+
+    public double getAccount_balance() {
+        return account_balance;
+    }
+
+    public void setAccount_balance(double account_balance) {
+        this.account_balance = account_balance;
     }
 
     public void setAgreement(String agreement) {

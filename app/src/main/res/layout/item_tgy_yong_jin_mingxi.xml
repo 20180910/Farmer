@@ -15,12 +15,14 @@
         android:gravity="center_vertical"
         >
         <TextView
+            android:id="@+id/tv_tgy_yongjin_remark"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:text="下级分销完成订单¥6000.23"
             />
         <TextView
+            android:id="@+id/tv_tgy_yongjin_money"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="+60.00"
