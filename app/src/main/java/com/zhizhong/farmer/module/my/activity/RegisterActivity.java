@@ -177,7 +177,7 @@ public class RegisterActivity extends BaseActivity {
         map.put("username",phone);
         map.put("password",pwd);
         map.put("distribution_yard",getSStr(et_register_tgm));
-        map.put("usertype", Config.userType_tgy +"");
+        map.put("usertype", Config.userType_farmer +"");
         map.put("sign",GetSign.getSign(map));
         addSubscription(ApiRequest.register(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override

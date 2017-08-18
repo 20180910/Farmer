@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -12,75 +13,49 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:fillViewport="true"
+        >
 
-        <LinearLayout
+        <com.zhizhong.farmer.view.ProgressLayout
+            android:id="@id/pl_load"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="10dp"
-            >
+            android:layout_height="match_parent">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="要把特色优势转化为经济优势和发展优势"
-                android:textColor="@color/gray_33"
-                android:textSize="17sp"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="2017/06/10"
-                android:textColor="@color/gray_99"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="功能生物全降解液体地膜以农作物秸秆,由木质素，胶原蛋白，在交联剂的作用下形成高分子聚合物,与多种微肥,添加剂,土壤保水剂等天然高分子物质经特殊加工形成的高分子材料，该产品的创新点是以生物质为主要原料,彻底根除”白色污染”问题，消除了秸杆焚烧造成的污染难题.可达到农业增产增收、资源综合利用的目的。"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="供求内容"
-                android:textColor="@color/gray_33"
-                />
-
-            <ImageView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/c_press"
-                />
-
-            <TextView
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="陕西西瓜代办,西瓜基地价格,黑无籽西瓜价格,户太葡萄价格批发,油桃行情价格,冬枣基地行情走势,陕西甜王西瓜,陕西油桃,陕西京欣西瓜,陕西早熟苹果,陕西毛桃基地,陕西金太阳杏"
-                />
+                android:orientation="vertical"
+                android:padding="10dp"
+                >
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_marginTop="20dp"
-                android:background="@color/c_press"
-                />
+                <TextView
+                    android:id="@+id/tv_zhibao_detail_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    tools:text="要把特色优势转化为经济优势和发展优势"
+                    android:textColor="@color/gray_33"
+                    android:textSize="17sp"
+                    />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:text="陕西西瓜代办,西瓜基地价格,黑无籽西瓜价格,户太葡萄价格批发,油桃行情价格,冬枣基地行情走势,陕西甜王西瓜,陕西油桃,陕西京欣西瓜,陕西早熟苹果,陕西毛桃基地,陕西金太阳杏"
-                />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_zhibao_detail_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    tools:text="2017/06/10"
+                    android:textColor="@color/gray_99"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_zhibao_detail_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    tools:text="功能生物全降解液体地膜以农作物秸秆,由木质素，胶原蛋白，在交联剂的作用下形成高分子聚合物,与多种微肥,添加剂,土壤保水剂等天然高分子物质经特殊加工形成的高分子材料，该产品的创新点是以生物质为主要原料,彻底根除”白色污染”问题，消除了秸杆焚烧造成的污染难题.可达到农业增产增收、资源综合利用的目的。"
+                    />
+            </LinearLayout>
+        </com.zhizhong.farmer.view.ProgressLayout>
     </android.support.v4.widget.NestedScrollView>
-
 </LinearLayout>

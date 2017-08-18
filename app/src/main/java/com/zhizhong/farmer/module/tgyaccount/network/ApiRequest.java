@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.network;
+package com.zhizhong.farmer.module.tgyaccount.network;
 
 import com.github.retrofitutil.NetWorkManager;
 import com.zhizhong.farmer.tools.RxResult;

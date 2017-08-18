@@ -8,5 +8,7 @@ public class Constant {
 
     public static final String title="title";
     public static final String url="url";
-
+    public static class IParam{
+        public static final String zhiBaoId="phone";
+    }
 }

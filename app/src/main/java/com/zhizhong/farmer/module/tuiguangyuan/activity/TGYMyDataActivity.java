@@ -67,8 +67,8 @@ public class TGYMyDataActivity extends BaseActivity {
     MyEditText et_tgy_info_tel;
     @BindView(R.id.tv_tgy_info_updatepwd)
     LinearLayout tv_tgy_info_updatepwd;
-    @BindView(R.id.tv_tgy_tgy_info_exit)
-    TextView tv_tgy_tgy_info_exit;
+    @BindView(R.id.tv_tgy_info_exit)
+    TextView tv_tgy_info_exit;
     @BindView(R.id.tv_tgy_info_commit)
     MyTextView tv_tgy_info_commit;
 
@@ -101,7 +101,7 @@ public class TGYMyDataActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_tgy_info_img, R.id.tv_tgy_info_updatepwd, R.id.tv_tgy_tgy_info_exit, R.id.tv_tgy_info_commit})
+    @OnClick({R.id.ll_tgy_info_img, R.id.tv_tgy_info_updatepwd, R.id.tv_tgy_info_exit, R.id.tv_tgy_info_commit})
     protected void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.ll_tgy_info_img:
@@ -111,7 +111,7 @@ public class TGYMyDataActivity extends BaseActivity {
             case R.id.tv_tgy_info_updatepwd:
                 STActivity(TGYUpdatePWDActivity.class);
                 break;
-            case R.id.tv_tgy_tgy_info_exit:
+            case R.id.tv_tgy_info_exit:
                 mDialog = new MyDialog.Builder(mContext);
                 mDialog.setMessage("是否确认退出登录?")
                         .setNegativeButton((dialog, which) -> dialog.dismiss())

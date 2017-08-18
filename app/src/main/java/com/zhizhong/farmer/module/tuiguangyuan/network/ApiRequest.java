@@ -64,6 +64,9 @@ public class ApiRequest {
     public static Observable getTGYYongJin(Map map){
         return getCommonClient().getTGYYongJin(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getYongJin(Map map){
+        return getCommonClient().getYongJin(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 
 

@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.network.response;
+package com.zhizhong.farmer.module.tgyaccount.network.response;
 
 import java.io.Serializable;
 

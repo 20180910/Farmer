@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v4.widget.NestedScrollView
-            android:layout_above="@+id/tv_my_data_commit"
+            android:layout_above="@+id/tv_info_commit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <LinearLayout
@@ -21,6 +22,7 @@
                 >
 
                 <LinearLayout
+                    android:id="@+id/ll_info_img"
                     android:layout_width="match_parent"
                     android:layout_height="55dp"
                     android:orientation="horizontal"
@@ -37,7 +39,8 @@
                         android:text="头像"
                         android:textSize="14sp"
                         />
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civ_info_img"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:src="@drawable/img34"
@@ -60,23 +63,30 @@
                     android:paddingRight="10dp"
                     >
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="昵称"
                         android:textSize="14sp"
                         />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="18934293432"
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_info_name"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        tools:text="18934293432"
                         android:textColor="@color/gray_33"
+                        android:textSize="14sp"
+                        app:my_et_hiddenClear="true"
+                        android:paddingRight="15dp"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
                         />
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/jiantou_right"
-                        android:layout_marginLeft="15dp"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -90,26 +100,34 @@
                     android:paddingRight="10dp"
                     >
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="手机号"
-                        android:textSize="14sp"
-                        />
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1356485465"
+                        android:text="联系方式"
+                        android:textSize="14sp"
+                        />
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_info_tel"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        tools:text="18934293432"
                         android:textColor="@color/gray_33"
+                        android:textSize="14sp"
+                        app:my_et_hiddenClear="true"
+                        android:paddingRight="15dp"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
                         />
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/jiantou_right"
-                        android:layout_marginLeft="15dp"
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_info_updatepwd"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:orientation="horizontal"
@@ -133,109 +151,60 @@
                         android:layout_marginLeft="15dp"
                         />
                 </LinearLayout>
-
                 <LinearLayout
+                    android:id="@+id/ll_info_address"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:orientation="horizontal"
                     android:background="@color/white"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="2px"
                     android:gravity="center_vertical"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="居住地"
                         android:textSize="14sp"
                         />
+                    <com.github.customview.MyEditText
+                        android:id="@+id/et_info_address"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        tools:text="18934293493432"
+                        android:textColor="@color/gray_33"
+                        android:textSize="14sp"
+                        app:my_et_hiddenClear="true"
+                        android:paddingRight="15dp"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:layout_marginLeft="15dp"
+                        />
                     <ImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@drawable/jiantou_right"
-                        android:layout_marginLeft="15dp"
                         />
                 </LinearLayout>
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/tv_info_exit"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:orientation="horizontal"
-                    android:background="@color/white"
-                    android:layout_marginTop="2px"
                     android:gravity="center_vertical"
                     android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="农田地址"
-                        android:textSize="14sp"
-                        />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/jiantou_right"
-                        android:layout_marginLeft="15dp"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:orientation="horizontal"
+                    android:text="退出登录"
                     android:background="@color/white"
                     android:layout_marginTop="5dp"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="作物"
-                        android:textSize="14sp"
-                        />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/jiantou_right"
-                        android:layout_marginLeft="15dp"
-                        />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="45dp"
-                    android:orientation="horizontal"
-                    android:background="@color/white"
-                    android:layout_marginTop="2px"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:text="亩数"
-                        android:textSize="14sp"
-                        />
-                    <ImageView
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:src="@drawable/jiantou_right"
-                        android:layout_marginLeft="15dp"
-                        />
-                </LinearLayout>
+                    />
             </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         <com.github.customview.MyTextView
-            android:id="@+id/tv_my_data_commit"
+            android:id="@+id/tv_info_commit"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="10dp"
             android:layout_width="match_parent"

@@ -4,14 +4,17 @@ import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.customview.MyTextView;
+import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
+import com.zhizhong.farmer.module.my.activity.TiXianActivity;
 import com.zhizhong.farmer.module.tuiguangyuan.network.ApiRequest;
 import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYYongJinObj;
 
@@ -48,8 +51,16 @@ public class TGYMyYongJinActivity extends BaseActivity implements LoadMoreAdapte
         adapter = new LoadMoreAdapter<TGYYongJinObj.CommissionDetailListBean>(mContext, R.layout.item_tgy_yong_jin_mingxi, pageSize) {
             @Override
             public void bindData(LoadMoreViewHolder holder, int i, TGYYongJinObj.CommissionDetailListBean bean) {
-                holder.setText(R.id.tv_tgy_yongjin_remark,bean.getRemark())
-                        .setText(R.id.tv_tgy_yongjin_money,bean.getValue());
+                holder.setText(R.id.tv_tgy_yongjin_remark,bean.getRemark());
+
+                TextView textView = holder.getTextView(R.id.tv_tgy_yongjin_money);
+                if(bean.getValue()>0){
+                    textView.setTextColor(getResources().getColor(R.color.blue));
+                    textView.setText("+"+bean.getValue()+"元");
+                }else{
+                    textView.setTextColor(getResources().getColor(R.color.red));
+                    textView.setText(""+bean.getValue()+"元");
+                }
             }
         };
         adapter.setOnLoadMoreListener(this);
@@ -76,26 +87,47 @@ public class TGYMyYongJinActivity extends BaseActivity implements LoadMoreAdapte
         map.put("pagesize", pageSize + "");
         map.put("page", page + "");
         map.put("sign", GetSign.getSign(map));
-        addSubscription(ApiRequest.getTGYYongJin(map).subscribe(new MySub<TGYYongJinObj>(mContext,pcfl,pl_load) {
-            @Override
-            public void onMyNext(TGYYongJinObj obj) {
-                tg_tgy_yongjin_money.setText("¥"+obj.getCommission());
-                if (isLoad) {
-                    pageNum++;
-                    adapter.addList(obj.getCommission_detail_list(), true);
-                } else {
-                    pageNum = 2;
-                    adapter.setList(obj.getCommission_detail_list(), true);
+        if(getUserType()== Config.userType_farmer){
+            addSubscription(ApiRequest.getYongJin(map).subscribe(new MySub<TGYYongJinObj>(mContext,pcfl,pl_load) {
+                @Override
+                public void onMyNext(TGYYongJinObj obj) {
+                    tg_tgy_yongjin_money.setText("¥"+obj.getCommission());
+                    if (isLoad) {
+                        pageNum++;
+                        adapter.addList(obj.getCommission_detail_list(), true);
+                    } else {
+                        pageNum = 2;
+                        adapter.setList(obj.getCommission_detail_list(), true);
+                    }
                 }
-            }
-        }));
+            }));
+        }else{
+            addSubscription(ApiRequest.getTGYYongJin(map).subscribe(new MySub<TGYYongJinObj>(mContext,pcfl,pl_load) {
+                @Override
+                public void onMyNext(TGYYongJinObj obj) {
+                    tg_tgy_yongjin_money.setText("¥"+obj.getCommission());
+                    if (isLoad) {
+                        pageNum++;
+                        adapter.addList(obj.getCommission_detail_list(), true);
+                    } else {
+                        pageNum = 2;
+                        adapter.setList(obj.getCommission_detail_list(), true);
+                    }
+                }
+            }));
+        }
+
     }
 
     @OnClick({R.id.tg_tgy_yongjin_tx})
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tg_tgy_yongjin_tx:
-                STActivityForResult(TGYTiXianActivity.class,1000);
+                if(getUserType()== Config.userType_farmer){
+                    STActivityForResult(TiXianActivity.class,1000);
+                }else{
+                    STActivityForResult(TGYTiXianActivity.class,1000);
+                }
             break;
         }
     }

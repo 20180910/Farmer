@@ -8,6 +8,7 @@ import android.widget.TextView;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
+import com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.activity.MyMessageActivity;
 import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity;
@@ -47,9 +48,12 @@ public class HomeFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.iv_home_msg})
+    @OnClick({R.id.iv_home_msg,R.id.tv_home_zhibao})
     protected void onViewClick(View v) {
         switch (v.getId()){
+            case R.id.tv_home_zhibao:
+                STActivity(ZhiBaoZhongXinListActivity.class);
+                break;
             case R.id.iv_home_msg:
                 if(TextUtils.isEmpty(getUserId())){
                     if(getUserType()== Config.userType_farmer){

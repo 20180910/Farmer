@@ -1,6 +1,11 @@
 package com.zhizhong.farmer.module.home.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.farmer.tools.RxResult;
+
+import java.util.Map;
+
+import rx.Observable;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -20,6 +25,11 @@ public class ApiRequest {
         return NetWorkManager.getGeneralStringClient().create(IRequest.class);
     }
 
-
+    public static Observable getZhiBaoList(Map map){
+        return getCommonClient().getZhiBaoList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getZhiBaoDetail( String eppo_id,String sign){
+        return getCommonClient().getZhiBaoDetail(eppo_id,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 }

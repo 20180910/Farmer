@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.activity;
+package com.zhizhong.farmer.module.tgyaccount.activity;
 
 import android.content.DialogInterface;
 import android.support.design.widget.BottomSheetDialog;
@@ -25,8 +25,8 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
-import com.zhizhong.farmer.module.account.network.ApiRequest;
-import com.zhizhong.farmer.module.account.network.response.BankObj;
+import com.zhizhong.farmer.module.tgyaccount.network.ApiRequest;
+import com.zhizhong.farmer.module.tgyaccount.network.response.BankObj;
 
 import java.util.HashMap;
 import java.util.List;
@@ -39,7 +39,7 @@ import butterknife.OnClick;
  * Created by administartor on 2017/8/2.
  */
 
-public class AddBankCardActivity extends BaseActivity {
+public class TGYAddBankCardActivity extends BaseActivity {
     @BindView(R.id.et_bank_username)
     MyEditText et_bank_username;
     @BindView(R.id.et_bank_card)

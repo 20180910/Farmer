@@ -13,6 +13,7 @@ public class Config {
     public static final String area="area";
     public static final String mobile="mobile";
     public static final String avatar="avatar";
+    public static final String address="address";
     public static final String isFirstIntoApp="isFirstIntoApp";
     public static final String userType="userType";
     public static final int userType_farmer =2;//农户

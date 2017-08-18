@@ -16,10 +16,10 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
-import com.zhizhong.farmer.module.account.Constant;
-import com.zhizhong.farmer.module.account.activity.AccountListActivity;
-import com.zhizhong.farmer.module.account.network.ApiRequest;
-import com.zhizhong.farmer.module.account.network.response.AccountObj;
+import com.zhizhong.farmer.module.tgyaccount.Constant;
+import com.zhizhong.farmer.module.tgyaccount.activity.TGYAccountListActivity;
+import com.zhizhong.farmer.module.tgyaccount.network.ApiRequest;
+import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
 
 import java.util.HashMap;
 import java.util.List;
@@ -61,14 +61,10 @@ public class TGYTiXianActivity extends BaseActivity {
         et_tgy_tx_money.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
-
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
             }
-
             @Override
             public void afterTextChanged(Editable s) {
                 int selectionStart = et_tgy_tx_money.getSelectionStart();
@@ -91,7 +87,7 @@ public class TGYTiXianActivity extends BaseActivity {
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.ll_tgy_tixian:
-                STActivityForResult(AccountListActivity.class,100);
+                STActivityForResult(TGYAccountListActivity.class,100);
                 break;
             case R.id.tv_tgy_tx_commit:
                 String money = getSStr(et_tgy_tx_money);

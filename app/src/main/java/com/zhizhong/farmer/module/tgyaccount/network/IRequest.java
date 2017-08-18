@@ -1,10 +1,10 @@
-package com.zhizhong.farmer.module.account.network;
+package com.zhizhong.farmer.module.tgyaccount.network;
 
 
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
-import com.zhizhong.farmer.module.account.network.response.AccountObj;
-import com.zhizhong.farmer.module.account.network.response.BankObj;
+import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
+import com.zhizhong.farmer.module.tgyaccount.network.response.BankObj;
 
 import java.util.List;
 import java.util.Map;

@@ -36,7 +36,7 @@
         <activity android:name="com.zhizhong.farmer.module.my.activity.AddJuZhuDiActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.CropActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.FenXiaoCodeActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.ForgetPWDActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.ForgetPWDActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.JuZhuDiActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.LoginActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyDataActivity"/>
@@ -47,14 +47,13 @@
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyOrderListActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyVouchersActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.MyXiaJiActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.MyYongJinActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.OrderDetailsActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.RegisterActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.TiXianActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.UpdatePWDActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.VIPLevelActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.ZhiBaoZhongXinDetailActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.ZhiBaoZhongXinListActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinDetailActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity"/>
         <!--下订单-->
         <activity android:name="com.zhizhong.farmer.module.order.activity.AddFarmerActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.OfflinePayActivity"/>
@@ -63,14 +62,14 @@
         <activity android:name="com.zhizhong.farmer.module.order.activity.XiaDingDanActivity"/>
 
         <!--提现账户-->
-        <activity android:name="com.zhizhong.farmer.module.account.activity.AccountListActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.account.activity.AddBankCardActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tgyaccount.activity.TGYAccountListActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tgyaccount.activity.TGYAddBankCardActivity"/>
         <!--资讯-->
         <activity android:name="com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity"/>
         <!--推广员-->
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyActivity" android:launchMode="singleTask"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyDataActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYForgetPWDActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYForgetPWDActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyFarmerActivity"/>
         <activity android:name="com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyMessageActivity"/>

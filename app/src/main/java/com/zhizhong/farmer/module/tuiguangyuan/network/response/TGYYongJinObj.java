@@ -40,7 +40,7 @@ public class TGYYongJinObj extends BaseObj {
          */
 
         private String remark;
-        private String value;
+        private double value;
 
         public String getRemark() {
             return remark;
@@ -50,11 +50,11 @@ public class TGYYongJinObj extends BaseObj {
             this.remark = remark;
         }
 
-        public String getValue() {
+        public double getValue() {
             return value;
         }
 
-        public void setValue(String value) {
+        public void setValue(double value) {
             this.value = value;
         }
     }

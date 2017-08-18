@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.adapter;
+package com.zhizhong.farmer.module.tgyaccount.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,17 +18,17 @@ import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
-import com.zhizhong.farmer.module.account.event.DeleteAccountEvent;
-import com.zhizhong.farmer.module.account.network.ApiRequest;
-import com.zhizhong.farmer.module.account.network.response.AccountObj;
+import com.zhizhong.farmer.module.tgyaccount.event.DeleteTGYAccountEvent;
+import com.zhizhong.farmer.module.tgyaccount.network.ApiRequest;
+import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
 
 /**
  * Created by administartor on 2017/8/2.
  */
 
-public class AccountAdapter extends LoadMoreAdapter<AccountObj> {
+public class TGYAccountAdapter extends LoadMoreAdapter<AccountObj> {
     private boolean isDelete;
-    public AccountAdapter(Context mContext, int layoutId, int pageSize) {
+    public TGYAccountAdapter(Context mContext, int layoutId, int pageSize) {
         super(mContext, layoutId, pageSize);
     }
     @Override
@@ -69,7 +69,7 @@ public class AccountAdapter extends LoadMoreAdapter<AccountObj> {
                                     ToastUtils.showToast(mContext,obj.getMsg());
                                     getList().remove(i);
                                     notifyDataSetChanged();
-                                    RxBus.getInstance().post(new DeleteAccountEvent(bean.getIs_default()==1));
+                                    RxBus.getInstance().post(new DeleteTGYAccountEvent(bean.getIs_default()==1));
                                 }
                             });
                         }

@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.activity;
+package com.zhizhong.farmer.module.tgyaccount.activity;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,11 +13,11 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
-import com.zhizhong.farmer.module.account.Constant;
-import com.zhizhong.farmer.module.account.adapter.AccountAdapter;
-import com.zhizhong.farmer.module.account.event.DeleteAccountEvent;
-import com.zhizhong.farmer.module.account.network.ApiRequest;
-import com.zhizhong.farmer.module.account.network.response.AccountObj;
+import com.zhizhong.farmer.module.tgyaccount.Constant;
+import com.zhizhong.farmer.module.tgyaccount.adapter.TGYAccountAdapter;
+import com.zhizhong.farmer.module.tgyaccount.event.DeleteTGYAccountEvent;
+import com.zhizhong.farmer.module.tgyaccount.network.ApiRequest;
+import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
 
 import java.util.HashMap;
 import java.util.List;
@@ -32,13 +32,13 @@ import in.srain.cube.views.ptr.PtrFrameLayout;
  * Created by administartor on 2017/8/2.
  */
 
-public class AccountListActivity extends BaseActivity implements LoadMoreAdapter.OnLoadMoreListener{
+public class TGYAccountListActivity extends BaseActivity implements LoadMoreAdapter.OnLoadMoreListener{
     @BindView(R.id.rv_account)
     RecyclerView rv_account;
     @BindView(R.id.tv_account_edit)
     TextView tv_account_edit;
 
-    AccountAdapter adapter;
+    TGYAccountAdapter adapter;
     private boolean isDelete;
     @Override
     protected int getContentView() {
@@ -49,7 +49,7 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
 
     @Override
     protected void initView() {
-        adapter=new AccountAdapter(mContext,R.layout.item_tgy_account,pageSize);
+        adapter=new TGYAccountAdapter(mContext,R.layout.item_tgy_account,pageSize);
         adapter.setOnLoadMoreListener(this);
         rv_account.setLayoutManager(new LinearLayoutManager(mContext));
         rv_account.setAdapter(adapter);
@@ -71,9 +71,9 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
     @Override
     protected void initRxBus() {
         super.initRxBus();
-        getRxBusEvent(DeleteAccountEvent.class, new MySubscriber<DeleteAccountEvent>() {
+        getRxBusEvent(DeleteTGYAccountEvent.class, new MySubscriber<DeleteTGYAccountEvent>() {
             @Override
-            public void onMyNext(DeleteAccountEvent event) {
+            public void onMyNext(DeleteTGYAccountEvent event) {
                 isDelete=event.isDeleteDefault;
                 if(adapter.getList()==null||adapter.getList().size()==0){
                     tv_account_edit.setVisibility(View.GONE);
@@ -128,7 +128,7 @@ public class AccountListActivity extends BaseActivity implements LoadMoreAdapter
                 adapter.notifyDataSetChanged();
             break;
             case R.id.app_right_iv:
-                STActivityForResult(AddBankCardActivity.class,100);
+                STActivityForResult(TGYAddBankCardActivity.class,100);
             break;
         }
     }

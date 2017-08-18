@@ -100,6 +100,7 @@ public class LoginActivity extends BaseActivity {
                 SPUtils.setPrefString(mContext,Config.distribution_yard,obj.getDistribution_yard());
                 SPUtils.setPrefString(mContext,Config.user_name,obj.getUser_name());
                 SPUtils.setPrefString(mContext,Config.nick_name,obj.getNick_name());
+                SPUtils.setPrefString(mContext,Config.address,obj.getAddress());
                 SPUtils.setPrefString(mContext,Config.mobile,obj.getMobile());
                 SPUtils.setPrefInt(mContext,Config.level,obj.getUser_level());
                 SPUtils.setPrefInt(mContext,Config.authentication,obj.getIs_authentication());

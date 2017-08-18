@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -23,7 +24,7 @@
             android:id="@+id/iv_my_set"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:src="@drawable/img17"
+            android:src="@drawable/img32"
             android:layout_alignParentRight="true"
             android:paddingRight="10dp"
             android:paddingLeft="10dp"
@@ -42,16 +43,18 @@
         android:orientation="vertical"
         >
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/img34"
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civ_my_img"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            tools:src="@drawable/img34"
             />
 
         <TextView
+            android:id="@+id/tv_my_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="张三丰"
+            tools:text="张三丰"
             android:textColor="@color/white"
             android:textSize="15sp"
             android:layout_margin="10dp"
@@ -67,11 +70,27 @@
             app:my_ll_corner_topLeftRadius="14dp"
             app:my_ll_corner_bottomLeftRadius="14dp"
             >
-            <ImageView
+            <FrameLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/img33"
-                />
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:id="@+id/iv_my_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/level"
+                    />
+                <TextView
+                    android:id="@+id/tv_my_level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="1"
+                    android:textColor="#FFFFC346"
+                    android:layout_gravity="bottom|right"
+                    android:textSize="7sp"
+                    android:gravity="center_horizontal|bottom"
+                    tools:text="1"
+                    />
+            </FrameLayout>
         </com.github.customview.MyLinearLayout>
     </RelativeLayout>
     <LinearLayout
@@ -96,8 +115,13 @@
             android:layout_height="wrap_content"
             android:text="全部订单"
             android:gravity="center_vertical"
-            android:drawableRight="@drawable/jiantou_right"
             android:drawablePadding="10dp"
+            android:layout_marginRight="3dp"
+            />
+        <ImageView
+            android:layout_width="17dp"
+            android:layout_height="17dp"
+            android:src="@drawable/jiantou_right"
             />
     </LinearLayout>
     <LinearLayout
@@ -188,7 +212,7 @@
                 android:src="@drawable/img29"
                 />
             <com.github.customview.MyTextView
-                android:id="@+id/tv_my_wallet"
+                android:id="@+id/tv_my_data"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的资料"
@@ -209,9 +233,10 @@
                 android:src="@drawable/img30"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_farmer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="我的农友"
+                android:text="我的农户"
                 android:gravity="center_vertical"
                 android:layout_marginLeft="13dp"
                 app:my_tv_bottom_line="true"
@@ -229,6 +254,7 @@
                 android:src="@drawable/img31"
                 />
             <com.github.customview.MyTextView
+                android:id="@+id/tv_my_fenxiao"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:text="我的分销"

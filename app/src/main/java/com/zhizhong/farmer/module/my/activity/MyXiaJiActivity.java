@@ -15,16 +15,11 @@ import butterknife.BindView;
  * Created by administartor on 2017/8/8.
  */
 
-public class MyXiaJiActivity extends BaseActivity {
+public class MyXiaJiActivity extends BaseActivity implements LoadMoreAdapter.OnLoadMoreListener{
     @BindView(R.id.rv_my_xia_ji)
     RecyclerView rv_my_xia_ji;
 
     LoadMoreAdapter adapter;
-
-    @Override
-    public void again() {
-
-    }
 
     @Override
     protected int getContentView() {
@@ -34,12 +29,12 @@ public class MyXiaJiActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        adapter=new LoadMoreAdapter(mContext,R.layout.item_my_xia_ji,0) {
+        adapter=new LoadMoreAdapter(mContext,R.layout.item_my_xia_ji,pageSize) {
             @Override
             public void bindData(LoadMoreViewHolder loadMoreViewHolder, int i, Object o) {
             }
         };
-        adapter.setTestListSize(10);
+        adapter.setOnLoadMoreListener(this);
         rv_my_xia_ji.setLayoutManager(new LinearLayoutManager(mContext));
         rv_my_xia_ji.setAdapter(adapter);
 
@@ -52,6 +47,11 @@ public class MyXiaJiActivity extends BaseActivity {
 
     @Override
     protected void onViewClick(View v) {
+
+    }
+
+    @Override
+    public void loadMore() {
 
     }
 }

@@ -73,4 +73,8 @@ public interface IRequest {
     @GET("api/Promoters/GetMyCommission")
     Observable<ResponseObj<TGYYongJinObj>> getTGYYongJin(@QueryMap Map<String,String> map);
 
+    //农户-我的佣金
+    @GET("api/Farmer/GetMyCommission")
+    Observable<ResponseObj<TGYYongJinObj>> getYongJin(@QueryMap Map<String,String> map);
+
 }

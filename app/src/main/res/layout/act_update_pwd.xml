@@ -24,6 +24,7 @@
             android:textSize="15sp"
             />
         <com.github.customview.MyEditText
+            android:id="@+id/et_info_pwd"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -31,6 +32,8 @@
             android:textSize="15sp"
             android:layout_marginRight="30dp"
             android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
             />
     </LinearLayout>
     <LinearLayout
@@ -50,6 +53,7 @@
             android:textSize="15sp"
             />
         <com.github.customview.MyEditText
+            android:id="@+id/et_info_newpwd"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -57,6 +61,8 @@
             android:textSize="15sp"
             android:layout_marginRight="30dp"
             android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
             />
     </LinearLayout>
     <LinearLayout
@@ -76,6 +82,7 @@
             android:textSize="15sp"
             />
         <com.github.customview.MyEditText
+            android:id="@+id/et_info_repwd"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -83,9 +90,12 @@
             android:textSize="15sp"
             android:layout_marginRight="30dp"
             android:maxLines="1"
+            android:imeOptions="actionNext"
+            android:inputType="textPassword"
             />
     </LinearLayout>
     <com.github.customview.MyTextView
+        android:id="@+id/et_info_update"
         android:layout_width="match_parent"
         android:layout_height="44dp"
         android:text="保存"
@@ -97,6 +107,5 @@
         app:my_tv_corner_radius="22dp"
         app:my_tv_solid="@color/blue"
         app:my_tv_press="@color/blue_press"
-        android:textSize="@dimen/size_commit"
         />
 </LinearLayout>

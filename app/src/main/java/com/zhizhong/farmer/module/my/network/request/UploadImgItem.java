@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.network.request;
+package com.zhizhong.farmer.module.my.network.request;
 
 /**
  * Created by administartor on 2017/8/10.

@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.my.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
 import com.zhizhong.farmer.tools.RxResult;
 
 import java.util.Map;
@@ -36,5 +37,46 @@ public class ApiRequest {
     public static Observable login(Map map){
         return getCommonClient().login(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-
+    public static Observable setFarmerInfo(Map map){
+        return getCommonClient().setFarmerInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable uploadImg(String rnd,String sign, UploadImgItem imgItem){
+        return getCommonClient().uploadImg(rnd,sign,imgItem).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable setNewPassword(Map map){
+        return getCommonClient().setNewPassword(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable setForgetPassword(Map map){
+        return getCommonClient().setForgetPassword(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getFenXiao(String userId,String sign){
+        return getCommonClient().getFenXiao(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getFenXiaoDetail(String userId,String sign){
+        return getCommonClient().getFenXiaoDetail(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getBankList(String rnd,String sign){
+        return getCommonClient().getBankList(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable addBank(Map map){
+        return getCommonClient().addBank(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getAccount(String userId,String sign){
+        return getCommonClient().getAccount(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable deleteAccount(String accountId, String sign){
+        return getCommonClient().deleteAccount(accountId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getDefaultAccount(String userId,String sign){
+        return getCommonClient().getDefaultAccount(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable setDefaultAccount(Map map){
+        return getCommonClient().setDefaultAccount(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getAllMoney(String userId,String sign){
+        return getCommonClient().getAllMoney(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable tiXian(Map map){
+        return getCommonClient().tiXian(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 }

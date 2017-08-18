@@ -30,6 +30,15 @@ public class LoginObj  extends BaseObj{
     private int is_authentication;
     private int user_level;
     private String distribution_yard;
+    private String address;
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
     public int getUser_id() {
         return user_id;

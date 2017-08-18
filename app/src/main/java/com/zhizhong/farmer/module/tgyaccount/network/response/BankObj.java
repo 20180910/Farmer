@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account.network.response;
+package com.zhizhong.farmer.module.tgyaccount.network.response;
 
 /**
  * Created by administartor on 2017/8/11.

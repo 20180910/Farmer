@@ -3,6 +3,7 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/white"
               android:orientation="vertical"
     >
@@ -19,9 +20,10 @@
         >
 
       <ImageView
+          android:id="@+id/iv_zhibao_img"
           android:layout_width="45dp"
           android:layout_height="45dp"
-          android:src="@drawable/img47"
+          tools:src="@drawable/img47"
           />
 
         <LinearLayout
@@ -32,18 +34,20 @@
             >
 
             <TextView
+                android:id="@+id/tv_zhibao_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="要把特色优势转化为经济优势和发展优势"
+                tools:text="要把特色优势转化为经济优势和发展优势"
                 android:textColor="@color/gray_33"
                 android:maxLines="3"
                 android:ellipsize="end"
                 />
 
             <TextView
+                android:id="@+id/tv_zhibao_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="2017/06/25"
+                tools:text="2017/06/25"
                 android:layout_marginTop="8dp"
                 android:textSize="12sp"
                 />

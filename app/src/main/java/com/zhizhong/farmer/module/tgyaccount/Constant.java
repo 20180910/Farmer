@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.account;
+package com.zhizhong.farmer.module.tgyaccount;
 
 /**
  * Created by Administrator on 2017/7/13.
