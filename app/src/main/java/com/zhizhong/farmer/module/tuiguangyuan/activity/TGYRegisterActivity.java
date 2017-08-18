@@ -101,7 +101,7 @@ public class TGYRegisterActivity extends BaseActivity {
         addSubscription(ApiRequest.getRegisterXieYi(rnd,getSign("rnd",rnd)).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
-                agreement = obj.getPromoters_agreement();
+                agreement = obj.getAgreement();
                 if(manual){
                     showXieYi(agreement);
                 }

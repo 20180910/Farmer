@@ -51,7 +51,6 @@
         <activity android:name="com.zhizhong.farmer.module.my.activity.RegisterActivity" android:windowSoftInputMode="adjustResize"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.TiXianActivity"/>
         <activity android:name="com.zhizhong.farmer.module.my.activity.UpdatePWDActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.my.activity.VIPLevelActivity"/>
         <activity android:name="com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinDetailActivity"/>
         <activity android:name="com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity"/>
         <!--下订单-->

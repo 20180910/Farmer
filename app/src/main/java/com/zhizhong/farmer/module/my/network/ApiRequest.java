@@ -79,4 +79,13 @@ public class ApiRequest {
     public static Observable tiXian(Map map){
         return getCommonClient().tiXian(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable xiaJi(String userId,String sign){
+        return getCommonClient().xiaJi(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getVouchersList(Map map){
+        return getCommonClient().getVouchersList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getVouchersNum(String userId,String sign){
+        return getCommonClient().getVouchersNum(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 }

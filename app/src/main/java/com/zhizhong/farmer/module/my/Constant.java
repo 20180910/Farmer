@@ -9,7 +9,9 @@ public class Constant {
     public static final String CJWT = "CJWT";
     public static final String GYWM = "GYWM";
     public static final String title="title";
-    public static final String update_type="update_type";
+    public static final String vouchersType_0="0";
+    public static final String vouchersType_1="1";
+    public static final String vouchersType_2="2";
     public static final String update_name="update_name";
     public static final String update_phone="update_phone";
 

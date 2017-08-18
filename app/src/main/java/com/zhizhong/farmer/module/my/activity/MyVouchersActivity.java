@@ -7,8 +7,12 @@ import android.view.View;
 
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
+import com.zhizhong.farmer.base.MySub;
+import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.adapter.VouchersFragmentAdapter;
 import com.zhizhong.farmer.module.my.fragment.VouchersFragment;
+import com.zhizhong.farmer.module.my.network.ApiRequest;
+import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,9 +52,9 @@ public class MyVouchersActivity extends BaseActivity {
     protected void initView() {
         adapter = new VouchersFragmentAdapter(getSupportFragmentManager());
 
-        weiShiYongFragment = new VouchersFragment();
-        yiShiYongFragment = new VouchersFragment();
-        yiGuoQiFragment = new VouchersFragment();
+        weiShiYongFragment =VouchersFragment.newInstance(Constant.vouchersType_0);
+        yiShiYongFragment = VouchersFragment.newInstance(Constant.vouchersType_1);
+        yiGuoQiFragment = VouchersFragment.newInstance(Constant.vouchersType_2);
 
         list = new ArrayList<>();
         list.add(weiShiYongFragment);
@@ -62,11 +66,23 @@ public class MyVouchersActivity extends BaseActivity {
         vp_my_vouchers.setOffscreenPageLimit(list.size()-1);
 
         tl_my_vouchers.setupWithViewPager(vp_my_vouchers);
+
     }
 
     @Override
     protected void initData() {
+        getVouchersNum();
+    }
 
+    private void getVouchersNum() {
+        addSubscription(ApiRequest.getVouchersNum(getUserId(),getSign()).subscribe(new MySub<VouchersNumObj>(mContext) {
+            @Override
+            public void onMyNext(VouchersNumObj obj) {
+                tl_my_vouchers.getTabAt(0).setText("未使用("+obj.getCount_wsy()+")");
+                tl_my_vouchers.getTabAt(1).setText("已使用("+obj.getCount_ysy()+")");
+                tl_my_vouchers.getTabAt(2).setText("已过期("+obj.getCount_ygq()+")");
+            }
+        }));
     }
 
     @Override

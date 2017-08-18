@@ -62,11 +62,13 @@ public class MyFenXiaoActivity extends BaseActivity {
                 STActivity(FenXiaoCodeActivity.class);
                 break;
             case R.id.ll_fenxiao_xiaji:
+                STActivity(MyXiaJiActivity.class);
                 break;
             case R.id.ll_fenxiao_yongjin:
                 STActivity(TGYMyYongJinActivity.class);
                 break;
             case R.id.ll_fenxiao_vouchers:
+                STActivity(MyVouchersActivity.class);
                 break;
         }
     }

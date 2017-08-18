@@ -3,6 +3,9 @@ package com.zhizhong.farmer.module.my.network;
 
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
+import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
+import com.zhizhong.farmer.module.my.network.response.VouchersObj;
+import com.zhizhong.farmer.module.my.network.response.XiaJiObj;
 import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
 import com.zhizhong.farmer.module.tgyaccount.network.response.BankObj;
 import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
@@ -94,6 +97,18 @@ public interface IRequest {
     //提现申请
     @GET("api/Farmer/GetWithdrawals")
     Observable<ResponseObj<BaseObj>> tiXian(@QueryMap Map<String,String> map);
+
+    //我的下级
+    @GET("api/Farmer/GetMyLowerLevel")
+    Observable<ResponseObj<List<XiaJiObj>>> xiaJi(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //抵用券
+    @GET("api/Farmer/GetMyCoupons")
+    Observable<ResponseObj<List<VouchersObj>>> getVouchersList(@QueryMap Map<String,String> map);
+
+    //抵用券数量
+    @GET("api/Farmer/GetMyCouponsNum")
+    Observable<ResponseObj<VouchersNumObj>> getVouchersNum(@Query("user_id") String user_id, @Query("sign") String sign);
 
 
 }
