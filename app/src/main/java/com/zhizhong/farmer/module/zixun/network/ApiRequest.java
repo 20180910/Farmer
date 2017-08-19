@@ -1,6 +1,11 @@
 package com.zhizhong.farmer.module.zixun.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.farmer.tools.RxResult;
+
+import java.util.Map;
+
+import rx.Observable;
 
 /**
  * Created by Administrator on 2017/6/28.
@@ -20,6 +25,14 @@ public class ApiRequest {
         return NetWorkManager.getGeneralStringClient().create(IRequest.class);
     }
 
-
+    public static Observable getZiXunList(Map map){
+        return getCommonClient().getZiXunList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getZiXunImg(String rnd,String sign){
+        return getCommonClient().getZiXunImg(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getZiXunDetail(String information_id,String sign){
+        return getCommonClient().getZiXunDetail(information_id,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 }

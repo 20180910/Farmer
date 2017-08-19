@@ -8,11 +8,14 @@ import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.github.androidtools.StatusBarUtils;
+import com.github.baseclass.rx.MySubscriber;
 import com.github.customview.MyRadioButton;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.broadcast.MyOperationBro;
+import com.zhizhong.farmer.module.home.event.XiaDanEvent;
+import com.zhizhong.farmer.module.home.event.ZiXunEvent;
 import com.zhizhong.farmer.module.home.fragment.HomeFragment;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
@@ -63,6 +66,25 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        getRxBusEvent(ZiXunEvent.class, new MySubscriber() {
+            @Override
+            public void onMyNext(Object o) {
+                ziXun();
+                selectButton.setChecked(true);
+            }
+        });
+        getRxBusEvent(XiaDanEvent.class, new MySubscriber() {
+            @Override
+            public void onMyNext(Object o) {
+                xiaDan();
+                selectButton.setChecked(true);
+            }
+        });
+    }
+
+    @Override
     protected void initView() {
         setBroadcast();
         int statusBarHeight = StatusBarUtils.getStatusBarHeight(this);
@@ -88,9 +110,7 @@ public class MainActivity extends BaseActivity {
 
             @Override
             public void exitLogin() {
-                selectHome();
-                selectButton.setChecked(true);
-                myFragment=null;
+                finish();
 
             }
             @Override
@@ -129,28 +149,10 @@ public class MainActivity extends BaseActivity {
                 selectHome();
                 break;
             case R.id.rb_home_zixun:
-                selectButton = rb_home_zixun;
-                if (ziXunFragment == null) {
-                    ziXunFragment = new ZiXunFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, ziXunFragment).commitAllowingStateLoss();
-                } else {
-                    showFragment(ziXunFragment);
-                }
-                hideFragment(homeFragment);
-                hideFragment(xiaDingDanFragment);
-                hideFragment(myFragment);
+                ziXun();
                 break;
             case R.id.rb_home_xdd:
-                selectButton = rb_home_xdd;
-                if (xiaDingDanFragment == null) {
-                    xiaDingDanFragment = new XiaDingDanFragment();
-                    getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, xiaDingDanFragment).commitAllowingStateLoss();
-                } else {
-                    showFragment(xiaDingDanFragment);
-                }
-                hideFragment(ziXunFragment);
-                hideFragment(homeFragment);
-                hideFragment(myFragment);
+                xiaDan();
                 break;
             case R.id.rb_home_my:
                 if(TextUtils.isEmpty(getUserId())){
@@ -162,6 +164,33 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
+
+    private void ziXun() {
+        selectButton = rb_home_zixun;
+        if (ziXunFragment == null) {
+            ziXunFragment = new ZiXunFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, ziXunFragment).commitAllowingStateLoss();
+        } else {
+            showFragment(ziXunFragment);
+        }
+        hideFragment(homeFragment);
+        hideFragment(xiaDingDanFragment);
+        hideFragment(myFragment);
+    }
+
+    private void xiaDan() {
+        selectButton = rb_home_xdd;
+        if (xiaDingDanFragment == null) {
+            xiaDingDanFragment = new XiaDingDanFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, xiaDingDanFragment).commitAllowingStateLoss();
+        } else {
+            showFragment(xiaDingDanFragment);
+        }
+        hideFragment(ziXunFragment);
+        hideFragment(homeFragment);
+        hideFragment(myFragment);
+    }
+
     public void selectMy(){
         selectButton = rb_home_my;
         if (myFragment == null) {
@@ -170,8 +199,6 @@ public class MainActivity extends BaseActivity {
         } else {
             showFragment(myFragment);
         }
-
-
 
         hideFragment(ziXunFragment);
         hideFragment(xiaDingDanFragment);

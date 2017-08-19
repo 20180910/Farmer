@@ -3,8 +3,10 @@ package com.zhizhong.farmer.module.my.activity;
 import android.text.TextUtils;
 import android.view.View;
 
+import com.github.androidtools.SPUtils;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
+import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
@@ -80,6 +82,7 @@ public class UpdatePWDActivity extends BaseActivity {
         addSubscription(ApiRequest.setNewPassword(map).subscribe(new MySub<BaseObj>(mContext) {
             @Override
             public void onMyNext(BaseObj obj) {
+                SPUtils.setPrefBoolean(mContext, Config.isUpdatePWD,true);
                 showMsg(obj.getMsg());
                 finish();
             }

@@ -91,6 +91,7 @@ public class LoginActivity extends BaseActivity {
         addSubscription(ApiRequest.login(map).subscribe(new MySub<LoginObj>(mContext) {
             @Override
             public void onMyNext(LoginObj obj) {
+                SPUtils.setPrefBoolean(mContext, Config.isUpdatePWD,false);
                 SPUtils.setPrefInt(mContext, Config.userType,Config.userType_farmer);
 
                 SPUtils.setPrefString(mContext,Config.user_id,obj.getUser_id()+"");

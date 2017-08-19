@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v4.widget.NestedScrollView
-            android:layout_above="@+id/tv_info_commit"
+            android:layout_above="@+id/ll_info_commit"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
             <LinearLayout
@@ -203,23 +203,34 @@
                     />
             </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
-        <com.github.customview.MyTextView
-            android:id="@+id/tv_info_commit"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="10dp"
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_info_commit"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:text="保存"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            app:my_tv_corner_radius="22dp"
-            app:my_tv_solid="@color/blue"
-            app:my_tv_press="@color/blue_press"
-            />
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            app:my_ll_top_line="true"
+            app:my_ll_border_color="@color/background_f2"
+            >
+            <com.github.customview.MyTextView
+                android:id="@+id/tv_info_commit"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:text="保存"
+                android:textSize="16sp"
+                android:textColor="@color/white"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                app:my_tv_corner_radius="22dp"
+                app:my_tv_solid="@color/blue"
+                app:my_tv_press="@color/blue_press"
+                />
+        </com.github.customview.MyLinearLayout>
+
     </RelativeLayout>
 
 

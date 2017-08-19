@@ -54,7 +54,7 @@
         <com.github.customview.MyRadioButton
             android:id="@+id/rb_home_zixun"
             style="@style/radio_home"
-            android:text="咨询"
+            android:text="资讯"
             app:my_radio_checked="@drawable/zixun_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"

@@ -3,12 +3,16 @@
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
 
     <include layout="@layout/app_title"/>
-
+<com.zhizhong.farmer.view.ProgressLayout
+    android:id="@id/pl_load"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -22,30 +26,33 @@
             >
 
             <TextView
+                android:id="@+id/tv_zixun_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="陕西甜瓜走势甜瓜批发价格甜瓜装货价格"
+                tools:text="陕西甜瓜走势甜瓜批发价格甜瓜装货价格"
                 android:textColor="@color/gray_33"
                 android:textSize="17sp"
                 />
 
             <TextView
+                android:id="@+id/tv_zixun_detail_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="2017/06/10"
+                tools:text="2017/06/10"
                 android:textColor="@color/gray_99"
                 />
 
             <TextView
+                android:id="@+id/tv_zixun_detail_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="陕西西瓜代办,西瓜基地价格,黑无籽西瓜价格,户太葡萄价格批发,油桃行情价格,冬枣基地行情走势,陕西甜王西瓜,陕西油桃,陕西京欣西瓜,陕西早熟苹果,陕西毛桃基地,陕西金太阳杏"
+                tools:text="陕西西瓜代办,西瓜基地价格,黑无籽西瓜价格,户太葡萄价格批发,油桃行情价格,冬枣基地行情走势,陕西甜王西瓜,陕西油桃,陕西京欣西瓜,陕西早熟苹果,陕西毛桃基地,陕西金太阳杏"
                 />
 
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -79,8 +86,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="陕西西瓜代办,西瓜基地价格,黑无籽西瓜价格,户太葡萄价格批发,油桃行情价格,冬枣基地行情走势,陕西甜王西瓜,陕西油桃,陕西京欣西瓜,陕西早熟苹果,陕西毛桃基地,陕西金太阳杏"
-                />
+                />-->
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+</com.zhizhong.farmer.view.ProgressLayout>
+
 
 </LinearLayout>

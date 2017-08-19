@@ -1,6 +1,8 @@
 package com.zhizhong.farmer.module.home.network;
 
 import com.zhizhong.farmer.base.ResponseObj;
+import com.zhizhong.farmer.module.home.network.response.HomeDataObj;
+import com.zhizhong.farmer.module.home.network.response.HomeImgObj;
 import com.zhizhong.farmer.module.home.network.response.ZhiBaoObj;
 
 import java.util.List;
@@ -23,5 +25,15 @@ public interface IRequest {
     //植保详情
     @GET("api/Farmer/GetEppoCenterMore")
     Observable<ResponseObj<ZhiBaoObj>> getZhiBaoDetail(@Query("eppo_id") String eppo_id,@Query("sign") String sign);
+
+    //首页
+    @GET("api/Farmer/GetHomePageBottom")
+    Observable<ResponseObj<HomeDataObj>> getHomeData(@Query("rnd") String rnd, @Query("sign") String sign);
+
+    //首页-图片
+    @GET("api/Farmer/GetHomePageTop")
+    Observable<ResponseObj<HomeImgObj>> getHomeImg(@Query("rnd") String rnd, @Query("sign") String sign);
+
+
 
 }

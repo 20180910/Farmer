@@ -2,364 +2,473 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/background_f2"
+              android:orientation="vertical"
     >
-<com.github.customview.MyRelativeLayout
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/app_title_height"
-    android:paddingLeft="10dp"
-    app:my_rl_bottom_line="true"
-    >
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:gravity="center_vertical"
-    android:text="上海"
-    android:drawableRight="@drawable/img3"
-    android:layout_centerVertical="true"
-    android:layout_alignParentLeft="true"
-    android:drawablePadding="3dp"
-    />
-    <TextView
-        android:id="@id/app_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:maxLines="1"
-        android:textColor="@color/gray_66"
-        android:textSize="19sp"
-        tools:text="title"
-        android:layout_centerInParent="true"
-        />
-    <ImageView
-        android:id="@+id/iv_home_msg"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img4"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:padding="10dp"
-        />
-</com.github.customview.MyRelativeLayout>
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:background="@color/c_press"
-        android:orientation="horizontal"
-        >
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="咨询"
-            android:gravity="center"
-            android:drawableTop="@drawable/img51"
-            android:drawablePadding="5dp"
-            />
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="下单"
-            android:gravity="center"
-            android:drawableTop="@drawable/img52"
-            android:drawablePadding="5dp"
-            />
-        <TextView
-            android:id="@+id/tv_home_zhibao"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:text="植保"
-            android:gravity="center"
-            android:drawableTop="@drawable/img50"
-            android:drawablePadding="5dp"
-            />
-    </LinearLayout>
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/img8"
-        android:scaleType="centerCrop"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="10dp"
-        android:layout_marginTop="5dp"
-        >
-        <View
-            android:layout_width="4dp"
-            android:layout_height="25dp"
-            android:background="@color/blue"
-            />
 
-        <View
-            android:layout_width="2dp"
-            android:layout_height="25dp"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="10dp"
-            android:background="@color/blue"
-            />
+    <com.github.customview.MyRelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/app_title_height"
+        android:paddingLeft="10dp"
+        app:my_rl_bottom_line="true"
+        >
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="新闻资讯"
-            android:textSize="15sp"
-            android:textColor="@color/gray_66"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:drawablePadding="3dp"
+            android:drawableRight="@drawable/img3"
+            android:gravity="center_vertical"
+            android:text="上海"
             />
-    </LinearLayout>
+
+        <TextView
+            android:id="@id/app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:textColor="@color/gray_66"
+            android:textSize="19sp"
+            tools:text="title"
+            />
+
+        <ImageView
+            android:id="@+id/iv_home_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="10dp"
+            android:src="@drawable/img4"
+            />
+    </com.github.customview.MyRelativeLayout>
+
+    <com.zhizhong.farmer.view.ProgressLayout
+        android:id="@id/pl_load"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="113dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@color/white"
-                android:layout_marginTop="2px"
-                android:gravity="center_vertical"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 >
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
-                        android:textColor="@color/gray_33"
-                        android:textSize="14sp"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2017/06/25"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="6190"
-                            android:drawableLeft="@drawable/img9"
-                            android:drawablePadding="5dp"
-                            android:layout_marginLeft="30dp"
-                            android:textColor="@color/gray_99"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/c_press"
-                    android:layout_marginLeft="10dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="113dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@color/white"
-                android:layout_marginTop="2px"
-                android:gravity="center_vertical"
-                >
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
-                        android:textColor="@color/gray_33"
-                        android:textSize="14sp"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2017/06/25"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="6190"
-                            android:drawableLeft="@drawable/img9"
-                            android:drawablePadding="5dp"
-                            android:layout_marginLeft="30dp"
-                            android:textColor="@color/gray_99"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/c_press"
-                    android:layout_marginLeft="10dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="113dp"
-                android:orientation="horizontal"
-                android:padding="10dp"
-                android:background="@color/white"
-                android:layout_marginTop="2px"
-                android:gravity="center_vertical"
-                >
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_weight="1"
-                        android:ellipsize="end"
-                        android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
-                        android:textColor="@color/gray_33"
-                        android:textSize="14sp"
-                        />
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        >
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="2017/06/25"
-                            />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="6190"
-                            android:drawableLeft="@drawable/img9"
-                            android:drawablePadding="5dp"
-                            android:layout_marginLeft="30dp"
-                            android:textColor="@color/gray_99"
-                            />
-                    </LinearLayout>
-                </LinearLayout>
-                <ImageView
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/c_press"
-                    android:layout_marginLeft="10dp"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="45dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:layout_marginTop="5dp"
-                >
-                <View
-                    android:layout_width="4dp"
-                    android:layout_height="25dp"
-                    android:background="@color/blue"
-                    />
 
-                <View
-                    android:layout_width="2dp"
-                    android:layout_height="25dp"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="植保中心"
-                    android:textSize="15sp"
-                    android:textColor="@color/gray_66"
-                    />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:orientation="horizontal"
-                android:background="@color/white"
-                android:layout_marginTop="2px"
-                android:padding="10dp"
-                android:gravity="center_vertical"
-                >
-                <ImageView
-                    android:layout_width="45dp"
-                    android:layout_height="45dp"
-                    android:src="@drawable/img46"
-                    />
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
+                    android:layout_height="200dp"
+                    android:background="@color/white"
+                    android:orientation="horizontal"
+                    >
+                    <com.youth.banner.Banner
+                        android:id="@+id/bn_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        app:image_scale_type="center_crop"
+                        app:scroll_time="2000"
+                        app:delay_time="5000"
+                        >
+                    </com.youth.banner.Banner>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:id="@+id/ll_home_zixun"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_home_zixun"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/img51"
+                            app:my_iv_radius="28dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="资讯"
+                            />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_home_xiadan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_home_xiadan"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/img52"
+                            app:my_iv_radius="28dp"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="下单"
+                            />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_home_zhibao"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_home_zhibao"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/img50"
+                            app:my_iv_radius="28dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="植保"
+                            />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/iv_home_bigimg"
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img8"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="要把特色优势转化为经济优势和发展优势"
-                        android:textColor="@color/gray_66"
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="25dp"
+                        android:background="@color/blue"
                         />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/blue"
+                        />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2017/06/25"
-                        android:textSize="12sp"
-                        android:layout_marginTop="10dp"
+                        android:text="新闻资讯"
+                        android:textColor="@color/gray_66"
+                        android:textSize="15sp"
                         />
                 </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_home_zixun"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+                <!-- <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="113dp"
+                     android:layout_marginTop="2px"
+                     android:background="@color/white"
+                     android:gravity="center_vertical"
+                     android:orientation="horizontal"
+                     android:padding="10dp"
+                     >
+
+                     <LinearLayout
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:orientation="vertical"
+                         >
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="0dp"
+                             android:layout_weight="1"
+                             android:ellipsize="end"
+                             android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
+                             android:textColor="@color/gray_33"
+                             android:textSize="14sp"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal"
+                             >
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:text="2017/06/25"
+                                 />
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginLeft="30dp"
+                                 android:drawableLeft="@drawable/img9"
+                                 android:drawablePadding="5dp"
+                                 android:text="6190"
+                                 android:textColor="@color/gray_99"
+                                 />
+                         </LinearLayout>
+                     </LinearLayout>
+
+                     <ImageView
+                         android:layout_width="120dp"
+                         android:layout_height="match_parent"
+                         android:layout_marginLeft="10dp"
+                         android:background="@color/c_press"
+                         />
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="113dp"
+                     android:layout_marginTop="2px"
+                     android:background="@color/white"
+                     android:gravity="center_vertical"
+                     android:orientation="horizontal"
+                     android:padding="10dp"
+                     >
+
+                     <LinearLayout
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:orientation="vertical"
+                         >
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="0dp"
+                             android:layout_weight="1"
+                             android:ellipsize="end"
+                             android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
+                             android:textColor="@color/gray_33"
+                             android:textSize="14sp"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal"
+                             >
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:text="2017/06/25"
+                                 />
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginLeft="30dp"
+                                 android:drawableLeft="@drawable/img9"
+                                 android:drawablePadding="5dp"
+                                 android:text="6190"
+                                 android:textColor="@color/gray_99"
+                                 />
+                         </LinearLayout>
+                     </LinearLayout>
+
+                     <ImageView
+                         android:layout_width="120dp"
+                         android:layout_height="match_parent"
+                         android:layout_marginLeft="10dp"
+                         android:background="@color/c_press"
+                         />
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="113dp"
+                     android:layout_marginTop="2px"
+                     android:background="@color/white"
+                     android:gravity="center_vertical"
+                     android:orientation="horizontal"
+                     android:padding="10dp"
+                     >
+
+                     <LinearLayout
+                         android:layout_width="0dp"
+                         android:layout_height="match_parent"
+                         android:layout_weight="1"
+                         android:orientation="vertical"
+                         >
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="0dp"
+                             android:layout_weight="1"
+                             android:ellipsize="end"
+                             android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
+                             android:textColor="@color/gray_33"
+                             android:textSize="14sp"
+                             />
+
+                         <LinearLayout
+                             android:layout_width="match_parent"
+                             android:layout_height="wrap_content"
+                             android:orientation="horizontal"
+                             >
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:text="2017/06/25"
+                                 />
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_marginLeft="30dp"
+                                 android:drawableLeft="@drawable/img9"
+                                 android:drawablePadding="5dp"
+                                 android:text="6190"
+                                 android:textColor="@color/gray_99"
+                                 />
+                         </LinearLayout>
+                     </LinearLayout>
+
+                     <ImageView
+                         android:layout_width="120dp"
+                         android:layout_height="match_parent"
+                         android:layout_marginLeft="10dp"
+                         android:background="@color/c_press"
+                         />
+                 </LinearLayout>-->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    >
+
+                    <View
+                        android:layout_width="4dp"
+                        android:layout_height="25dp"
+                        android:background="@color/blue"
+                        />
+
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@color/blue"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="植保中心"
+                        android:textColor="@color/gray_66"
+                        android:textSize="15sp"
+                        />
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_home_zhibao"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                </android.support.v7.widget.RecyclerView>
+                <!-- <LinearLayout
+                     android:layout_width="match_parent"
+                     android:layout_height="80dp"
+                     android:layout_marginTop="2px"
+                     android:background="@color/white"
+                     android:gravity="center_vertical"
+                     android:orientation="horizontal"
+                     android:padding="10dp"
+                     >
+
+                     <ImageView
+                         android:layout_width="45dp"
+                         android:layout_height="45dp"
+                         android:src="@drawable/img46"
+                         />
+
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:gravity="center_vertical"
+                         android:orientation="vertical"
+                         android:paddingLeft="10dp"
+                         >
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:text="要把特色优势转化为经济优势和发展优势"
+                             android:textColor="@color/gray_66"
+                             />
+
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:layout_marginTop="10dp"
+                             android:text="2017/06/25"
+                             android:textSize="12sp"
+                             />
+                     </LinearLayout>
+                 </LinearLayout>
+     -->
+
             </LinearLayout>
-            
-            
-            
-            
-        </LinearLayout>
-    </android.support.v4.widget.NestedScrollView>
+        </android.support.v4.widget.NestedScrollView>
+    </com.zhizhong.farmer.view.ProgressLayout>
 </LinearLayout>

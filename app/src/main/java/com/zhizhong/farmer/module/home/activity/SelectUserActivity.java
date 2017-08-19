@@ -34,6 +34,13 @@ public class SelectUserActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        boolean prefBoolean = SPUtils.getPrefBoolean(this, Config.isUpdatePWD, false);
+        if(prefBoolean){
+            SPUtils.removeKey(this,Config.user_id);
+            SPUtils.setPrefBoolean(this, Config.isUpdatePWD, false);
+        }
+
+
         action=getIntent().getAction();
      /*   //第一次进来，或者退出登录
         if (Config.IParam.selectUser.equals(action)||SPUtils.getPrefBoolean(this,Config.isFirstIntoApp,true)){
@@ -43,7 +50,7 @@ public class SelectUserActivity extends BaseActivity {
             if(userType==Config.userType_farmer){
                 STActivity(MainActivity.class);
                 finish();
-            }else if(userType==Config.userType_tgy){
+            }else if(userType==Config.userType_tgy&&!TextUtils.isEmpty(SPUtils.getPrefString(this,Config.user_id,null))){
                 STActivity(TGYMyActivity.class);
                 finish();
             }

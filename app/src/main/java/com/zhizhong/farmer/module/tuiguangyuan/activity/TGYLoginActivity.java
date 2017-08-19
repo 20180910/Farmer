@@ -92,6 +92,7 @@ public class TGYLoginActivity extends BaseActivity {
         addSubscription(ApiRequest.loginTGY(map).subscribe(new MySub<TGYLoginObj>(mContext) {
             @Override
             public void onMyNext(TGYLoginObj obj) {
+                SPUtils.setPrefBoolean(mContext, Config.isUpdatePWD,false);
                 SPUtils.setPrefInt(mContext, Config.userType,Config.userType_tgy);
 
                 SPUtils.setPrefString(mContext,Config.user_id,obj.getUser_id());

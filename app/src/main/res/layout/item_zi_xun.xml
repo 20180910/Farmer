@@ -1,61 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/gray_d7"
+              android:orientation="vertical"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="113dp"
+        android:layout_marginTop="2px"
+        android:background="@color/white"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:padding="10dp"
-        android:background="@color/white"
-        android:layout_marginTop="2px"
-        android:gravity="center_vertical"
         >
+
         <LinearLayout
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:orientation="vertical"
             >
+
             <TextView
+                android:id="@+id/tv_home_zixun_title"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:ellipsize="end"
-                android:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
                 android:textColor="@color/gray_33"
                 android:textSize="14sp"
+                tools:text="农业部经管司长诠释土地制度改革：“三权分置”有别于“联产承包”"
                 />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
+
                 <TextView
+                    android:id="@+id/tv_home_zixun_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2017/06/25"
+                    tools:text="2017/06/25"
+                    android:ems="6"
                     />
-                <TextView
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="6190"
-                    android:drawableLeft="@drawable/img9"
-                    android:drawablePadding="5dp"
-                    android:layout_marginLeft="30dp"
-                    android:textColor="@color/gray_99"
-                    />
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    >
+                    <ImageView
+                        android:layout_width="19dp"
+                        android:layout_height="13dp"
+                        android:src="@drawable/img9"
+                        />
+                    <TextView
+                        android:id="@+id/tv_home_zixun_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray_99"
+                        tools:text="6190"
+                        android:layout_marginLeft="4dp"
+                        />
+                </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
+
         <ImageView
+            android:id="@+id/iv_home_zixun_img"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            android:background="@color/c_press"
             android:layout_marginLeft="10dp"
+            android:background="@color/c_press"
             />
     </LinearLayout>
 </LinearLayout>
