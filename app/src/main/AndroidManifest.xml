@@ -14,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".MyApplication"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity
             android:name="com.zhizhong.farmer.module.home.activity.SelectUserActivity"
             android:label="@string/app_name"
@@ -58,7 +58,6 @@
         <activity android:name="com.zhizhong.farmer.module.order.activity.OfflinePayActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.PaySuccessActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.order.activity.XiaDingDanActivity"/>
 
         <!--提现账户-->
         <activity android:name="com.zhizhong.farmer.module.tgyaccount.activity.TGYAccountListActivity"/>
