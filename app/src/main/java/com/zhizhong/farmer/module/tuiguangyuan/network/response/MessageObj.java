@@ -4,7 +4,7 @@ package com.zhizhong.farmer.module.tuiguangyuan.network.response;
  * Created by administartor on 2017/8/17.
  */
 
-public class TGYMessageObj {
+public class MessageObj {
 
     /**
      * id : 16

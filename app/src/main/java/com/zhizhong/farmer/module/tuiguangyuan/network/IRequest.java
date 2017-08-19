@@ -6,8 +6,8 @@ import com.zhizhong.farmer.base.ResponseObj;
 import com.zhizhong.farmer.module.tuiguangyuan.network.request.UploadImgItem;
 import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYFarmerObj;
 import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYLoginObj;
-import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYMessageDetailObj;
-import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYMessageObj;
+import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageDetailObj;
+import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageObj;
 import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYYongJinObj;
 
 import java.util.List;
@@ -59,11 +59,11 @@ public interface IRequest {
 
     //TGY消息列表
     @GET("api/Promoters/GetNewsList")
-    Observable<ResponseObj<List<TGYMessageObj>>> getMsgList(@QueryMap Map<String,String> map);
+    Observable<ResponseObj<List<MessageObj>>> getTGYMsgList(@QueryMap Map<String,String> map);
 
     //TGY消息详情
     @GET("api/Promoters/GetNewsDetail")
-    Observable<ResponseObj<TGYMessageDetailObj>> getMsgDetail(@Query("news_id") String news_id, @Query("sign") String sign);
+    Observable<ResponseObj<MessageDetailObj>> getTGYMsgDetail(@Query("news_id") String news_id, @Query("sign") String sign);
 
     //TGY我的农户
     @GET("api/Promoters/GetMyFaemer")

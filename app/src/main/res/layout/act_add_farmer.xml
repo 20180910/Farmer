@@ -16,7 +16,7 @@
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/tv_xdd_commit">
+            android:layout_above="@+id/ll_add_farmer_commit">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,6 +43,7 @@
                         />
 
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_add_farmer_name"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -51,6 +52,7 @@
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"
+                        android:imeOptions="actionNext"
                         />
                 </LinearLayout>
 
@@ -73,6 +75,7 @@
                         />
 
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_add_farmer_phone"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -81,6 +84,7 @@
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="number"
+                        android:imeOptions="actionNext"
                         />
                 </LinearLayout>
 
@@ -103,6 +107,7 @@
                         />
 
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_add_farmer_juzhu"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -111,6 +116,7 @@
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"
+                        android:imeOptions="actionNext"
                         />
                 </LinearLayout>
 
@@ -133,6 +139,7 @@
                         />
 
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_add_farmer_nongtian"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -141,6 +148,7 @@
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"
+                        android:imeOptions="actionNext"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -162,6 +170,7 @@
                         />
 
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_add_farmer_zw"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -170,6 +179,7 @@
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"
+                        android:imeOptions="actionNext"
                         />
                 </LinearLayout>
 
@@ -192,6 +202,7 @@
                         />
 
                     <com.github.customview.MyEditText
+                        android:id="@+id/et_add_farmer_ms"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -199,25 +210,37 @@
                         android:gravity="center_vertical"
                         android:textSize="14sp"
                         android:maxLines="1"
-                        android:inputType="text"
+                        android:inputType="number"
+                        android:imeOptions="actionNext"
+                        android:maxLength="6"
                         />
                 </LinearLayout>
 
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
-
-        <com.github.customview.MyTextView
-            android:id="@+id/tv_add_farmer_commit"
+        <com.github.customview.MyLinearLayout
+            android:id="@+id/ll_add_farmer_commit"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            android:layout_margin="10dp"
-            android:gravity="center"
-            android:text="提交"
-            android:textColor="@color/white"
-            app:my_tv_corner_radius="22dp"
-            app:my_tv_press="@color/blue_press"
-            app:my_tv_solid="@color/blue"
-            />
+            app:my_ll_top_line="true"
+            app:my_ll_border_color="@color/background_f2"
+            >
+            <com.github.customview.MyTextView
+                android:id="@+id/tv_add_farmer_commit"
+                android:layout_width="match_parent"
+                android:layout_height="44dp"
+                android:layout_alignParentBottom="true"
+                android:layout_margin="10dp"
+                android:gravity="center"
+                android:text="提交"
+                android:textColor="@color/white"
+                app:my_tv_corner_radius="22dp"
+                app:my_tv_press="@color/blue_press"
+                app:my_tv_solid="@color/blue"
+                />
+        </com.github.customview.MyLinearLayout>
+
     </RelativeLayout>
 </LinearLayout>

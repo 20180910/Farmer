@@ -13,7 +13,7 @@ import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.tuiguangyuan.Constant;
 import com.zhizhong.farmer.module.tuiguangyuan.network.ApiRequest;
-import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYMessageObj;
+import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageObj;
 
 import java.util.HashMap;
 import java.util.List;
@@ -42,9 +42,9 @@ public class TGYMyMessageActivity extends BaseActivity implements LoadMoreAdapte
 
     @Override
     protected void initView() {
-        adapter=new LoadMoreAdapter<TGYMessageObj>(mContext,R.layout.item_tgy_my_msg,pageSize) {
+        adapter=new LoadMoreAdapter<MessageObj>(mContext,R.layout.item_tgy_my_msg,pageSize) {
             @Override
-            public void bindData(LoadMoreViewHolder holder, int i, TGYMessageObj bean) {
+            public void bindData(LoadMoreViewHolder holder, int i, MessageObj bean) {
                 holder.setText(R.id.tv_tgy_msg_title,bean.getTitle())
                         .setText(R.id.tv_tgy_msg_content,bean.getZhaiyao())
                         .setText(R.id.tv_tgy_msg_date,bean.getAdd_time());
@@ -54,7 +54,7 @@ public class TGYMyMessageActivity extends BaseActivity implements LoadMoreAdapte
         adapter.setClickListener(new LoadMoreAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int i) {
-                TGYMessageObj obj = (TGYMessageObj) adapter.getList().get(i);
+                MessageObj obj = (MessageObj) adapter.getList().get(i);
                 Intent intent=new Intent();
                 intent.putExtra(Constant.IParam.msgId,obj.getId()+"");
                 STActivity(intent,TGYMyMessageDetailActivity.class);
@@ -83,9 +83,9 @@ public class TGYMyMessageActivity extends BaseActivity implements LoadMoreAdapte
         map.put("page",page+"");
         map.put("pagesize",pageSize+"");
         map.put("sign", GetSign.getSign(map));
-        addSubscription(ApiRequest.getMsgList(map).subscribe(new MySub<List<TGYMessageObj>>(mContext,pcfl,pl_load) {
+        addSubscription(ApiRequest.getTGYMsgList(map).subscribe(new MySub<List<MessageObj>>(mContext,pcfl,pl_load) {
             @Override
-            public void onMyNext(List<TGYMessageObj> list) {
+            public void onMyNext(List<MessageObj> list) {
                 if(isLoad){
                     pageNum++;
                     adapter.addList(list,true);

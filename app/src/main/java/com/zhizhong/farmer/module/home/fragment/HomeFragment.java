@@ -5,14 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.activity.MyMessageActivity;
-import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYLoginActivity;
-import com.zhizhong.farmer.module.tuiguangyuan.activity.TGYMyMessageActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -56,17 +53,9 @@ public class HomeFragment extends BaseFragment {
                 break;
             case R.id.iv_home_msg:
                 if(TextUtils.isEmpty(getUserId())){
-                    if(getUserType()== Config.userType_farmer){
-                        STActivity(LoginActivity.class);
-                    }else if(getUserType()==Config.userType_tgy){
-                        STActivity(TGYLoginActivity.class);
-                    }
-                    return;
-                }
-                if(getUserType()== Config.userType_farmer){
+                    STActivity(LoginActivity.class);
+                }else{
                     STActivity(MyMessageActivity.class);
-                }else if(getUserType()==Config.userType_tgy){
-                    STActivity(TGYMyMessageActivity.class);
                 }
             break;
         }

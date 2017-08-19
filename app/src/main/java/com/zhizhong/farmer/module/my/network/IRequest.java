@@ -3,6 +3,7 @@ package com.zhizhong.farmer.module.my.network;
 
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
+import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.my.network.response.XiaJiObj;
@@ -12,6 +13,8 @@ import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
 import com.zhizhong.farmer.module.my.network.response.FenXiaoDetailObj;
 import com.zhizhong.farmer.module.my.network.response.FenXiaoObj;
 import com.zhizhong.farmer.module.my.network.response.LoginObj;
+import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageDetailObj;
+import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageObj;
 
 import java.util.List;
 import java.util.Map;
@@ -109,6 +112,34 @@ public interface IRequest {
     //抵用券数量
     @GET("api/Farmer/GetMyCouponsNum")
     Observable<ResponseObj<VouchersNumObj>> getVouchersNum(@Query("user_id") String user_id, @Query("sign") String sign);
+
+    //消息列表
+    @GET("api/Farmer/GetNewsList")
+    Observable<ResponseObj<List<MessageObj>>> getMsgList(@QueryMap Map<String,String> map);
+
+    //消息详情
+    @GET("api/Farmer/GetNewsDetail")
+    Observable<ResponseObj<MessageDetailObj>> getMsgDetail(@Query("news_id") String news_id, @Query("sign") String sign);
+
+    //我的农户列表
+    @GET("api/Farmer/GetMyFarmerList")
+    Observable<ResponseObj<List<MyFarmerObj>>> getMyFarmerList(@Query("user_id") String news_id, @Query("sign") String sign);
+
+    //删除我的农户
+    @GET("api/Farmer/GetDelMyFarmer")
+    Observable<ResponseObj<BaseObj>> deleteMyFarmer(@Query("mf_id") String mf_id, @Query("sign") String sign);
+
+    //添加农户
+    @GET("api/Farmer/GetAddMyFarmer")
+    Observable<ResponseObj<BaseObj>> addMyFarmer(@QueryMap Map<String,String> map);
+
+    //编辑农户-获取农户信息
+    @GET("api/Farmer/GetEditMyFarmer")
+    Observable<ResponseObj<MyFarmerObj>> getMyFarmer(@Query("mf_id") String mf_id, @Query("sign") String sign);
+
+    //编辑保存农户
+    @GET("api/Farmer/GetSaveMyFarmer")
+    Observable<ResponseObj<BaseObj>> updateMyFarmer(@QueryMap Map<String,String> map);
 
 
 }

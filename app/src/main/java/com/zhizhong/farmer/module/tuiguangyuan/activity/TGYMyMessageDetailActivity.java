@@ -8,7 +8,7 @@ import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.tuiguangyuan.Constant;
 import com.zhizhong.farmer.module.tuiguangyuan.network.ApiRequest;
-import com.zhizhong.farmer.module.tuiguangyuan.network.response.TGYMessageDetailObj;
+import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageDetailObj;
 
 import butterknife.BindView;
 
@@ -43,9 +43,9 @@ public class TGYMyMessageDetailActivity extends BaseActivity {
     }
 
     private void getData() {
-        addSubscription(ApiRequest.getMsgDetail(msgId,getSign("news_id",msgId)).subscribe(new MySub<TGYMessageDetailObj>(mContext) {
+        addSubscription(ApiRequest.getTGYMsgDetail(msgId,getSign("news_id",msgId)).subscribe(new MySub<MessageDetailObj>(mContext) {
             @Override
-            public void onMyNext(TGYMessageDetailObj obj) {
+            public void onMyNext(MessageDetailObj obj) {
                 tv_tgy_msgdetail_title.setText(obj.getTitle());
                 tv_tgy_msgdetail_content.setText(obj.getContent());
             }

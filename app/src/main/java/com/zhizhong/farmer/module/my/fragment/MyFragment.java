@@ -10,6 +10,7 @@ import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.module.my.activity.MyDataActivity;
+import com.zhizhong.farmer.module.my.activity.MyFarmerActivity;
 import com.zhizhong.farmer.module.my.activity.MyFenXiaoActivity;
 import com.zhizhong.farmer.module.my.activity.MyOrderListActivity;
 
@@ -84,7 +85,7 @@ public class MyFragment extends BaseFragment {
                 STActivity(MyDataActivity.class);
                 break;
             case R.id.tv_my_farmer://我的农户
-                STActivity(MyDataActivity.class);
+                STActivity(MyFarmerActivity.class);
                 break;
             case R.id.tv_my_fenxiao://我的分销
                 STActivity(MyFenXiaoActivity.class);

@@ -6,7 +6,7 @@ import com.zhizhong.farmer.base.BaseObj;
  * Created by administartor on 2017/8/17.
  */
 
-public class TGYMessageDetailObj extends BaseObj{
+public class MessageDetailObj extends BaseObj{
     /**
      * id : 16
      * title : 注册成功!

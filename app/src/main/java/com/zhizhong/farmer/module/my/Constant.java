@@ -35,5 +35,6 @@ public class Constant {
         public static final String orderType="orderType";
         public static final String orderNo="orderNo";
         public static final String address="address";
+        public static final String editFarmer="editFarmer";
     }
 }

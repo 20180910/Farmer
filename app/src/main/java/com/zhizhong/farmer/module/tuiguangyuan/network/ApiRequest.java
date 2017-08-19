@@ -52,11 +52,11 @@ public class ApiRequest {
     public static Observable setForgetPasswordTGY(Map map){
         return getCommonClient().setForgetPasswordTGY(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-    public static Observable getMsgList(Map map){
-        return getCommonClient().getMsgList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    public static Observable getTGYMsgList(Map map){
+        return getCommonClient().getTGYMsgList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
-    public static Observable getMsgDetail(String msgId,String sign){
-        return getCommonClient().getMsgDetail(msgId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    public static Observable getTGYMsgDetail(String msgId, String sign){
+        return getCommonClient().getTGYMsgDetail(msgId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable getFarmerList(Map map){
         return getCommonClient().getFarmerList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
