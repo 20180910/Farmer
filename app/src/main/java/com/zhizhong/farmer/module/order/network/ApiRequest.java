@@ -3,6 +3,8 @@ package com.zhizhong.farmer.module.order.network;
 import com.github.retrofitutil.NetWorkManager;
 import com.zhizhong.farmer.tools.RxResult;
 
+import java.util.Map;
+
 import rx.Observable;
 
 /**
@@ -27,7 +29,12 @@ public class ApiRequest {
         return getCommonClient().getOrderDefaultData(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
 
-
+    public static Observable getHaiChongList(String crops,String sign){
+        return getCommonClient().getHaiChongList(crops, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getOtherFarmerList(Map map){
+        return getCommonClient().getOtherFarmerList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 
 }

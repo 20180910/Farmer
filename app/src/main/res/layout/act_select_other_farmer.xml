@@ -7,10 +7,43 @@
               android:background="@color/background_f2"
     >
 <include layout="@layout/app_title"/>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_select_other_farmer"
+    <com.zhizhong.farmer.view.ProgressLayout
+        android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_select_other_farmer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll_other_farmer_commit"
+            >
 
-    </android.support.v7.widget.RecyclerView>
+        </android.support.v7.widget.RecyclerView>
+        <com.github.customview.MyLinearLayout
+            app:my_ll_top_line="true"
+            android:id="@+id/ll_other_farmer_commit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentBottom="true"
+            >
+            <com.github.customview.MyTextView
+                android:id="@+id/tv_other_farmer_commit"
+                android:layout_width="match_parent"
+                android:layout_height="46dp"
+                app:my_tv_corner_radius="23dp"
+                app:my_tv_solid="@color/blue"
+                app:my_tv_press="@color/blue_press"
+                android:gravity="center"
+                android:paddingLeft="15dp"
+                android:text="确定"
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:layout_margin="10dp"
+                />
+        </com.github.customview.MyLinearLayout>
+
+
+    </com.zhizhong.farmer.view.ProgressLayout>
+
 </LinearLayout>

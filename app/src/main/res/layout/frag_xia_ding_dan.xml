@@ -26,10 +26,12 @@
             tools:text="title"
             />
     </com.github.customview.MyRelativeLayout>
-
-    <RelativeLayout
+    <com.zhizhong.farmer.view.ProgressLayout
+        android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+
 
         <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -101,6 +103,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_xiadan_select_other_farmer"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -112,13 +115,22 @@
                     >
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="选择其他农户"
                         android:textSize="15sp"
+                        android:ems="6"
                         />
-
+                        <TextView
+                            android:id="@+id/tv_xia_order_farmer"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            tools:text="农户"
+                            android:gravity="center_vertical"
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            />
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="18dp"
@@ -203,12 +215,14 @@
                         android:textSize="15sp"
                         />
 
-                    <com.github.customview.MyEditText
+                    <TextView
+                        android:id="@+id/tv_xiadan_zuowu"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:hint="请输入作物名称"
+                        android:hint="请选择作物"
                         android:textSize="15sp"
+                        android:gravity="center_vertical"
                         />
                 </LinearLayout>
 
@@ -230,13 +244,13 @@
                         android:text="作物亩数"
                         android:textSize="15sp"
                         />
-
-                    <com.github.customview.MyEditText
+                    <TextView
+                        android:id="@+id/tv_xiadan_ms"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textSize="15sp"
-                        android:hint="请输入作物面积"
+                        android:gravity="center_vertical"
                         />
                 </LinearLayout>
 
@@ -260,12 +274,13 @@
                         />
 
                     <TextView
+                        android:id="@+id/tv_xiadan_start_time"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:textSize="15sp"
+                        android:gravity="center_vertical"
                         android:hint="请选择作业日期"
-                        android:layout_marginLeft="7dp"
                         />
 
                     <ImageView
@@ -293,14 +308,14 @@
                         android:text="结束日期"
                         android:textSize="15sp"
                         />
-
                     <TextView
+                        android:id="@+id/tv_xiadan_end_time"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
                         android:layout_weight="1"
                         android:textSize="15sp"
                         android:hint="请选择结束日期"
-                        android:layout_marginLeft="7dp"
                         />
 
                     <ImageView
@@ -338,5 +353,5 @@
                 app:my_tv_press="@color/blue_press"
                 />
         </com.github.customview.MyLinearLayout>
-    </RelativeLayout>
+    </com.zhizhong.farmer.view.ProgressLayout>
 </LinearLayout>
