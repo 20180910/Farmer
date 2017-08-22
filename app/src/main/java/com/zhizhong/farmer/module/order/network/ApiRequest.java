@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.order.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 import com.zhizhong.farmer.tools.RxResult;
 
 import java.util.Map;
@@ -34,6 +35,9 @@ public class ApiRequest {
     }
     public static Observable getOtherFarmerList(Map map){
         return getCommonClient().getOtherFarmerList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable xiaDingDan(Map map,XiaDingDanItem item){
+        return getCommonClient().xiaDingDan(map,item).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
 
 

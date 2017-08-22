@@ -18,6 +18,7 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.home.Constant;
+import com.zhizhong.farmer.module.home.activity.CityActivity;
 import com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinDetailActivity;
 import com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity;
 import com.zhizhong.farmer.module.home.event.XiaDanEvent;
@@ -34,6 +35,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.app.Activity.RESULT_OK;
 
 /**
  * Created by administartor on 2017/8/4.
@@ -63,6 +66,8 @@ public class HomeFragment extends BaseFragment {
     MyImageView iv_home_zhibao;
     @BindView(R.id.iv_home_bigimg)
     ImageView iv_home_bigimg;
+    @BindView(R.id.tv_home_city)
+    TextView tv_home_city;
 
     LoadMoreAdapter ziXunAdapter, zhiBaoAdapter;
     @Override
@@ -156,7 +161,7 @@ public class HomeFragment extends BaseFragment {
         }));
     }
 
-    @OnClick({R.id.iv_home_msg, R.id.ll_home_zhibao,R.id.ll_home_zixun, R.id.ll_home_xiadan})
+    @OnClick({R.id.iv_home_msg, R.id.ll_home_zhibao,R.id.ll_home_zixun, R.id.ll_home_xiadan,R.id.tv_home_city})
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.ll_home_zhibao:
@@ -175,8 +180,26 @@ public class HomeFragment extends BaseFragment {
                     STActivity(MyMessageActivity.class);
                 }
                 break;
+            case R.id.tv_home_city:
+                STActivityForResult(CityActivity.class,1000);
+                break;
         }
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case 1000:
+                    String city = data.getStringExtra(Constant.IParam.city);
+                    tv_home_city.setText(city);
+                    break;
+            }
+        }
+
+    }
+
     @Override
     public void onStop() {
         super.onStop();

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="@color/white"
+              android:background="@color/background_f2"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,6 +14,8 @@
         android:paddingRight="10dp"
         android:orientation="horizontal"
         android:gravity="center_vertical"
+        android:layout_marginTop="10dp"
+        android:background="@color/white"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -20,15 +23,17 @@
             android:text="订单编号："
             />
         <TextView
+            android:id="@+id/tv_order_no"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="TD123456"
+            tools:text="TD123456"
             />
         <TextView
+            android:id="@+id/tv_order_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="待完善"
+            tools:text="待完善"
             android:textColor="@color/blue"
             />
     </LinearLayout>
@@ -45,11 +50,14 @@
             android:orientation="horizontal"
             android:padding="10dp"
             android:gravity="center_vertical"
+            android:background="@color/white"
             >
-            <ImageView
+            <com.github.customview.MyImageView
+                android:id="@+id/iv_order_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/img34"
+                tools:src="@drawable/img34"
+                app:my_iv_radius="25dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -63,24 +71,27 @@
                     android:orientation="horizontal"
                     >
                     <TextView
+                        android:id="@+id/tv_order_name"
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:text="张三丰"
+                        tools:text="张三丰"
                         android:textColor="@color/gray_33"
                         />
                     <TextView
+                        android:id="@+id/tv_order_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2017/07/01"
+                        tools:text="2017/07/01"
                         android:textSize="12sp"
                         />
                 </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_order_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="浦东新区康桥镇周园路"
+                    tools:text="浦东新区康桥镇周园路"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
                     />
@@ -95,24 +106,25 @@
                         android:text="期望时间："
                         />
                     <TextView
+                        android:id="@+id/tv_order_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2017/06/28-2017/07/02（5天）"
+                        tools:text="2017/06/28-2017/07/02（5天）"
                         />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-    <View
+  <!--  <View
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:background="@color/gray_d7"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        />
+        />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="65dp"
-        android:layout_marginTop="1dp"
+        android:layout_marginTop="2px"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"
@@ -133,10 +145,11 @@
                 />
 
             <TextView
+                android:id="@+id/tv_order_dq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="上海市"
+                tools:text="上海市"
                 android:textColor="@color/gray_33"
                 android:textSize="16sp"
                 />
@@ -165,10 +178,11 @@
                 />
 
             <TextView
+                android:id="@+id/tv_order_nzw"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="早稻"
+                tools:text="早稻"
                 android:textColor="@color/gray_33"
                 android:textSize="16sp"
                 />
@@ -197,10 +211,11 @@
                 />
 
             <TextView
+                android:id="@+id/tv_order_dj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="12元/亩"
+                tools:text="12元/亩"
                 android:textColor="@color/gray_33"
                 android:textSize="16sp"
                 />
@@ -229,10 +244,11 @@
                 />
 
             <TextView
+                android:id="@+id/tv_order_ms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="500亩"
+                tools:text="500亩"
                 android:textColor="@color/gray_33"
                 android:textSize="16sp"
                 />

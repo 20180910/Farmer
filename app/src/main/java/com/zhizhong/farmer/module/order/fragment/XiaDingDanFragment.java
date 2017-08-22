@@ -18,20 +18,24 @@ import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
+import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.order.Constant;
 import com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity;
 import com.zhizhong.farmer.module.order.network.ApiRequest;
 import com.zhizhong.farmer.module.order.network.response.OrderDefaultDataObj;
 import com.zhizhong.farmer.module.order.network.response.OtherFarmerObj;
-import com.zhizhong.farmer.module.order.network.response.XiaDingDanObj;
+import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -64,6 +68,8 @@ public class XiaDingDanFragment extends BaseFragment {
     private Date startDate,endDate;
     private List<OrderDefaultDataObj.ListBean> zuoWuList;
     private List<OtherFarmerObj> otherFarmerList;
+    private String couponsId="0";
+    private XiaDingDanItem xiaDingDanItem;
 
     @Override
     protected int getContentView() {
@@ -123,10 +129,10 @@ public class XiaDingDanFragment extends BaseFragment {
                 if(TextUtils.isEmpty(getSStr(tv_xia_order_farmer))){
                     showMsg("请选择其他农户");
                     return;
-                }else if(TextUtils.isEmpty(getSStr(tv_xiadan_start_time))){
+                }else if(startDate==null){
                     showMsg("请选择作业日期");
                     return;
-                }else if(TextUtils.isEmpty(getSStr(tv_xiadan_end_time))){
+                }else if(endDate==null){
                     showMsg("请选择结束日期");
                     return;
                 }
@@ -142,7 +148,28 @@ public class XiaDingDanFragment extends BaseFragment {
     }
 
     private void xiaDingDan() {
-
+        showLoading();
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("coupons_id", couponsId);
+        map.put("crops",getSStr(tv_xiadan_zuowu));
+        map.put("area",getSStr(tv_xiadan_ms));
+        map.put("begin_time",getSStr(tv_xiadan_start_time));
+        map.put("end_time",getSStr(tv_xiadan_end_time));
+        map.put("sign", GetSign.getSign(map));
+        addSubscription(ApiRequest.xiaDingDan(map,xiaDingDanItem).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                startDate=null;
+                endDate=null;
+                tv_xiadan_zuowu.setText(null);
+                tv_xiadan_ms.setText(null);
+                tv_xiadan_start_time.setText(null);
+                tv_xiadan_end_time.setText(null);
+                tv_xia_order_farmer.setText(null);
+            }
+        }));
     }
 
     public void setTime(int type){
@@ -215,12 +242,12 @@ public class XiaDingDanFragment extends BaseFragment {
                     String str = (String) data.getSerializableExtra(Constant.IParam.otherFarmerBean);
                     otherFarmerList = new Gson().fromJson(str,new TypeToken<List<OtherFarmerObj>>(){}.getType());
 
-                    XiaDingDanObj obj = (XiaDingDanObj) data.getSerializableExtra(Constant.IParam.xiaDanBean);
-                    List<XiaDingDanObj.BodyBean>list = obj.getBody();
+                    xiaDingDanItem = (XiaDingDanItem) data.getSerializableExtra(Constant.IParam.xiaDanBean);
+                    List<XiaDingDanItem.BodyBean>list = xiaDingDanItem.getBody();
                     int countMS=0;
                     StringBuffer farmer=new StringBuffer();
                     for (int i = 0; i < list.size(); i++) {
-                        XiaDingDanObj.BodyBean bodyBean = list.get(i);
+                        XiaDingDanItem.BodyBean bodyBean = list.get(i);
                         countMS=countMS+bodyBean.getMs();
                         farmer.append(bodyBean.getName()+",");
                     }

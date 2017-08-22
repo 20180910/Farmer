@@ -94,6 +94,7 @@
         </com.github.customview.MyLinearLayout>
     </RelativeLayout>
     <LinearLayout
+        android:id="@+id/ll_my_order"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:orientation="horizontal"
@@ -133,7 +134,7 @@
         android:layout_marginTop="2px"
         >
         <TextView
-            android:id="@+id/tv_my_all"
+            android:id="@+id/tv_my_dws"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -145,7 +146,7 @@
             android:drawablePadding="5dp"
             />
         <TextView
-            android:id="@+id/tv_my_djd"
+            android:id="@+id/tv_my_dqr"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
@@ -157,7 +158,7 @@
             android:drawablePadding="5dp"
             />
         <TextView
-            android:id="@+id/tv_my_jd"
+            android:id="@+id/tv_my_djd"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"

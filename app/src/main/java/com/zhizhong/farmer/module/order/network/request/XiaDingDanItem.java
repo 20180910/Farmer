@@ -1,4 +1,4 @@
-package com.zhizhong.farmer.module.order.network.response;
+package com.zhizhong.farmer.module.order.network.request;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.util.List;
  * Created by administartor on 2017/8/21.
  */
 
-public class XiaDingDanObj implements Serializable{
+public class XiaDingDanItem implements Serializable{
 
     private List<BodyBean> body;
 

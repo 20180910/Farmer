@@ -4,9 +4,12 @@ package com.zhizhong.farmer.module.my.network;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
 import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
+import com.zhizhong.farmer.module.my.network.response.OrderDetailObj;
+import com.zhizhong.farmer.module.my.network.response.OrderObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.my.network.response.XiaJiObj;
+import com.zhizhong.farmer.module.my.network.response.ZuoWuObj;
 import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
 import com.zhizhong.farmer.module.tgyaccount.network.response.BankObj;
 import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
@@ -140,6 +143,17 @@ public interface IRequest {
     //编辑保存农户
     @GET("api/Farmer/GetSaveMyFarmer")
     Observable<ResponseObj<BaseObj>> updateMyFarmer(@QueryMap Map<String,String> map);
+
+    //获取订单列表
+    @GET("api/Farmer/GetOrderList")
+    Observable<ResponseObj<List<OrderObj>>> getOrderList(@QueryMap Map<String,String> map);
+
+    //获取订单详情
+    @GET("api/Farmer/GetOrderMore")
+    Observable<ResponseObj<OrderDetailObj>> getOrderDetail(@Query("order_no") String order_no, @Query("sign") String sign);
+    //获取作物列表-添加农户
+    @GET("api/Farmer/GetCropsShow")
+    Observable<ResponseObj<List<ZuoWuObj>>> getZuoWuList(@Query("rnd") String order_no, @Query("sign") String sign);
 
 
 }

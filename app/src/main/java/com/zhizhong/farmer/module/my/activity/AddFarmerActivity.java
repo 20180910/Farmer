@@ -1,8 +1,17 @@
 package com.zhizhong.farmer.module.my.activity;
 
+import android.support.design.widget.BottomSheetDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.github.androidtools.inter.MyOnClickListener;
+import com.github.baseclass.adapter.LoadMoreAdapter;
+import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
 import com.zhizhong.farmer.GetSign;
@@ -13,8 +22,10 @@ import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
+import com.zhizhong.farmer.module.my.network.response.ZuoWuObj;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -33,8 +44,8 @@ public class AddFarmerActivity extends BaseActivity {
     MyEditText et_add_farmer_juzhu;
     @BindView(R.id.et_add_farmer_nongtian)
     MyEditText et_add_farmer_nongtian;
-    @BindView(R.id.et_add_farmer_zw)
-    MyEditText et_add_farmer_zw;
+    @BindView(R.id.tv_add_farmer_zw)
+    TextView tv_add_farmer_zw;
     @BindView(R.id.et_add_farmer_ms)
     MyEditText et_add_farmer_ms;
     @BindView(R.id.tv_add_farmer_commit)
@@ -67,7 +78,7 @@ public class AddFarmerActivity extends BaseActivity {
                 et_add_farmer_phone.setText(obj.getPhone_number());
                 et_add_farmer_juzhu.setText(obj.getAddresss());
                 et_add_farmer_nongtian.setText(obj.getFarmland_addresss());
-                et_add_farmer_zw.setText(obj.getCrops());
+                tv_add_farmer_zw.setText(obj.getCrops());
                 et_add_farmer_ms.setText(obj.getArea());
             }
         }));
@@ -78,7 +89,7 @@ public class AddFarmerActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.tv_add_farmer_commit})
+    @OnClick({R.id.tv_add_farmer_commit,R.id.tv_add_farmer_zw})
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.tv_add_farmer_commit:
@@ -86,7 +97,7 @@ public class AddFarmerActivity extends BaseActivity {
                 String phone=getSStr(et_add_farmer_phone);
                 String juzhu=getSStr(et_add_farmer_juzhu);
                 String nongtian=getSStr(et_add_farmer_nongtian);
-                String zw=getSStr(et_add_farmer_zw);
+                String zw=getSStr(tv_add_farmer_zw);
                 String ms=getSStr(et_add_farmer_ms);
                 if(TextUtils.isEmpty(name)){
                     showMsg("农户姓名不能为空");
@@ -113,9 +124,55 @@ public class AddFarmerActivity extends BaseActivity {
                     addFarmer(name,phone,juzhu,nongtian,zw,ms);
                 }
             break;
+            case R.id.tv_add_farmer_zw:
+                getZuoWu();
+                break;
         }
     }
 
+    private void getZuoWu() {
+        showLoading();
+        String rnd=getRnd();
+        addSubscription(ApiRequest.getZuoWuList(rnd,getSign("rnd",rnd)).subscribe(new MySub<List<ZuoWuObj>>(mContext) {
+            @Override
+            public void onMyNext(List<ZuoWuObj> list) {
+                showZuoWu(list);
+            }
+        }));
+    }
+    private LoadMoreAdapter adapter;
+    private void showZuoWu(List<ZuoWuObj> list) {
+        BottomSheetDialog zuoWuDialog = new BottomSheetDialog(mContext);
+        adapter=new LoadMoreAdapter<ZuoWuObj>(mContext, R.layout.item_chonghai,0) {
+            @Override
+            public void bindData(LoadMoreViewHolder holder, int i, final ZuoWuObj bean) {
+                TextView tv_chonghai_name = holder.getTextView(R.id.tv_chonghai_name);
+                tv_chonghai_name.setText(bean.getCrop_name());
+                tv_chonghai_name.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        zuoWuDialog.dismiss();
+                        tv_add_farmer_zw.setText(bean.getCrop_name());
+                    }
+                });
+            }
+        };
+        adapter.setList(list);
+        View zuoWuView = LayoutInflater.from(mContext).inflate(R.layout.popu_chonghai, null);
+        RecyclerView rv_zuowu = zuoWuView.findViewById(R.id.rv_chonghai);
+        rv_zuowu.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_zuowu.setAdapter(adapter);
+        TextView tv_zuowu_cancle = zuoWuView.findViewById(R.id.tv_chonghai_cancle);
+        tv_zuowu_cancle.setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                zuoWuDialog.dismiss();
+            }
+        });
+        zuoWuDialog.setContentView(zuoWuView);
+        zuoWuDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        zuoWuDialog.show();
+    }
     private void editFarmer(String name, String phone, String juzhu, String nongtian, String zw, String ms) {
         showLoading();
         Map<String,String> map=new HashMap<String,String>();

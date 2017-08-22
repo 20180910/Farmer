@@ -1,6 +1,8 @@
 package com.zhizhong.farmer.module.order.network;
 
+import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
+import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 import com.zhizhong.farmer.module.order.network.response.HaiChongObj;
 import com.zhizhong.farmer.module.order.network.response.OrderDefaultDataObj;
 import com.zhizhong.farmer.module.order.network.response.OtherFarmerObj;
@@ -8,7 +10,9 @@ import com.zhizhong.farmer.module.order.network.response.OtherFarmerObj;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import rx.Observable;
@@ -28,5 +32,9 @@ public interface IRequest {
     //其他农户
     @GET("api/Farmer/GetOtherFarmer")
     Observable<ResponseObj<List<OtherFarmerObj>>> getOtherFarmerList(@QueryMap Map<String,String> map);
+
+    //下订单
+    @POST("api/Farmer/PostPlaceOrder")
+    Observable<ResponseObj<BaseObj>> xiaDingDan(@QueryMap Map<String,String> map, @Body XiaDingDanItem item);
 
 }

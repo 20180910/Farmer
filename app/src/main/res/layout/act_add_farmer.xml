@@ -169,17 +169,18 @@
                         android:text="作物"
                         />
 
-                    <com.github.customview.MyEditText
-                        android:id="@+id/et_add_farmer_zw"
+                    <TextView
+                        android:id="@+id/tv_add_farmer_zw"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:hint="请输入作物"
+                        android:hint="请选择作物"
                         android:gravity="center_vertical"
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"
                         android:imeOptions="actionNext"
+                        android:layout_marginLeft="7dp"
                         />
                 </LinearLayout>
 

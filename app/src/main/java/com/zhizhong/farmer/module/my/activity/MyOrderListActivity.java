@@ -1,5 +1,6 @@
 package com.zhizhong.farmer.module.my.activity;
 
+import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -7,13 +8,9 @@ import android.view.View;
 
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
+import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.adapter.OrderFragmentAdapter;
 import com.zhizhong.farmer.module.my.fragment.AllOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.CompleteOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.DaiJieDanOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.DaiQueRenOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.DaiWanShanOrderFragment;
-import com.zhizhong.farmer.module.my.fragment.YiJieDanOrderFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,17 +32,18 @@ public class MyOrderListActivity extends BaseActivity {
     List<Fragment> list;
 
     AllOrderFragment allOrderFragment;
-    DaiWanShanOrderFragment daiWanShanOrderFragment;
-    DaiQueRenOrderFragment daiQueRenOrderFragment;
-    DaiJieDanOrderFragment daiJieDanOrderFragment;
-    YiJieDanOrderFragment yiJieDanOrderFragment;
-    CompleteOrderFragment completeOrderFragment;
+    AllOrderFragment  daiWanShanOrderFragment;
+    AllOrderFragment  daiQueRenOrderFragment;
+    AllOrderFragment  daiJieDanOrderFragment;
+    AllOrderFragment yiJieDanOrderFragment;
+    AllOrderFragment completeOrderFragment;
+    private int type;
 
-    @Override
-    public void again() {
-
-    }
-
+    /*  DaiWanShanOrderFragment daiWanShanOrderFragment;
+      DaiQueRenOrderFragment  daiQueRenOrderFragment;
+      DaiJieDanOrderFragment  daiJieDanOrderFragment;
+      YiJieDanOrderFragment  yiJieDanOrderFragment;
+      CompleteOrderFragment  completeOrderFragment;*/
     @Override
     protected int getContentView() {
         setAppTitle("我的订单");
@@ -54,14 +52,15 @@ public class MyOrderListActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        type = getIntent().getIntExtra(Constant.type, Constant.type_0);
         adapter = new OrderFragmentAdapter(getSupportFragmentManager());
 
-        allOrderFragment = new AllOrderFragment();
-        daiWanShanOrderFragment = new DaiWanShanOrderFragment();
-        daiQueRenOrderFragment = new DaiQueRenOrderFragment();
-        daiJieDanOrderFragment = new DaiJieDanOrderFragment();
-        yiJieDanOrderFragment  = new YiJieDanOrderFragment();
-        completeOrderFragment  = new CompleteOrderFragment();
+        allOrderFragment = AllOrderFragment.newInstance(Constant.type_0);
+        daiWanShanOrderFragment =   AllOrderFragment.newInstance(Constant.type_1);
+        daiQueRenOrderFragment =   AllOrderFragment.newInstance(Constant.type_2);
+        daiJieDanOrderFragment =   AllOrderFragment.newInstance(Constant.type_3);
+        yiJieDanOrderFragment  =   AllOrderFragment.newInstance(Constant.type_4);
+        completeOrderFragment  =   AllOrderFragment.newInstance(Constant.type_5);
 
         list = new ArrayList<>();
         list.add(allOrderFragment);
@@ -76,6 +75,19 @@ public class MyOrderListActivity extends BaseActivity {
         vp_my_order.setOffscreenPageLimit(list.size()-1);
 
         tl_all_order.setupWithViewPager(vp_my_order);
+        Handler handler=new Handler(getMainLooper());
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                vp_my_order.setCurrentItem(type);
+            }
+        });
+       /* vp_my_order.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+            }
+        },200);*/
     }
 
     @Override

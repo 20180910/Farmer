@@ -37,5 +37,19 @@ public class ApiRequest {
     public static Observable getHomeImg( String rnd,String sign){
         return getCommonClient().getHomeImg(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-
+    public static Observable getAllCity(String rnd,String sign){
+        return getCommonClient().getAllCity(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getHotCity(String rnd,String sign){
+        return getCommonClient().getHotCity(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getProvince(String rnd, String sign){
+        return getCommonClient().getProvince(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getCityForProvince(String rnd,String sign){
+        return getCommonClient().getCityForProvince(rnd, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getCityForSearch(String search,String sign){
+        return getCommonClient().getCityForSearch(search, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 }

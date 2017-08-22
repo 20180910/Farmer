@@ -152,6 +152,11 @@ public class MainActivity extends BaseActivity {
                 ziXun();
                 break;
             case R.id.rb_home_xdd:
+                if(TextUtils.isEmpty(getUserId())){
+                    selectButton.setChecked(true);
+                    STActivity(LoginActivity.class);
+                    return;
+                }
                 xiaDan();
                 break;
             case R.id.rb_home_my:

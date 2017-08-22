@@ -11,7 +11,7 @@ import java.util.List;
  */
 
 public class OrderFragmentAdapter extends FragmentStatePagerAdapter {
-    String[]title={"全部订单","待接单","待执行","待结算","已完成"};
+    String[]title={"全部","待完善","待确认","待接单","已接单","已完成"};
     List<Fragment> list;
 
     public void setList(List<Fragment> list) {

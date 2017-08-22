@@ -109,4 +109,13 @@ public class ApiRequest {
     public static Observable updateMyFarmer(Map map){
         return getCommonClient().updateMyFarmer(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getOrderList(Map map){
+        return getCommonClient().getOrderList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
+    public static Observable getOrderDetail(String orderNo,String sign){
+        return getCommonClient().getOrderDetail(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable getZuoWuList(String rnd,String sign){
+        return getCommonClient().getZuoWuList(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 }

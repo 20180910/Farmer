@@ -10,5 +10,6 @@ public class Constant {
     public static final String url="url";
     public static class IParam{
         public static final String zhiBaoId="phone";
+        public static final String city="city";
     }
 }

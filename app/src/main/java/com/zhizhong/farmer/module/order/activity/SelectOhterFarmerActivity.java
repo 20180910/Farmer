@@ -17,7 +17,7 @@ import com.zhizhong.farmer.module.order.Constant;
 import com.zhizhong.farmer.module.order.adapter.SelectOtherFarmerAdapter;
 import com.zhizhong.farmer.module.order.network.ApiRequest;
 import com.zhizhong.farmer.module.order.network.response.OtherFarmerObj;
-import com.zhizhong.farmer.module.order.network.response.XiaDingDanObj;
+import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -98,13 +98,13 @@ public class SelectOhterFarmerActivity extends BaseActivity implements LoadMoreA
                     showMsg("请选择农户");
                     return;
                 }
-                XiaDingDanObj obj=new XiaDingDanObj();
-                XiaDingDanObj.BodyBean bodyBean ;
-                List<XiaDingDanObj.BodyBean>orderList=new ArrayList<>();
+                XiaDingDanItem obj=new XiaDingDanItem();
+                XiaDingDanItem.BodyBean bodyBean ;
+                List<XiaDingDanItem.BodyBean>orderList=new ArrayList<>();
                 for (int i = 0; i < list.size(); i++) {
                     OtherFarmerObj item = list.get(i);
                     if(item.isSelect()&&item.isSelectHaiChong()){
-                        bodyBean= new XiaDingDanObj.BodyBean();
+                        bodyBean= new XiaDingDanItem.BodyBean();
                         bodyBean.setFarmer_id(item.getId());
                         bodyBean.setMs(item.getArea());
                         bodyBean.setName(item.getFarmers_name());
