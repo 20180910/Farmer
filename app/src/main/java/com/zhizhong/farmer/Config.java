@@ -5,6 +5,12 @@ package com.zhizhong.farmer;
  */
 
 public class Config {
+    public static final String weixing_id = "wx6bcdf0f6ebbd4107";
+    public static final String weixing_key = "14756063a3daf697e58b92b8f8f2f63c";
+
+    public static final String qq_id = "1106315352";
+    public static final String qq_key = "xyTTuuJGORswRS6I";
+
     public static final Object KEY = "D98TZQWpTVlb1nqfkfO615U5ZEignoqW";
     //用户id
     public static final String user_id="user_id";
