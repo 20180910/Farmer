@@ -1,9 +1,13 @@
 package com.zhizhong.farmer.tools;
 
+import android.util.Log;
+
 import com.github.rxjava.rxbus.RxUtils;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
 import com.zhizhong.farmer.base.ServerException;
+
+import java.util.ArrayList;
 
 import rx.Observable;
 import rx.functions.Func1;
@@ -13,7 +17,7 @@ import rx.functions.Func1;
  */
 
 public class RxResult extends RxUtils {
-    public static <T extends BaseObj> Observable.Transformer<ResponseObj<T>, T> handleResult(){
+    public static <T> Observable.Transformer<ResponseObj<T>, T> handleResult(){
         return apiResponse -> apiResponse.flatMap(
                 new Func1<ResponseObj<T>, Observable<T>>() {
                     @Override
@@ -21,9 +25,15 @@ public class RxResult extends RxUtils {
                         if (response==null){
                             return Observable.empty();
                         }else if (response.isSuccess()){
-                            try {
-                                return returnDataForMsg(response.getResponse(),response.getErrMsg());
-                            }catch (ClassCastException e){
+                            T res = response.getResponse();
+                            Class<?> responseClass = res.getClass();
+                            Class baseObjClass=BaseObj.class;
+//                            Class ListClass=List.class;
+                            boolean assignableFromBaseObj = baseObjClass.isAssignableFrom(responseClass);
+//                            boolean assignableFromList = ListClass.isAssignableFrom(responseClass);
+                            if(assignableFromBaseObj){
+                                return returnDataForMsg(res,response.getErrMsg());
+                            }else{
                                 return returnData(response.getResponse());
                             }
                         }else{
@@ -42,15 +52,15 @@ public class RxResult extends RxUtils {
             }
         });
     }
-    private static <T extends BaseObj> Observable<T> returnDataForMsg(final T result, final String msg) {
+    private static <T> Observable<T> returnDataForMsg(final T result, final String msg) {
         return Observable.create(subscriber -> {
             try {
                 if(result!=null){
-                    result.setMsg(msg);
+                    ((BaseObj)result).setMsg(msg);
                     subscriber.onNext(result);
                 }else{
                     T newResult = (T) new BaseObj();
-                    newResult.setMsg(msg);
+                    ((BaseObj)newResult).setMsg(msg);
                     subscriber.onNext(newResult);
                 }
                 subscriber.onCompleted();
@@ -59,7 +69,6 @@ public class RxResult extends RxUtils {
             }
         });
     }
-
     public static <T> Observable.Transformer<ResponseObj<T>, T> listResult(){
         return apiResponse -> apiResponse.flatMap(
                 new Func1<ResponseObj<T>, Observable<T>>() {
@@ -68,6 +77,11 @@ public class RxResult extends RxUtils {
                         if (response==null){
                             return Observable.empty();
                         }else if (response.isSuccess()){
+                            T response1 = response.getResponse();
+                            Class<?> aClass = response1.getClass();
+                            Class a=ArrayList.class;
+                            boolean assignableFrom = a.isAssignableFrom(aClass);
+                            Log.i("##################","2##################"+assignableFrom);
                             return returnData(response.getResponse());
                         }else{
                             return Observable.error(new ServerException(response.getErrMsg()+""));
