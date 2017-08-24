@@ -1,13 +1,9 @@
 package com.zhizhong.farmer.tools;
 
-import android.util.Log;
-
 import com.github.rxjava.rxbus.RxUtils;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
 import com.zhizhong.farmer.base.ServerException;
-
-import java.util.ArrayList;
 
 import rx.Observable;
 import rx.functions.Func1;
@@ -77,11 +73,6 @@ public class RxResult extends RxUtils {
                         if (response==null){
                             return Observable.empty();
                         }else if (response.isSuccess()){
-                            T response1 = response.getResponse();
-                            Class<?> aClass = response1.getClass();
-                            Class a=ArrayList.class;
-                            boolean assignableFrom = a.isAssignableFrom(aClass);
-                            Log.i("##################","2##################"+assignableFrom);
                             return returnData(response.getResponse());
                         }else{
                             return Observable.error(new ServerException(response.getErrMsg()+""));
