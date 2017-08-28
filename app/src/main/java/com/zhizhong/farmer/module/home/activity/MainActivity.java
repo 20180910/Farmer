@@ -7,16 +7,20 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.StatusBarUtils;
 import com.github.baseclass.rx.MySubscriber;
 import com.github.customview.MyRadioButton;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
+import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.broadcast.MyOperationBro;
 import com.zhizhong.farmer.module.home.event.XiaDanEvent;
 import com.zhizhong.farmer.module.home.event.ZiXunEvent;
 import com.zhizhong.farmer.module.home.fragment.HomeFragment;
+import com.zhizhong.farmer.module.home.network.ApiRequest;
+import com.zhizhong.farmer.module.home.network.response.PayTypeObj;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
 import com.zhizhong.farmer.module.order.fragment.XiaDingDanFragment;
@@ -57,11 +61,17 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        if (intent != null && Config.exitAPP.equals(intent.getAction())) {
+        if(intent==null){
+            return;
+        }
+        if (Config.exitAPP.equals(intent.getAction())) {
             STActivity(SelectUserActivity.class);
             finish();
 //            selectPerson();
 //            selectButton.setChecked(true);
+        }else if(Config.backHome.equals(intent.getAction())){
+            selectHome();
+            selectButton.setChecked(true);
         }
     }
 
@@ -97,6 +107,22 @@ public class MainActivity extends BaseActivity {
         homeFragment = new HomeFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, homeFragment).commitAllowingStateLoss();
 
+        //获取微信，支付宝支付的通知地址,支付方式1支付宝，2微信
+        getZhiFuNotifyUrl("1");
+        getZhiFuNotifyUrl("2");
+    }
+
+    private void getZhiFuNotifyUrl(String type) {
+        addSubscription(ApiRequest.getPayNotifyUrl(type,getSign("payment_type",type)).subscribe(new MySub<PayTypeObj>(mContext) {
+            @Override
+            public void onMyNext(PayTypeObj obj) {
+                if(obj.getPayment_type()==1){
+                    SPUtils.setPrefString(mContext,Config.payType_ZFB,obj.getPayment_url());
+                }else{
+                    SPUtils.setPrefString(mContext,Config.payType_WX,obj.getPayment_url());
+                }
+            }
+        }));
     }
 
     private void setBroadcast() {
@@ -169,7 +195,6 @@ public class MainActivity extends BaseActivity {
                 break;
         }
     }
-
     private void ziXun() {
         selectButton = rb_home_zixun;
         if (ziXunFragment == null) {

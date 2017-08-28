@@ -22,6 +22,9 @@ public class RxResult extends RxUtils {
                             return Observable.empty();
                         }else if (response.isSuccess()){
                             T res = response.getResponse();
+                            if(res==null){
+                                return returnDataForMsg(res,response.getErrMsg());
+                            }
                             Class<?> responseClass = res.getClass();
                             Class baseObjClass=BaseObj.class;
 //                            Class ListClass=List.class;

@@ -1,9 +1,11 @@
 package com.zhizhong.farmer.module.my.activity;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 
 import com.zhizhong.farmer.R;
@@ -51,7 +53,14 @@ public class MyOrderListActivity extends BaseActivity {
     }
 
     @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        Log.i("====","====onNewIntent====initView");
+    }
+
+    @Override
     protected void initView() {
+        Log.i("====","========initView");
         type = getIntent().getIntExtra(Constant.type, Constant.type_0);
         adapter = new OrderFragmentAdapter(getSupportFragmentManager());
 

@@ -1,5 +1,7 @@
 package com.zhizhong.farmer;
 
+import android.util.Log;
+
 import com.github.androidtools.MD5;
 
 import java.util.Arrays;
@@ -56,6 +58,7 @@ public class GetSign {
             }
         }
         sb.append(Config.KEY);
+        Log.i("-----","---"+sb.toString());
         String packageSign = MD5.getMessageDigest(sb.toString().getBytes())
                 .toUpperCase();
         return exChange(packageSign);
@@ -99,5 +102,28 @@ public class GetSign {
                 .compile("^((13[0-9])|(15[0-9])|(18[0-9])|(17[0-9])|(14[0-9]))\\d{8}$");
         Matcher m = p.matcher(mobiles);
         return m.matches();
+    }
+
+    public static String getWXSign(Map<String,String> params){
+        StringBuilder sb = new StringBuilder();
+        if(params instanceof HashMap){
+            Object[] key_arr = params.keySet().toArray();
+            Arrays.sort(key_arr);
+            for  (Object key : key_arr) {
+                sb.append(key+"=");
+                sb.append(params.get(key)+"&");
+            }
+        }else{
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                sb.append(entry.getKey()+"=");
+                sb.append(entry.getValue()+"&");
+            }
+        }
+        sb.append("key=");
+        sb.append(Config.weixing_miyao);
+        String packageSign = MD5.getMessageDigest(sb.toString().getBytes())
+                .toUpperCase();
+        Log.i("-----","---"+packageSign);
+        return packageSign;
     }
 }

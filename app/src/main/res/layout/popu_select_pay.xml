@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
         android:layout_centerInParent="true"
         />
     <ImageView
+        android:id="@+id/iv_pay_cancle"
         android:layout_width="42dp"
         android:layout_height="match_parent"
         android:paddingLeft="10dp"
@@ -35,12 +37,14 @@
         android:background="@color/background_f2"
         />
     <RadioGroup
+        android:id="@+id/rg_select_pay"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="@color/white"
         >
         <com.github.customview.MyRadioButton
+            android:id="@+id/rb_pay_zhifubao"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"
@@ -62,6 +66,7 @@
             android:background="@color/background_f2"
             />
         <com.github.customview.MyRadioButton
+            android:id="@+id/rb_pay_weixin"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"
@@ -82,6 +87,7 @@
             android:background="@color/background_f2"
             />
         <com.github.customview.MyRadioButton
+            android:id="@+id/rb_pay_online"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@color/white"
@@ -105,36 +111,69 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_marginTop="20dp"
         android:paddingRight="10dp"
         >
-        <TextView
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="right"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="应付金额(首付总金额50%):"
-            />
-        <TextView
-            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="应付金额:"
+                />
+            <TextView
+                android:id="@+id/tv_pay_total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="¥6000.00"
+                android:textColor="@color/gray_33"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="¥3000.00"
-            android:textColor="@color/blue"
-            android:layout_marginLeft="10dp"
-            />
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            >
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:layout_height="wrap_content"
+                android:text="首款(应付金额的50%):"
+                android:layout_gravity="right"
+                />
+            <TextView
+                android:id="@+id/tv_pay_money"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="¥3000.00"
+                android:textColor="@color/blue"
+                android:layout_marginLeft="10dp"
+                />
+        </LinearLayout>
+
     </LinearLayout>
     <com.github.customview.MyTextView
+        android:id="@+id/tv_pay_commit"
         android:layout_width="match_parent"
         android:layout_height="44dp"
-        android:text="确认支付"
+        android:text="确认支付首款"
         android:gravity="center"
         android:textColor="@color/white"
         app:my_tv_solid="@color/blue"
         app:my_tv_press="@color/blue_press"
         app:my_tv_corner_radius="22dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="15dp"
         />
 </LinearLayout>

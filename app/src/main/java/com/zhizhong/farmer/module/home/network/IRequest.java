@@ -4,6 +4,7 @@ import com.zhizhong.farmer.base.ResponseObj;
 import com.zhizhong.farmer.module.home.network.response.CityObj;
 import com.zhizhong.farmer.module.home.network.response.HomeDataObj;
 import com.zhizhong.farmer.module.home.network.response.HomeImgObj;
+import com.zhizhong.farmer.module.home.network.response.PayTypeObj;
 import com.zhizhong.farmer.module.home.network.response.ProvinceObj;
 import com.zhizhong.farmer.module.home.network.response.ZhiBaoObj;
 
@@ -20,6 +21,9 @@ import rx.Observable;
  */
 
 public interface IRequest {
+    //获取微信支付通知地址
+    @GET("api/Lib/GetPayInfo")
+    Observable<ResponseObj<PayTypeObj>> getPayNotifyUrl(@Query("payment_type") String payment_type, @Query("sign") String sign);
     //植保中心列表
     @GET("api/Farmer/GetEppoCenterList")
     Observable<ResponseObj<List<ZhiBaoObj>>> getZhiBaoList(@QueryMap Map<String,String> map);

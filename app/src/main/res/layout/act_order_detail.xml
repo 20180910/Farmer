@@ -452,7 +452,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         tools:text="待定价"
-                        android:textColor="@color/gray_33"
+                        android:textColor="@color/blue"
                         />
                 </LinearLayout>
                 <LinearLayout

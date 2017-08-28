@@ -14,8 +14,23 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
 
+<!--微信-->
+    <!-- 微信支付权限-->
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
 
 
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>-->
+
+
+    <!--<uses-permission android:name="android.permission.INTERNET" />-->
+    <!--<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <!--<uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />-->
 
     <application
         android:allowBackup="true"
@@ -38,7 +53,7 @@
 
         <!--home-->
         <activity android:name="com.zhizhong.farmer.module.home.activity.CityActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.home.activity.MainActivity" android:launchMode="singleTask"/>
+        <activity android:name="com.zhizhong.farmer.module.home.activity.MainActivity"  />
         <activity android:name="com.zhizhong.farmer.module.home.activity.WebActivity"/>
         <!--my_farmer-->
         <activity android:name="com.zhizhong.farmer.module.my.activity.AccountListActivity"/>
@@ -63,6 +78,14 @@
         <activity android:name="com.zhizhong.farmer.module.my.activity.UpdatePWDActivity"/>
         <activity android:name="com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinDetailActivity"/>
         <activity android:name="com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity"/>
+        <!--微信-->
+        <activity android:name=".wxapi.WXPayEntryActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wx6bcdf0f6ebbd4107"/>
+            </intent-filter>
+        </activity>
         <!--下订单-->
         <activity android:name="com.zhizhong.farmer.module.my.activity.AddFarmerActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.OfflinePayActivity"/>

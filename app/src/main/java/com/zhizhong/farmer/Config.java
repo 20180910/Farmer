@@ -6,7 +6,10 @@ package com.zhizhong.farmer;
 
 public class Config {
     public static final String weixing_id = "wx6bcdf0f6ebbd4107";
-    public static final String weixing_key = "14756063a3daf697e58b92b8f8f2f63c";
+    public static final String weixing_AppSecret = "40adda968613a933763d4cba0b701889";
+    public static final String weixing_pay_sign = "5c19ae5c400cfb63ef8e76eec80383b5";
+    public static final String weixing_miyao = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASC";
+    public static final String weixing_mch_id = "1487620172";//商户号
 
     public static final String qq_id = "1106315352";
     public static final String qq_key = "xyTTuuJGORswRS6I";
@@ -30,6 +33,10 @@ public class Config {
 
     public static final String loginAppType_1 ="1";//飞首app
     public static final String loginAppType_2 ="2";//农户app
+    public static final String payType_WX="payType_WX";
+    public static final String payType_ZFB="payType_ZFB";
+    public static final String backHome="backHome";
+
     public static class SP{
         public static final String dai_kuan_edu_order="dai_kuan_edu_order";
         public static final String dai_kuan_money_order="dai_kuan_money_order";

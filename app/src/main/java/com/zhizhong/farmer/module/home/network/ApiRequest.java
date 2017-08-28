@@ -24,7 +24,12 @@ public class ApiRequest {
     private static IRequest getGeneralStringClient(){
         return NetWorkManager.getGeneralStringClient().create(IRequest.class);
     }
-
+    private static IRequest getStringClient(String url){
+        return NetWorkManager.getStringClient(url).create(IRequest.class);
+    }
+    public static Observable getPayNotifyUrl(String payment_type,String sign){
+        return getCommonClient().getPayNotifyUrl(payment_type,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getZhiBaoList(Map map){
         return getCommonClient().getZhiBaoList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
