@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="@color/background_f2"
     >
 <include layout="@layout/app_title"/>
-    <RelativeLayout
+    <com.zhizhong.farmer.view.ProgressLayout
+        android:id="@id/pl_load"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_above="@+id/tv_offline_pay_commit"
             android:layout_width="match_parent"
@@ -31,10 +34,11 @@
                     android:ems="5"
                     android:textSize="14sp"
                     />
-                <com.github.customview.MyEditText
+                <TextView
+                    android:id="@+id/tv_online_khdw"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请输入开户单位"
                     android:textSize="14sp"
                     android:maxLines="1"
                     />
@@ -54,10 +58,11 @@
                     android:ems="5"
                     android:textSize="14sp"
                     />
-                <com.github.customview.MyEditText
+                <TextView
+                    android:id="@+id/tv_online_zh"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请输入账号"
                     android:textSize="14sp"
                     android:maxLines="1"
                     />
@@ -77,10 +82,11 @@
                     android:ems="5"
                     android:textSize="14sp"
                     />
-                <com.github.customview.MyEditText
+                <TextView
+                    android:id="@+id/tv_online_khh"
+                    android:gravity="center_vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:hint="请输入开户行"
                     android:textSize="14sp"
                     android:maxLines="1"
                     />
@@ -126,6 +132,11 @@
                 android:padding="10dp"
                 android:gravity="center_vertical"
                 >
+                <FrameLayout
+                    android:id="@+id/fl_online_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="5dp">
                 <com.github.customview.MyLinearLayout
                     android:layout_width="125dp"
                     android:layout_height="105dp"
@@ -133,7 +144,6 @@
                     android:orientation="vertical"
                     app:my_ll_solid="#f5f5f5"
                     app:my_ll_corner_radius="5dp"
-                    android:layout_marginRight="5dp"
                     >
                     <ImageView
                         android:layout_width="wrap_content"
@@ -147,6 +157,17 @@
                         android:textColor="@color/gray_99"
                         />
                 </com.github.customview.MyLinearLayout>
+                    <com.github.customview.MyImageView
+                        android:id="@+id/iv_online_img"
+                        android:layout_width="125dp"
+                        android:layout_height="105dp"
+                        android:scaleType="fitCenter"
+                        tools:src="@drawable/bird"
+                        android:background="@color/c_press"
+                        android:visibility="gone"
+                        app:my_iv_radius="5dp"
+                        />
+                </FrameLayout>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -174,5 +195,6 @@
             android:layout_marginBottom="10dp"
             android:layout_alignParentBottom="true"
             />
-    </RelativeLayout>
+
+    </com.zhizhong.farmer.view.ProgressLayout>
 </LinearLayout>

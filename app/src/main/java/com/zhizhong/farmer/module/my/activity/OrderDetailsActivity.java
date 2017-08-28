@@ -88,6 +88,8 @@ public class OrderDetailsActivity extends BaseActivity {
     private String orderNo;
     private int type;
     private OrderBean orderBean;
+    private String orderNo1;
+
     @Override
     protected int getContentView() {
         setAppTitle("订单详情");
@@ -121,7 +123,6 @@ public class OrderDetailsActivity extends BaseActivity {
                     orderBean.IP="192.168.0.1";
                     totalPrice = total;
                 }
-
                 tv_order_detail_name.setText(obj.getFarmer_name());
                 tv_order_detail_phone.setText(obj.getFarmer_phone());
                 tv_order_detail_address.setText(obj.getSite());
@@ -246,11 +247,13 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void onLinePay() {
-
+        Intent intent=new Intent();
+        intent.putExtra(Constant.IParam.orderNo,orderNo);
+        STActivity(intent,OfflinePayActivity.class);
     }
 
     private void zhiFuBaoPay() {
-
+        showMsg("正在开发");
     }
 
     private void weiXinPay() {

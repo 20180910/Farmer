@@ -118,4 +118,10 @@ public class ApiRequest {
     public static Observable getZuoWuList(String rnd,String sign){
         return getCommonClient().getZuoWuList(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable getOnlineAccount(String rnd,String sign){
+        return getCommonClient().getOnlineAccount(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable onLinePay(Map map){
+        return getCommonClient().onLinePay(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 }

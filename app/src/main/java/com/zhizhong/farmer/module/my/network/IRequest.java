@@ -4,6 +4,7 @@ package com.zhizhong.farmer.module.my.network;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
 import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
+import com.zhizhong.farmer.module.my.network.response.OnlineAccountObj;
 import com.zhizhong.farmer.module.my.network.response.OrderDetailObj;
 import com.zhizhong.farmer.module.my.network.response.OrderObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
@@ -34,6 +35,7 @@ import rx.Observable;
  */
 
 public interface IRequest {
+
     //注册授权协议
     @GET("api/Farmer/GetFarmerAgreement")
     Observable<ResponseObj<BaseObj>> getRegisterXieYi(@Query("rnd") String rnd, @Query("sign") String sign);
@@ -155,6 +157,12 @@ public interface IRequest {
     @GET("api/Farmer/GetCropsShow")
     Observable<ResponseObj<List<ZuoWuObj>>> getZuoWuList(@Query("rnd") String order_no, @Query("sign") String sign);
 
+    //获取在线转账信息
+    @GET("api/Farmer/GetOfflinePayment")
+    Observable<ResponseObj<OnlineAccountObj>> getOnlineAccount(@Query("rnd") String rnd, @Query("sign") String sign);
 
+    //在线转账
+    @GET("api/Farmer/GetPayCredential")
+    Observable<ResponseObj<BaseObj>> onLinePay(@QueryMap Map<String,String> map);
 }
 

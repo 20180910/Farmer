@@ -88,7 +88,7 @@
         </activity>
         <!--下订单-->
         <activity android:name="com.zhizhong.farmer.module.my.activity.AddFarmerActivity"/>
-        <activity android:name="com.zhizhong.farmer.module.order.activity.OfflinePayActivity"/>
+        <activity android:name="com.zhizhong.farmer.module.my.activity.OfflinePayActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.PaySuccessActivity"/>
         <activity android:name="com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity"/>
 
