@@ -22,12 +22,14 @@
             >
 
             <ImageView
+                android:id="@+id/iv_fenxiao_weixin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/weixin"
                 />
             <ImageView
+                android:id="@+id/iv_fenxiao_weixin_friend"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -36,6 +38,7 @@
                 />
 
             <ImageView
+                android:id="@+id/iv_fenxiao_qq"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -44,6 +47,7 @@
                 />
 
             <ImageView
+                android:id="@+id/iv_fenxiao_qq_space"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -52,6 +56,7 @@
                 />
 
             <ImageView
+                android:id="@+id/iv_fenxiao_sina"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
@@ -62,6 +67,7 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_fenxiao_cancle"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:layout_marginTop="2px"

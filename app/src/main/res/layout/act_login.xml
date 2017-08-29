@@ -202,12 +202,14 @@
                 android:paddingBottom="15dp"
                 >
                 <ImageView
+                    android:id="@+id/iv_login_wx"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/login_weixin"
                     android:layout_marginRight="30dp"
                     />
                 <ImageView
+                    android:id="@+id/iv_login_qq"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:src="@drawable/login_qq"

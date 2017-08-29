@@ -34,6 +34,9 @@ public class ApiRequest {
     public static Observable register(Map map){
         return getCommonClient().register(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable platformLogin(Map map){
+        return getCommonClient().platformLogin(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable login(Map map){
         return getCommonClient().login(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
