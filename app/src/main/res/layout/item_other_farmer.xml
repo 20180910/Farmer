@@ -12,7 +12,7 @@
         android:id="@+id/ll_other_farmer"
         android:layout_width="match_parent"
         android:layout_height="45dp"
-        android:layout_marginTop="2px"
+        android:layout_marginTop="1px"
         android:background="@color/white"
         android:gravity="center_vertical"
         android:orientation="horizontal"

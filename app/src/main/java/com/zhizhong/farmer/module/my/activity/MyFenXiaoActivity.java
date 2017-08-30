@@ -55,18 +55,23 @@ public class MyFenXiaoActivity extends BaseActivity {
             }
         }));
     }
-    @OnClick({R.id.ll_fenxiao_code, R.id.ll_fenxiao_xiaji, R.id.ll_fenxiao_yongjin, R.id.ll_fenxiao_vouchers})
+    @OnClick({R.id.ll_fenxiao_code, R.id.ll_fenxiao_xiaji, R.id.ll_fenxiao_yongjin, R.id.ll_fenxiao_vouchers,
+            R.id.fl_fenxiao_code, R.id.fl_fenxiao_xiaji, R.id.fl_fenxiao_yongjin, R.id.fl_fenxiao_vouchers})
     protected void onViewClick(View view) {
         switch (view.getId()) {
+            case R.id.fl_fenxiao_code:
             case R.id.ll_fenxiao_code:
                 STActivity(FenXiaoCodeActivity.class);
                 break;
+            case R.id.fl_fenxiao_xiaji:
             case R.id.ll_fenxiao_xiaji:
                 STActivity(MyXiaJiActivity.class);
                 break;
+            case R.id.fl_fenxiao_yongjin:
             case R.id.ll_fenxiao_yongjin:
                 STActivity(TGYMyYongJinActivity.class);
                 break;
+            case R.id.fl_fenxiao_vouchers:
             case R.id.ll_fenxiao_vouchers:
                 STActivity(MyVouchersActivity.class);
                 break;

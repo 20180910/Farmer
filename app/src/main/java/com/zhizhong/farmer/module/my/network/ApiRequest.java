@@ -37,6 +37,9 @@ public class ApiRequest {
     public static Observable platformLogin(Map map){
         return getCommonClient().platformLogin(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getShareData(String type, String sign){
+        return getCommonClient().getShareData(type,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable login(Map map){
         return getCommonClient().login(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

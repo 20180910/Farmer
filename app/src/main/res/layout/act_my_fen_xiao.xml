@@ -29,6 +29,7 @@
                     android:padding="10dp"
                     >
                     <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_fenxiao_code"
                         android:layout_width="0dp"
                         android:layout_height="105dp"
                         android:layout_weight="1"
@@ -67,6 +68,7 @@
                     </com.github.customview.MyFrameLayout>
 
                     <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_fenxiao_xiaji"
                         android:layout_width="0dp"
                         android:layout_height="105dp"
                         android:layout_weight="1"
@@ -115,6 +117,7 @@
                     android:paddingBottom="10dp"
                     >
                     <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_fenxiao_yongjin"
                         android:layout_width="0dp"
                         android:layout_height="105dp"
                         android:layout_weight="1"
@@ -153,6 +156,7 @@
                     </com.github.customview.MyFrameLayout>
 
                     <com.github.customview.MyFrameLayout
+                        android:id="@+id/fl_fenxiao_vouchers"
                         android:layout_width="0dp"
                         android:layout_height="105dp"
                         android:layout_weight="1"

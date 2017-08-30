@@ -145,6 +145,8 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar"
             android:configChanges="orientation|keyboardHidden|screenSize"/>
 
+        <!--qq空间-->
+
         <!--友盟-->
         <meta-data
             android:name="UMENG_APPKEY"

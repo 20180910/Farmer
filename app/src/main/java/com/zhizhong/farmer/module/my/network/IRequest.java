@@ -7,6 +7,7 @@ import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
 import com.zhizhong.farmer.module.my.network.response.OnlineAccountObj;
 import com.zhizhong.farmer.module.my.network.response.OrderDetailObj;
 import com.zhizhong.farmer.module.my.network.response.OrderObj;
+import com.zhizhong.farmer.module.my.network.response.ShareDataObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.my.network.response.XiaJiObj;
@@ -49,7 +50,9 @@ public interface IRequest {
     //农户第三方登录
     @GET("api/Lib/GetAddWXUser")
     Observable<ResponseObj<LoginObj>> platformLogin(@QueryMap Map<String,String>map);
-//请求 URL: http://121.40.186.118:5009/api/Lib/GetAddWXUser?platform=2&open=o4Tz_wL7DZlhkpOgrjmyQpPjwsAo&nickname=%E5%93%9F%E5%9A%AF&avatar=http://wx.qlogo.cn/mmopen/ajNVdqHZLLC3072NnPB9Dk0g9BukaHtJYYAnRCOvXIe0sa56Nk9LSHib0iaLL1zx0tOliaaRCo4qQcJdFAGRTk89w/0&type=2&sign=0aa1475746e7e23db3a0c843301cd15c
+    //农户分享获取数据
+    @GET("api/Lib/GetShareInformation")
+    Observable<ResponseObj<ShareDataObj>> getShareData(@Query("type") String type, @Query("sign") String sign);
     //农户登录
     @GET("api/FlyMember/GetUserLogin")
     Observable<ResponseObj<LoginObj>> login(@QueryMap Map<String,String>map);
