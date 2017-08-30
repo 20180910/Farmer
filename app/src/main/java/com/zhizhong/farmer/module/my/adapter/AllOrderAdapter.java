@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -17,6 +16,8 @@ import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.activity.OrderDetailsActivity;
 import com.zhizhong.farmer.module.my.network.response.OrderObj;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by administartor on 2017/8/2.
  */
@@ -28,7 +29,7 @@ public class AllOrderAdapter extends LoadMoreAdapter<OrderObj> {
 
     @Override
     public void bindData(LoadMoreViewHolder holder, int i, OrderObj bean) {
-        ImageView imageView = holder.getImageView(R.id.iv_order_img);
+        CircleImageView imageView = (CircleImageView) holder.getView(R.id.civ_order_img);
         Glide.with(mContext).load(bean.getPhoto()).error(R.color.c_press).into(imageView);
         holder.setText(R.id.tv_order_name,bean.getFarmer_name())
                 .setText(R.id.tv_order_date,bean.getAdd_time())

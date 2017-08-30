@@ -52,12 +52,11 @@
             android:gravity="center_vertical"
             android:background="@color/white"
             >
-            <com.github.customview.MyImageView
-                android:id="@+id/iv_order_img"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_order_img"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 tools:src="@drawable/img34"
-                app:my_iv_radius="25dp"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
