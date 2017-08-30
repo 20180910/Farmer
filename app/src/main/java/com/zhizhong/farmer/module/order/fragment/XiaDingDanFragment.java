@@ -176,6 +176,8 @@ public class XiaDingDanFragment extends BaseFragment {
                 tv_xiadan_start_time.setText(null);
                 tv_xiadan_end_time.setText(null);
                 tv_xia_order_farmer.setText(null);
+                couponsId="0";
+                tv_xiadan_voucher.setText(null);
             }
         }));
     }
