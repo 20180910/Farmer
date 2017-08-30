@@ -52,7 +52,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             tools:text="恭喜，您已成功注册益农宝会员，系统自动赠送您价值200
-元的优惠券，快去看看吧～"
+元的抵用券，快去看看吧～"
             />
         <ImageView
             android:layout_width="wrap_content"

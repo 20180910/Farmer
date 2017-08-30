@@ -6,11 +6,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.baseclass.adapter.LoadMoreAdapter;
+import com.github.baseclass.rx.RxBus;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.my.adapter.VouchersAdapter;
+import com.zhizhong.farmer.module.my.event.VoucherEvent;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 
@@ -32,6 +34,8 @@ public class VouchersFragment extends BaseFragment implements LoadMoreAdapter.On
 
     VouchersAdapter adapter;
     private String vouchersType;
+    private boolean selectVoucher;
+
     @Override
     protected int getContentView() {
         return R.layout.frag_vouchers;
@@ -42,6 +46,15 @@ public class VouchersFragment extends BaseFragment implements LoadMoreAdapter.On
         adapter=new VouchersAdapter(mContext, R.layout.item_vouchers,pageSize);
         adapter.setOnLoadMoreListener(this);
         adapter.setType(vouchersType);
+        adapter.setClickListener(new LoadMoreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                if(selectVoucher){
+                    VouchersObj vouchersObj = adapter.getList().get(i);
+                    RxBus.getInstance().post(new VoucherEvent(vouchersObj));
+                }
+            }
+        });
         rv_vouchers.setLayoutManager(new LinearLayoutManager(mContext));
         rv_vouchers.setAdapter(adapter);
         pcfl.setPtrHandler(new PtrDefaultHandler() {
@@ -95,5 +108,9 @@ public class VouchersFragment extends BaseFragment implements LoadMoreAdapter.On
     @Override
     public void loadMore() {
         getData(pageNum,true);
+    }
+
+    public void setSelectVoucher(boolean selectVoucher) {
+        this.selectVoucher=selectVoucher;
     }
 }

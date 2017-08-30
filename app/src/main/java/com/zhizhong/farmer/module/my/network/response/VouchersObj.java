@@ -1,10 +1,12 @@
 package com.zhizhong.farmer.module.my.network.response;
 
+import java.io.Serializable;
+
 /**
  * Created by administartor on 2017/8/18.
  */
 
-public class VouchersObj  {
+public class VouchersObj  implements Serializable {
     /**
      * coupons_id : 1
      * title : 优惠券

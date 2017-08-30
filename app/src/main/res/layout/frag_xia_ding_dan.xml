@@ -139,6 +139,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/ll_xiadan_vouchers"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
                     android:layout_marginTop="10dp"
@@ -150,13 +151,20 @@
                     >
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="选择优惠券"
+                        android:text="选择抵用券"
                         android:textSize="15sp"
+                        android:ems="6"
                         />
-
+                        <TextView
+                            android:id="@+id/tv_xiadan_voucher"
+                            android:layout_width="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            tools:text="抵用券3元"
+                            android:textColor="@color/blue"
+                            />
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="18dp"

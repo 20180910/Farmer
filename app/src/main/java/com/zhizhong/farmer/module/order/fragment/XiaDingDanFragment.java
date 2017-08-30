@@ -23,6 +23,8 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
+import com.zhizhong.farmer.module.my.activity.MyVouchersActivity;
+import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.order.Constant;
 import com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity;
 import com.zhizhong.farmer.module.order.network.ApiRequest;
@@ -49,6 +51,8 @@ import static android.app.Activity.RESULT_OK;
 public class XiaDingDanFragment extends BaseFragment {
     @BindView(R.id.app_title)
     TextView app_title;
+    @BindView(R.id.tv_xiadan_voucher)
+    TextView tv_xiadan_voucher;
     @BindView(R.id.tv_xia_order_name)
     TextView tv_xia_order_name;
     @BindView(R.id.tv_xia_order_phone)
@@ -107,7 +111,7 @@ public class XiaDingDanFragment extends BaseFragment {
         }));
     }
 
-    @OnClick({R.id.tv_xdd_commit,R.id.ll_xiadan_select_other_farmer,R.id.tv_xiadan_zuowu,R.id.tv_xiadan_start_time,R.id.tv_xiadan_end_time})
+    @OnClick({R.id.ll_xiadan_vouchers,R.id.tv_xdd_commit,R.id.ll_xiadan_select_other_farmer,R.id.tv_xiadan_zuowu,R.id.tv_xiadan_start_time,R.id.tv_xiadan_end_time})
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.ll_xiadan_select_other_farmer:
@@ -121,6 +125,10 @@ public class XiaDingDanFragment extends BaseFragment {
                     intent.putExtra(Constant.IParam.otherFarmerBean,new Gson().toJson(otherFarmerList));
                 }
                 STActivityForResult(intent,SelectOhterFarmerActivity.class,100);
+            break;
+            case R.id.ll_xiadan_vouchers:
+                Intent intentVoucher=new Intent(Constant.IParam.select_voucher);
+                STActivityForResult(intentVoucher,MyVouchersActivity.class,1000);
             break;
             case R.id.tv_xiadan_zuowu:
                 getZuoWu();
@@ -254,6 +262,11 @@ public class XiaDingDanFragment extends BaseFragment {
                     farmer.deleteCharAt(farmer.lastIndexOf(","));
                     tv_xia_order_farmer.setText(farmer.toString());
                     tv_xiadan_ms.setText(countMS+"");
+                    break;
+                case 1000:
+                    VouchersObj voucher= (VouchersObj) data.getSerializableExtra(Constant.IParam.voucher);
+                    couponsId=voucher.getCoupons_id()+"";
+                    tv_xiadan_voucher.setText("抵用券"+voucher.getFace_value()+"元");
                     break;
             }
         }

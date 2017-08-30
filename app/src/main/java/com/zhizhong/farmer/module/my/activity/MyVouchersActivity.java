@@ -1,15 +1,18 @@
 package com.zhizhong.farmer.module.my.activity;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
+import com.github.baseclass.rx.MySubscriber;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.adapter.VouchersFragmentAdapter;
+import com.zhizhong.farmer.module.my.event.VoucherEvent;
 import com.zhizhong.farmer.module.my.fragment.VouchersFragment;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.response.VouchersNumObj;
@@ -37,10 +40,7 @@ public class MyVouchersActivity extends BaseActivity {
     VouchersFragment yiShiYongFragment;
     VouchersFragment yiGuoQiFragment;
 
-    @Override
-    public void again() {
 
-    }
 
     @Override
     protected int getContentView() {
@@ -50,12 +50,15 @@ public class MyVouchersActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+
         adapter = new VouchersFragmentAdapter(getSupportFragmentManager());
 
         weiShiYongFragment =VouchersFragment.newInstance(Constant.vouchersType_0);
         yiShiYongFragment = VouchersFragment.newInstance(Constant.vouchersType_1);
         yiGuoQiFragment = VouchersFragment.newInstance(Constant.vouchersType_2);
-
+        if(com.zhizhong.farmer.module.order.Constant.IParam.select_voucher.equals(getIntent().getAction())){
+            weiShiYongFragment.setSelectVoucher(true);
+        }
         list = new ArrayList<>();
         list.add(weiShiYongFragment);
         list.add(yiShiYongFragment);
@@ -66,6 +69,17 @@ public class MyVouchersActivity extends BaseActivity {
         vp_my_vouchers.setOffscreenPageLimit(list.size()-1);
 
         tl_my_vouchers.setupWithViewPager(vp_my_vouchers);
+
+        getRxBusEvent(VoucherEvent.class, new MySubscriber<VoucherEvent>() {
+            @Override
+            public void onMyNext(VoucherEvent event) {
+                Intent intent=new Intent();
+                intent.putExtra(com.zhizhong.farmer.module.order.Constant.IParam.voucher,event.vouchersObj);
+                setResult(RESULT_OK,intent);
+                finish();
+            }
+        });
+
 
     }
 
