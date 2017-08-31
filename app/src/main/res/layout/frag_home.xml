@@ -175,10 +175,11 @@
                     android:src="@drawable/img8"
                     />
 
-                <LinearLayout
+                <com.github.customview.MyLinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
-                    android:background="@color/white"
+                    app:my_ll_bottom_line="true"
+                    app:my_ll_border_width="2px"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
@@ -205,7 +206,7 @@
                         android:textColor="@color/gray_66"
                         android:textSize="15sp"
                         />
-                </LinearLayout>
+                </com.github.customview.MyLinearLayout>
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/rv_home_zixun"

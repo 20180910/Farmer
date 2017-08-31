@@ -28,6 +28,7 @@ import com.zhizhong.farmer.module.home.network.response.HomeDataObj;
 import com.zhizhong.farmer.module.home.network.response.HomeImgObj;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.activity.MyMessageActivity;
+import com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity;
 import com.zhizhong.farmer.tools.GlideLoader;
 
 import java.util.ArrayList;
@@ -77,7 +78,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
-        app_title.setText("益农宝");
+        app_title.setText("飞农宝");
         ziXunAdapter = new LoadMoreAdapter<HomeDataObj.InformationListBean>(mContext, R.layout.item_zi_xun, 0) {
             @Override
             public void bindData(LoadMoreViewHolder holder, int i, HomeDataObj.InformationListBean bean) {
@@ -88,6 +89,16 @@ public class HomeFragment extends BaseFragment {
                 Glide.with(mContext).load(bean.getImage_url()).error(R.color.c_press).into(imageView);
             }
         };
+        ziXunAdapter.setClickListener(new LoadMoreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int i) {
+                HomeDataObj.InformationListBean obj = (HomeDataObj.InformationListBean) ziXunAdapter.getList().get(i);
+                Intent intent=new Intent();
+                intent.putExtra(Constant.IParam.id,obj.getId()+"");
+                STActivity(intent,ZiXunDetailActivity.class);
+            }
+        });
+
         zhiBaoAdapter = new LoadMoreAdapter<HomeDataObj.EppocenterListBean>(mContext, R.layout.item_zhi_bao, 0) {
             @Override
             public void bindData(LoadMoreViewHolder holder, int i, HomeDataObj.EppocenterListBean bean) {

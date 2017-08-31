@@ -229,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"
                         android:gravity="center_vertical"
-                        android:text="《益农宝农户协议》"
+                        android:text="《飞农宝农户协议》"
                         android:textColor="@color/blue"
                         android:textSize="12sp"
                         />
