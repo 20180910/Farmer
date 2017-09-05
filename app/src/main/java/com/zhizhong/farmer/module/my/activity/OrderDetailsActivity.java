@@ -4,6 +4,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.design.widget.BottomSheetDialog;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,27 +14,38 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
+import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
+import com.github.baseclass.rx.IOCallBack;
 import com.github.baseclass.view.MyDialog;
+import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
+import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.bean.OrderBean;
 import com.zhizhong.farmer.module.my.bean.WXPay;
-import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.response.OrderDetailObj;
+import com.zhizhong.farmer.module.order.activity.PaySuccessActivity;
+import com.zhizhong.farmer.tools.alipay.AliPay;
+import com.zhizhong.farmer.tools.alipay.OrderInfoUtil2_0;
+import com.zhizhong.farmer.tools.alipay.PayResult;
+
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import rx.Subscriber;
 
 /**
  * Created by administartor on 2017/8/3.
  */
 
 public class OrderDetailsActivity extends BaseActivity {
-
 
     @BindView(R.id.tv_order_detail_name)
     TextView tv_order_detail_name;
@@ -89,6 +102,7 @@ public class OrderDetailsActivity extends BaseActivity {
     private int type;
     private OrderBean orderBean;
     private String orderNo1;
+    private OrderDetailObj orderDetailObj;
 
     @Override
     protected int getContentView() {
@@ -112,6 +126,7 @@ public class OrderDetailsActivity extends BaseActivity {
         addSubscription(ApiRequest.getOrderDetail(orderNo, getSign("order_no", orderNo)).subscribe(new MySub<OrderDetailObj>(mContext, pl_load) {
             @Override
             public void onMyNext(OrderDetailObj obj) {
+                orderDetailObj = obj;
                 if(type== Constant.type_2){
                     double total=Double.parseDouble(obj.getTotal_price());
                     orderBean=new OrderBean();
@@ -255,11 +270,65 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void zhiFuBaoPay() {
-        showMsg("正在开发");
-    }
+//        double total=Double.parseDouble(orderDetailObj.getTotal_price());
+        double total=0.02;
+        AliPay bean=new AliPay();
+        bean.setTotal_amount(total/2);
+        bean.setOut_trade_no(orderDetailObj.getOrder_no());
+        bean.setSubject(orderDetailObj.getOrder_no()+"订单交易");
+        bean.setBody("飞农宝订单");
+        String notifyUrl = SPUtils.getPrefString(mContext, Config.payType_ZFB, null);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(bean,notifyUrl);
+        String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
+        String sign = OrderInfoUtil2_0.getSign(params, Config.zhifubao_rsa2, true);
+        final String orderInfo = orderParam + "&" + sign;
+        RXStart(new IOCallBack<Map>() {
+            @Override
+            public void call(Subscriber<? super Map> subscriber) {
+                PayTask payTask = new PayTask(mContext);
+                Map<String, String> result = payTask.payV2(orderInfo, true);
+                Log.i("msp=====", result.toString());
+                subscriber.onNext(result);
+                subscriber.onCompleted();
+            }
+            @Override
+            public void onMyNext(Map map) {
+                PayResult payResult = new PayResult(map);
+                /**
+                 对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
+                 */
+                String resultInfo = payResult.getResult();// 同步返回需要验证的信息
+                Log.i("==========","1=========="+resultInfo);
+                String resultStatus = payResult.getResultStatus();
+                Log.i("==========","2=========="+resultStatus);
+                // 判断resultStatus 为9000则代表支付成功
+                if (TextUtils.equals(resultStatus, "9000")) {
+                    // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                    Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent();
+                    intent.setAction("alipay");
+                    intent.putExtra(Config.IParam.alipay,true);
+                    STActivity(intent, PaySuccessActivity.class);
+                } else if(TextUtils.equals(resultStatus, "6001")){
+                    // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                    Toast.makeText(mContext, "支付取消", Toast.LENGTH_SHORT).show();
+                    /*Intent intent=new Intent();
+                    intent.setAction("alipay");
+                    intent.putExtra(Config.IParam.alipay,false);
+                    STActivity(intent, PaySuccessActivity.class);*/
+                }else{
+                    // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
+                    Toast.makeText(mContext, "支付失败", Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent();
+                    intent.setAction("alipay");
+                    intent.putExtra(Config.IParam.alipay,false);
+                    STActivity(intent, PaySuccessActivity.class);
+                }
+            }
+        });
+    }
     private void weiXinPay() {
         new WXPay(mContext).pay(orderBean);
     }
-
 }

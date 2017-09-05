@@ -117,14 +117,15 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         }
 
         ButterKnife.bind(this);
-        if(null!=findViewById(R.id.toolbar)){
+        if(null!=findViewById(R.id.status_bar)){
             status_bar = findViewById(R.id.status_bar);
             int statusBarHeight = StatusBarUtils.getStatusBarHeight(this);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             layoutParams.height=statusBarHeight;
             status_bar.setLayoutParams(layoutParams);
             status_bar.setBackgroundColor(getResources().getColor(statusBarBackgroud));
-
+        }
+        if(null!=findViewById(R.id.toolbar)){
             toolbar = (Toolbar) findViewById(R.id.toolbar);
             toolbar.setTitle("");
             setSupportActionBar(toolbar);
