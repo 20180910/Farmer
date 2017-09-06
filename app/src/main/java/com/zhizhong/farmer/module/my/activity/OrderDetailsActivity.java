@@ -270,8 +270,8 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void zhiFuBaoPay() {
-//        double total=Double.parseDouble(orderDetailObj.getTotal_price());
-        double total=0.02;
+        double total=Double.parseDouble(orderDetailObj.getTotal_price());
+//        double total=0.02;
         AliPay bean=new AliPay();
         bean.setTotal_amount(total/2);
         bean.setOut_trade_no(orderDetailObj.getOrder_no());
