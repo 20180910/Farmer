@@ -163,7 +163,7 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
     private void getChongHaiList(List<HaiChongObj> list,TextView tv_other_farmer_chong,LinearLayout rb_other_farmer_yao,int position) {
         BottomSheetDialog dialog = new BottomSheetDialog(mContext);
         SparseArrayCompat<HaiChongObj> sparseArray=new SparseArrayCompat();
-        adapter=new LoadMoreAdapter<HaiChongObj>(mContext, R.layout.item_chonghai,0) {
+        adapter=new LoadMoreAdapter<HaiChongObj>(mContext, R.layout.item_chonghai_other_farmer,0) {
             @Override
             public void bindData(LoadMoreViewHolder holder, int i,final HaiChongObj bean) {
                 holder.setText(R.id.tv_chonghai_name,bean.getTitle());
@@ -195,7 +195,7 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
             }
         };
         adapter.setList(list);
-        View chonghaiView = LayoutInflater.from(mContext).inflate(R.layout.popu_chonghai, null);
+        View chonghaiView = LayoutInflater.from(mContext).inflate(R.layout.popu_chonghai_other_farmer, null);
         RecyclerView rv_chonghai = chonghaiView.findViewById(R.id.rv_chonghai);
         rv_chonghai.setLayoutManager(new LinearLayoutManager(mContext));
         rv_chonghai.setAdapter(adapter);
