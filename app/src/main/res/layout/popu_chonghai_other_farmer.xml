@@ -18,10 +18,17 @@
             android:layout_weight="1"
             android:layout_height="50dp"
             android:text="取消"
-            android:gravity="center"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
             app:my_tv_press="@color/c_press"
             app:my_tv_solid="@color/white"
             android:textSize="18sp"
+            />
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1.6"
+            android:layout_height="50dp"
+            android:background="@color/white"
             />
         <com.github.customview.MyTextView
             android:id="@+id/tv_chonghai_sure"
@@ -29,11 +36,11 @@
             android:layout_weight="1"
             android:layout_height="50dp"
             android:text="确定"
-            android:gravity="center"
+            android:gravity="center_vertical|right"
+            android:paddingRight="10dp"
             app:my_tv_press="@color/c_press"
             app:my_tv_solid="@color/white"
             android:textSize="18sp"
-            android:layout_marginLeft="2px"
             />
     </LinearLayout>
 <android.support.v7.widget.RecyclerView
