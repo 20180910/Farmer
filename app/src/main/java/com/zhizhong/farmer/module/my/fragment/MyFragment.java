@@ -60,7 +60,7 @@ public class MyFragment extends BaseFragment {
         String userName = SPUtils.getPrefString(mContext, Config.nick_name, null);
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
         if (avatar != null) {
-            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_my_img);
+            Glide.with(mContext).load(avatar).error(R.drawable.people).into(civ_my_img);
         }
         int level = SPUtils.getPrefInt(mContext, Config.level, 0);
 

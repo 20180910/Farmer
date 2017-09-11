@@ -47,7 +47,7 @@
             android:id="@+id/civ_my_img"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            tools:src="@drawable/img34"
+            tools:src="@drawable/people"
             />
 
         <TextView

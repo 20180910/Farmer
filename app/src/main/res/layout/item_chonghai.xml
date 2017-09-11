@@ -6,14 +6,30 @@
               android:layout_height="wrap_content"
               android:background="@color/background_f2"
     >
-<TextView
-    android:id="@+id/tv_chonghai_name"
-    android:layout_width="match_parent"
-    android:layout_height="40dp"
-    android:text="二化螟"
-    android:background="@color/white"
-    android:layout_marginTop="2px"
-    android:gravity="center"
-    android:textSize="18sp"
-    />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_chonghai_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="二化螟"
+            android:background="@color/white"
+            android:layout_marginTop="2px"
+            android:gravity="center"
+            android:textSize="18sp"
+            />
+        <ImageView
+            android:id="@+id/iv_chonghai_img"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/img16_normal"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:visibility="gone"
+            />
+    </RelativeLayout>
+
 </LinearLayout>

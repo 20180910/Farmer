@@ -3,12 +3,14 @@ package com.zhizhong.farmer.module.order.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -45,7 +47,6 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
     public SelectOtherFarmerAdapter(Context mContext, int layoutId, int pageSize) {
         super(mContext, layoutId, pageSize);
     }
-
     public void bindData(LoadMoreViewHolder holder, int i, OtherFarmerObj bean) {
         holder.setText(R.id.tv_other_farmer_name,bean.getFarmers_name())
                 .setText(R.id.tv_other_farmer_phone,bean.getPhone_number());
@@ -161,19 +162,34 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
 
     private void getChongHaiList(List<HaiChongObj> list,TextView tv_other_farmer_chong,LinearLayout rb_other_farmer_yao,int position) {
         BottomSheetDialog dialog = new BottomSheetDialog(mContext);
+        SparseArrayCompat<HaiChongObj> sparseArray=new SparseArrayCompat();
         adapter=new LoadMoreAdapter<HaiChongObj>(mContext, R.layout.item_chonghai,0) {
             @Override
             public void bindData(LoadMoreViewHolder holder, int i,final HaiChongObj bean) {
                 holder.setText(R.id.tv_chonghai_name,bean.getTitle());
                 TextView tv_chonghai_name = holder.getTextView(R.id.tv_chonghai_name);
-                tv_chonghai_name.setOnClickListener(new MyOnClickListener() {
+                ImageView iv_chonghai_img = holder.getImageView(R.id.iv_chonghai_img);
+                iv_chonghai_img.setVisibility(View.VISIBLE);
+                if(sparseArray.get(i)==null){
+                    iv_chonghai_img.setImageResource(R.drawable.img17);
+                }else{
+                    iv_chonghai_img.setImageResource(R.drawable.img16);
+                }
+                tv_chonghai_name.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    protected void onNoDoubleClick(View view) {
-                        dialog.dismiss();
+                    public void onClick(View view) {
+                        if(sparseArray.get(i)==null){
+                            sparseArray.put(i,bean);
+                            iv_chonghai_img.setImageResource(R.drawable.img16);
+                        }else{
+                            sparseArray.remove(i);
+                            iv_chonghai_img.setImageResource(R.drawable.img17);
+                        }
+                        /*dialog.dismiss();
                         tv_other_farmer_chong.setText(bean.getTitle());
                         SelectOtherFarmerAdapter.this.mList.get(position).setSelectHaiChong(true);
                         SelectOtherFarmerAdapter.this.mList.get(position).setHaiChong(bean.getTitle());
-                        rb_other_farmer_yao.setVisibility(View.VISIBLE);
+                        rb_other_farmer_yao.setVisibility(View.VISIBLE);*/
                     }
                 });
             }
@@ -184,10 +200,32 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
         rv_chonghai.setLayoutManager(new LinearLayoutManager(mContext));
         rv_chonghai.setAdapter(adapter);
         TextView tv_chonghai_cancle = chonghaiView.findViewById(R.id.tv_chonghai_cancle);
+        TextView tv_chonghai_sure = chonghaiView.findViewById(R.id.tv_chonghai_sure);
+        tv_chonghai_sure.setVisibility(View.VISIBLE);
         tv_chonghai_cancle.setOnClickListener(new MyOnClickListener() {
             @Override
             protected void onNoDoubleClick(View view) {
                 dialog.dismiss();
+            }
+        });
+        tv_chonghai_sure.setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                 dialog.dismiss();
+                if(sparseArray.size()>0){
+                    StringBuffer sb=new StringBuffer();
+                    for (int i = 0; i < sparseArray.size(); i++) {
+                        if(sparseArray.get(i)!=null){
+                            sb.append(sparseArray.get(i).getTitle()+",");
+                        }
+                    }
+                    String title = sb.deleteCharAt(sb.lastIndexOf(",")).toString();
+                    tv_other_farmer_chong.setText(title);
+                    SelectOtherFarmerAdapter.this.mList.get(position).setSelectHaiChong(true);
+                    SelectOtherFarmerAdapter.this.mList.get(position).setHaiChong(title);
+                    rb_other_farmer_yao.setVisibility(View.VISIBLE);
+                }
+
             }
         });
         dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -204,4 +242,6 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
         cb_other_farmer.setChecked(true);
         ll_other_farmer_chonghai.setVisibility(View.VISIBLE);
     }
+
+
 }

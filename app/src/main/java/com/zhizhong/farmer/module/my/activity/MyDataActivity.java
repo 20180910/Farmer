@@ -98,7 +98,7 @@ public class MyDataActivity extends BaseActivity {
         et_info_tel.setText(mobile);
         et_info_address.setText(address);
         if (avatar != null) {
-            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_info_img);
+            Glide.with(mContext).load(avatar).error(R.drawable.people).into(civ_info_img);
         }
     }
 
@@ -243,7 +243,7 @@ public class MyDataActivity extends BaseActivity {
                     @Override
                     public void onMyNext(BaseObj obj) {
                         imgUrl = obj.getImg();
-                        Glide.with(mContext).load(imgSaveName).into(civ_info_img);
+                        Glide.with(mContext).load(imgSaveName).error(R.drawable.people).into(civ_info_img);
                     }
                 }));
             }

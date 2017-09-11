@@ -13,6 +13,7 @@ import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
+import com.zhizhong.farmer.module.my.activity.AddFarmerActivity;
 import com.zhizhong.farmer.module.order.Constant;
 import com.zhizhong.farmer.module.order.adapter.SelectOtherFarmerAdapter;
 import com.zhizhong.farmer.module.order.network.ApiRequest;
@@ -43,6 +44,7 @@ public class SelectOhterFarmerActivity extends BaseActivity implements LoadMoreA
     @Override
     protected int getContentView() {
         setAppTitle("选择其他农户");
+        setAppRightTitle("添加农户");
         return R.layout.act_select_other_farmer;
     }
 
@@ -89,9 +91,12 @@ public class SelectOhterFarmerActivity extends BaseActivity implements LoadMoreA
     }
 
 
-    @OnClick({R.id.tv_other_farmer_commit})
+    @OnClick({R.id.tv_other_farmer_commit,R.id.app_right_tv})
     protected void onViewClick(View v) {
         switch (v.getId()){
+            case R.id.app_right_tv:
+                STActivityForResult(AddFarmerActivity.class,100);
+                break;
             case R.id.tv_other_farmer_commit:
                 List<OtherFarmerObj> list = adapter.getList();
                 if(isEmpty(list)){
@@ -141,6 +146,31 @@ public class SelectOhterFarmerActivity extends BaseActivity implements LoadMoreA
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK){
+            switch (requestCode){
+                case 100:
+                    showLoading();
+                    Map<String,String> map=new HashMap<String,String>();
+                    map.put("user_id",getUserId());
+                    map.put("crops",crops);
+                    map.put("sign", GetSign.getSign(map));
+                    addSubscription(ApiRequest.getOtherFarmerList(map).subscribe(new MySub<List<OtherFarmerObj>>(mContext,pl_load) {
+                        @Override
+                        public void onMyNext(List<OtherFarmerObj> list) {
+                            pageNum=2;
+                            adapter=new SelectOtherFarmerAdapter(mContext,R.layout.item_other_farmer,pageSize);
+                            adapter.setCrops(crops);
+                            adapter.setList(list,true);
+                            rv_select_other_farmer.setAdapter(adapter);
+                        }
+                    }));
+                    break;
+            }
+        }
+    }
     @Override
     public void loadMore() {
         getData(pageNum,true);

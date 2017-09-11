@@ -30,7 +30,7 @@ public class AllOrderAdapter extends LoadMoreAdapter<OrderObj> {
     @Override
     public void bindData(LoadMoreViewHolder holder, int i, OrderObj bean) {
         CircleImageView imageView = (CircleImageView) holder.getView(R.id.civ_order_img);
-        Glide.with(mContext).load(bean.getPhoto()).error(R.color.c_press).into(imageView);
+        Glide.with(mContext).load(bean.getPhoto()).error(R.drawable.people).into(imageView);
         holder.setText(R.id.tv_order_name,bean.getFarmer_name())
                 .setText(R.id.tv_order_date,bean.getAdd_time())
                 .setText(R.id.tv_order_time,bean.getRequest_time())

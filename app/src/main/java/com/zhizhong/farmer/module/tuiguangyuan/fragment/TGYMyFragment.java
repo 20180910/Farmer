@@ -73,7 +73,7 @@ public class TGYMyFragment extends BaseFragment {
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
         String tgm = SPUtils.getPrefString(mContext, Config.distribution_yard, null);
         if (avatar != null) {
-            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_tgy_my_img);
+            Glide.with(mContext).load(avatar).error(R.drawable.people).into(civ_tgy_my_img);
         }
         tv_tgy_my_name.setText(userName);
         tv_info_tgm.setText(tgm);

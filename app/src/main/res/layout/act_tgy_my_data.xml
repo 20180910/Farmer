@@ -43,7 +43,7 @@
                         android:id="@+id/civ_tgy_info_img"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/img34"
+                        android:src="@drawable/people"
                         android:layout_marginRight="15dp"
                         />
                     <ImageView

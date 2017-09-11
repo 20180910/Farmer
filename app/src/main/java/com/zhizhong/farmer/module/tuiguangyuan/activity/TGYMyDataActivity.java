@@ -92,7 +92,7 @@ public class TGYMyDataActivity extends BaseActivity {
         et_tgy_info_name.setText(nickName);
         et_tgy_info_tel.setText(mobile);
         if (avatar != null) {
-            Glide.with(mContext).load(avatar).error(R.color.c_press).into(civ_tgy_info_img);
+            Glide.with(mContext).load(avatar).error(R.drawable.people).into(civ_tgy_info_img);
         }
     }
 
@@ -234,7 +234,7 @@ public class TGYMyDataActivity extends BaseActivity {
                     @Override
                     public void onMyNext(BaseObj obj) {
                         imgUrl = obj.getImg();
-                        Glide.with(mContext).load(imgSaveName).into(civ_tgy_info_img);
+                        Glide.with(mContext).load(imgSaveName).error(R.drawable.people).into(civ_tgy_info_img);
                     }
                 }));
             }
