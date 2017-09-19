@@ -275,4 +275,15 @@ public class XiaDingDanFragment extends BaseFragment {
     }
 
 
+    public void checkPhone() {
+        showLoading();
+        addSubscription(ApiRequest.getOrderDefaultData(getUserId(),getSign()).subscribe(new MySub<OrderDefaultDataObj>(mContext,pl_load) {
+            @Override
+            public void onMyNext(OrderDefaultDataObj obj) {
+                tv_xia_order_name.setText(obj.getFarmer_name());
+                tv_xia_order_phone.setText(obj.getMobile());
+                zuoWuList = obj.getList();
+            }
+        }));
+    }
 }

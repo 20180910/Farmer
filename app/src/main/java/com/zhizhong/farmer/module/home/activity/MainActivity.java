@@ -216,6 +216,7 @@ public class MainActivity extends BaseActivity {
         } else {
             showFragment(xiaDingDanFragment);
         }
+        xiaDingDanFragment.checkPhone();
         hideFragment(ziXunFragment);
         hideFragment(homeFragment);
         hideFragment(myFragment);
