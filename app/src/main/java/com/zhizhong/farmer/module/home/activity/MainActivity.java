@@ -10,12 +10,14 @@ import android.widget.RelativeLayout;
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.StatusBarUtils;
 import com.github.baseclass.rx.MySubscriber;
+import com.github.baseclass.rx.RxBus;
 import com.github.customview.MyRadioButton;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.broadcast.MyOperationBro;
+import com.zhizhong.farmer.module.home.event.GetPhoneEvent;
 import com.zhizhong.farmer.module.home.event.XiaDanEvent;
 import com.zhizhong.farmer.module.home.event.ZiXunEvent;
 import com.zhizhong.farmer.module.home.fragment.HomeFragment;
@@ -184,6 +186,7 @@ public class MainActivity extends BaseActivity {
                     return;
                 }
                 xiaDan();
+                RxBus.getInstance().post(new GetPhoneEvent());
                 break;
             case R.id.rb_home_my:
                 if(TextUtils.isEmpty(getUserId())){
@@ -216,7 +219,6 @@ public class MainActivity extends BaseActivity {
         } else {
             showFragment(xiaDingDanFragment);
         }
-        xiaDingDanFragment.checkPhone();
         hideFragment(ziXunFragment);
         hideFragment(homeFragment);
         hideFragment(myFragment);

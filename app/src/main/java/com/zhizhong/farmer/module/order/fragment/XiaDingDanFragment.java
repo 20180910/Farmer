@@ -16,6 +16,8 @@ import com.github.androidtools.DateUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
+import com.github.baseclass.rx.MySubscriber;
+import com.github.baseclass.rx.RxBus;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.zhizhong.farmer.GetSign;
@@ -23,6 +25,7 @@ import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
+import com.zhizhong.farmer.module.home.event.GetPhoneEvent;
 import com.zhizhong.farmer.module.my.activity.MyVouchersActivity;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.order.Constant;
@@ -90,8 +93,18 @@ public class XiaDingDanFragment extends BaseFragment {
     @Override
     protected void initView() {
         app_title.setText("下订单");
+    }
 
-
+    @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        RxBus.getInstance().getEvent(GetPhoneEvent.class, new MySubscriber() {
+            @Override
+            public void onMyNext(Object o) {
+                showLoading();
+                getData();
+            }
+        });
     }
 
     @Override
@@ -282,8 +295,4 @@ public class XiaDingDanFragment extends BaseFragment {
     }
 
 
-    public void checkPhone() {
-        showLoading();
-        getData();
-    }
 }
