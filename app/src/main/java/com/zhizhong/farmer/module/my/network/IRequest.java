@@ -64,6 +64,10 @@ public interface IRequest {
     @POST("api/Lib/PostUploadFileBase64")
     Observable<ResponseObj<BaseObj>> uploadImg(@Query("rnd") String rnd, @Query("sign") String sign, @Body UploadImgItem item);
 
+    //单独修改图片
+    @GET("api/FlyMember/GetSetUserAvatar")
+    Observable<ResponseObj<BaseObj>> uploadImgForInfo(@QueryMap Map<String,String> map);
+
     //农户密码修改
     @GET("api/Farmer/GetSetNewPassword")
     Observable<ResponseObj<BaseObj>> setNewPassword(@QueryMap Map<String,String> map);

@@ -239,11 +239,12 @@ public class MyDataActivity extends BaseActivity {
                 UploadImgItem item=new UploadImgItem();
                 item.setFile(baseImg);
                 String rnd = getRnd();
-                addSubscription(ApiRequest.uploadImg(rnd,getSign("rnd",rnd),item).subscribe(new MySub<BaseObj>(mContext) {
+                addSubscription(ApiRequest.uploadImg(rnd,getSign("rnd",rnd),item).subscribe(new MySub<BaseObj>(mContext,true) {
                     @Override
                     public void onMyNext(BaseObj obj) {
                         imgUrl = obj.getImg();
                         Glide.with(mContext).load(imgSaveName).error(R.drawable.people).into(civ_info_img);
+                        updateUserImg();
                     }
                 }));
             }
@@ -254,6 +255,22 @@ public class MyDataActivity extends BaseActivity {
                 showToastS("图片处理失败");
             }
         });
+    }
+
+    private void updateUserImg() {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("avatar",imgUrl);
+        map.put("sign",GetSign.getSign(map));
+        addSubscription(ApiRequest.uploadImgForInfo(map).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                if(!TextUtils.isEmpty(imgUrl)){
+                    SPUtils.setPrefString(mContext,Config.avatar,imgUrl);
+                }
+            }
+        }));
     }
 
     private void updateInfo() {

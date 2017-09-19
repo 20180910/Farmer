@@ -24,7 +24,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="10dp"
                 >
@@ -48,12 +48,11 @@
                     android:textColor="@color/gray_99"
                     />
 
-                <TextView
-                    android:id="@+id/tv_zhibao_detail_content"
-                    android:layout_width="wrap_content"
+                <WebView
+                    android:id="@+id/wv_zhibao_detail_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    tools:text="功能生物全降解液体地膜以农作物秸秆,由木质素，胶原蛋白，在交联剂的作用下形成高分子聚合物,与多种微肥,添加剂,土壤保水剂等天然高分子物质经特殊加工形成的高分子材料，该产品的创新点是以生物质为主要原料,彻底根除”白色污染”问题，消除了秸杆焚烧造成的污染难题.可达到农业增产增收、资源综合利用的目的。"
                     />
             </LinearLayout>
         </com.zhizhong.farmer.view.ProgressLayout>

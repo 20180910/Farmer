@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.zixun.activity;
 
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 
 import com.zhizhong.farmer.R;
@@ -8,6 +9,11 @@ import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.zixun.network.ApiRequest;
 import com.zhizhong.farmer.module.zixun.network.response.ZiXunObj;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import butterknife.BindView;
 
@@ -21,8 +27,8 @@ public class ZiXunDetailActivity extends BaseActivity {
     TextView tv_zixun_detail_title;
     @BindView(R.id.tv_zixun_detail_time)
     TextView tv_zixun_detail_time;
-    @BindView(R.id.tv_zixun_detail_content)
-    TextView tv_zixun_detail_content;
+    @BindView(R.id.wv_zixun_detail_content)
+    WebView wv_zixun_detail_content;
 
     private String id;
 
@@ -50,11 +56,23 @@ public class ZiXunDetailActivity extends BaseActivity {
             public void onMyNext(ZiXunObj obj) {
                 tv_zixun_detail_title.setText(obj.getTitle());
                 tv_zixun_detail_time.setText(obj.getAdd_time());
-                tv_zixun_detail_content.setText(obj.getContent());
+//                tv_zixun_detail_content.setText(obj.getContent());
+                wv_zixun_detail_content.loadDataWithBaseURL("about:blank", getNewContent(obj.getContent()), "text/html", "utf-8", null);
             }
         }));
     }
-
+    public static String getNewContent(String htmltext){
+        try {
+            Document doc= Jsoup.parse(htmltext);
+            Elements elements=doc.getElementsByTag("img");
+            for (Element element : elements) {
+                element.attr("width","100%").attr("height","auto");
+            }
+            return doc.toString();
+        } catch (Exception e) {
+            return htmltext;
+        }
+    }
     @Override
     protected void onViewClick(View v) {
 

@@ -49,6 +49,9 @@ public class ApiRequest {
     public static Observable uploadImg(String rnd,String sign, UploadImgItem imgItem){
         return getCommonClient().uploadImg(rnd,sign,imgItem).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable uploadImgForInfo(Map map){
+        return getCommonClient().uploadImgForInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable setNewPassword(Map map){
         return getCommonClient().setNewPassword(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

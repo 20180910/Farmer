@@ -20,7 +20,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:padding="10dp"
             >
@@ -44,12 +44,11 @@
                 android:textColor="@color/gray_99"
                 />
 
-            <TextView
-                android:id="@+id/tv_zixun_detail_content"
-                android:layout_width="wrap_content"
+            <WebView
+                android:id="@+id/wv_zixun_detail_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                tools:text="陕西西瓜代办,西瓜基地价格,黑无籽西瓜价格,户太葡萄价格批发,油桃行情价格,冬枣基地行情走势,陕西甜王西瓜,陕西油桃,陕西京欣西瓜,陕西早熟苹果,陕西毛桃基地,陕西金太阳杏"
                 />
 
             <!--<TextView
