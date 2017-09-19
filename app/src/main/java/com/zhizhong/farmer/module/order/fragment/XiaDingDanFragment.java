@@ -107,6 +107,10 @@ public class XiaDingDanFragment extends BaseFragment {
                 tv_xia_order_name.setText(obj.getFarmer_name());
                 tv_xia_order_phone.setText(obj.getMobile());
                 zuoWuList = obj.getList();
+                if(TextUtils.isEmpty(getSStr(tv_xia_order_phone))){
+                    showMsg("请完善联系方式");
+                    return;
+                }
             }
         }));
     }
@@ -134,7 +138,10 @@ public class XiaDingDanFragment extends BaseFragment {
                 getZuoWu();
             break;
             case R.id.tv_xdd_commit:
-                if(TextUtils.isEmpty(getSStr(tv_xia_order_farmer))){
+                if(TextUtils.isEmpty(getSStr(tv_xia_order_phone))){
+                    showMsg("请完善联系方式");
+                    return;
+                }else if(TextUtils.isEmpty(getSStr(tv_xia_order_farmer))){
                     showMsg("请选择其他农户");
                     return;
                 }else if(startDate==null){
@@ -277,13 +284,6 @@ public class XiaDingDanFragment extends BaseFragment {
 
     public void checkPhone() {
         showLoading();
-        addSubscription(ApiRequest.getOrderDefaultData(getUserId(),getSign()).subscribe(new MySub<OrderDefaultDataObj>(mContext,pl_load) {
-            @Override
-            public void onMyNext(OrderDefaultDataObj obj) {
-                tv_xia_order_name.setText(obj.getFarmer_name());
-                tv_xia_order_phone.setText(obj.getMobile());
-                zuoWuList = obj.getList();
-            }
-        }));
+        getData();
     }
 }
