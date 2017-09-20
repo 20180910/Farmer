@@ -37,6 +37,10 @@ public interface IRequest {
     @GET("api/Farmer/GetMemberRegister")
     Observable<ResponseObj<BaseObj>> registerTGY(@QueryMap Map<String,String> map);
 
+    //推广员单独修改图片
+    @GET("api/Promoters/GetSetUserAvatar")
+    Observable<ResponseObj<BaseObj>> uploadImgForInfo(@QueryMap Map<String,String> map);
+
     //推广员用户登录
     @GET("api/Promoters/GetUserLogin")
     Observable<ResponseObj<TGYLoginObj>> loginTGY(@QueryMap Map<String,String> map);

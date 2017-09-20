@@ -67,6 +67,9 @@ public class ApiRequest {
     public static Observable getYongJin(Map map){
         return getCommonClient().getYongJin(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable uploadImgForInfo(Map map){
+        return getCommonClient().uploadImgForInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 
 
 

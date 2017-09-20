@@ -235,6 +235,7 @@ public class TGYMyDataActivity extends BaseActivity {
                     public void onMyNext(BaseObj obj) {
                         imgUrl = obj.getImg();
                         Glide.with(mContext).load(imgSaveName).error(R.drawable.people).into(civ_tgy_info_img);
+                        updateUserImg();
                     }
                 }));
             }
@@ -246,7 +247,21 @@ public class TGYMyDataActivity extends BaseActivity {
             }
         });
     }
-
+    private void updateUserImg() {
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("avatar",imgUrl);
+        map.put("sign",GetSign.getSign(map));
+        addSubscription(ApiRequest.uploadImgForInfo(map).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                showMsg(obj.getMsg());
+                if(!TextUtils.isEmpty(imgUrl)){
+                    SPUtils.setPrefString(mContext,Config.avatar,imgUrl);
+                }
+            }
+        }));
+    }
     private void updateInfo() {
         String name = getSStr(et_tgy_info_name);
         String mobile = getSStr(et_tgy_info_tel);
