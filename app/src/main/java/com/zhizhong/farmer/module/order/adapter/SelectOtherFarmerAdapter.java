@@ -84,6 +84,7 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
         CheckBox cb_other_farmer = (CheckBox) holder.getView(R.id.cb_other_farmer);
         TextView tv_other_farmer_chong = (TextView) holder.getView(R.id.tv_other_farmer_chong);
         LinearLayout ll_other_farmer = (LinearLayout) holder.getView(R.id.ll_other_farmer);
+        LinearLayout ll_other_farmer_click = (LinearLayout) holder.getView(R.id.ll_other_farmer_click);
         LinearLayout ll_other_farmer_chonghai = (LinearLayout) holder.getView(R.id.ll_other_farmer_chonghai);
         LinearLayout ll_other_farmer_yao = (LinearLayout) holder.getView(R.id.ll_other_farmer_yao);
 
@@ -112,7 +113,21 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
             }
         });
 
-        ll_other_farmer.setOnClickListener(new View.OnClickListener() {
+        cb_other_farmer.setOnClickListener(new MyOnClickListener() {
+            @Override
+            protected void onNoDoubleClick(View view) {
+                mList.get(i).setSelect(!mList.get(i).isSelect());
+                if(mList.get(i).isSelect()){
+                    showChongHai(cb_other_farmer, ll_other_farmer_chonghai);
+                }else{
+                    mList.get(i).setSelectHaiChong(false);
+                    hiddenChongHai(cb_other_farmer, ll_other_farmer_chonghai);
+                    ll_other_farmer_yao.setVisibility(View.GONE);
+                    tv_other_farmer_chong.setText(null);
+                }
+            }
+        });
+        ll_other_farmer_click.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 mList.get(i).setSelect(!mList.get(i).isSelect());
