@@ -112,6 +112,7 @@ public class MainActivity extends BaseActivity {
         //获取微信，支付宝支付的通知地址,支付方式1支付宝，2微信
         getZhiFuNotifyUrl("1");
         getZhiFuNotifyUrl("2");
+
     }
 
     private void getZhiFuNotifyUrl(String type) {

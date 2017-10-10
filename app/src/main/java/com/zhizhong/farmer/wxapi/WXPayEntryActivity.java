@@ -58,6 +58,7 @@ public class WXPayEntryActivity extends BaseActivity implements IWXAPIEventHandl
                 intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 STActivity(intent,MyOrderListActivity.class);
+                finish();
                 break;
             case R.id.tv_pay_back:
                 intent = new Intent(Config.backHome);
