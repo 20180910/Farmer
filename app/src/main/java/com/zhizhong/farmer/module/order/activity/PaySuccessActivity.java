@@ -71,9 +71,7 @@ public class PaySuccessActivity extends BaseActivity {
     protected void onViewClick(View view) {
         switch (view.getId()) {
             case R.id.tv_pay_lookorder:
-                intent = new Intent();
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                STActivity(intent,MyOrderListActivity.class);
+                finish();
                 break;
             case R.id.tv_pay_back:
                 intent = new Intent(Config.backHome);
