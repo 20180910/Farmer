@@ -234,7 +234,12 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
                             sb.append(sparseArray.get(i).getTitle()+",");
                         }
                     }
-                    String title = sb.deleteCharAt(sb.lastIndexOf(",")).toString();
+                    String title = sb.toString();
+                    int indexOf = sb.lastIndexOf(",");
+                    if(indexOf!=-1){
+                        title=sb.deleteCharAt(indexOf).toString();
+                    }
+//                    String title = sb.deleteCharAt().toString();
                     tv_other_farmer_chong.setText(title);
                     SelectOtherFarmerAdapter.this.mList.get(position).setSelectHaiChong(true);
                     SelectOtherFarmerAdapter.this.mList.get(position).setHaiChong(title);
