@@ -245,7 +245,6 @@ public class SelectOtherFarmerAdapter extends LoadMoreAdapter<OtherFarmerObj> {
                     SelectOtherFarmerAdapter.this.mList.get(position).setHaiChong(title);
                     rb_other_farmer_yao.setVisibility(View.VISIBLE);
                 }
-
             }
         });
         dialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);

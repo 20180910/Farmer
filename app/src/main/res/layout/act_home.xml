@@ -65,7 +65,7 @@
         <com.github.customview.MyRadioButton
             android:id="@+id/rb_home_xdd"
             style="@style/radio_home"
-            android:text="下订单"
+            android:text="下单"
             app:my_radio_checked="@drawable/order_select"
             app:my_radio_checked_color="@color/blue"
             app:my_radio_checked_drawable="top"

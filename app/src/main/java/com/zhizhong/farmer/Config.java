@@ -24,10 +24,15 @@ public class Config {
     public static final String user_id="user_id";
     public static final String user_name="user_name";
     public static final String sex="sex";
-    public static final String area="area";
     public static final String mobile="mobile";
     public static final String avatar="avatar";
     public static final String address="address";
+    public static final String province="province";
+    public static final String city="city";
+    public static final String area="area";
+    public static final String province_id="province_id";
+    public static final String city_id="city_id";
+    public static final String area_id="area_id";
     public static final String isFirstIntoApp="isFirstIntoApp";
     public static final String isUpdatePWD="isUpdatePWD";
     public static final String userType="userType";

@@ -28,6 +28,7 @@ import com.zhizhong.farmer.module.home.network.response.HomeDataObj;
 import com.zhizhong.farmer.module.home.network.response.HomeImgObj;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.activity.MyMessageActivity;
+import com.zhizhong.farmer.module.my.activity.MyOrderListActivity;
 import com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity;
 import com.zhizhong.farmer.tools.GlideLoader;
 
@@ -65,6 +66,8 @@ public class HomeFragment extends BaseFragment {
     MyImageView iv_home_xiadan;
     @BindView(R.id.iv_home_zhibao)
     MyImageView iv_home_zhibao;
+    @BindView(R.id.iv_home_order)
+    MyImageView iv_home_order;
     @BindView(R.id.iv_home_bigimg)
     ImageView iv_home_bigimg;
     @BindView(R.id.tv_home_city)
@@ -147,6 +150,7 @@ public class HomeFragment extends BaseFragment {
                     Glide.with(mContext).load(type_list.get(0).getImg_url()).error(R.color.c_press).into(iv_home_zixun);
                     Glide.with(mContext).load(type_list.get(1).getImg_url()).error(R.color.c_press).into(iv_home_xiadan);
                     Glide.with(mContext).load(type_list.get(2).getImg_url()).error(R.color.c_press).into(iv_home_zhibao);
+                    Glide.with(mContext).load(type_list.get(3).getImg_url()).error(R.color.c_press).into(iv_home_order);
                 }
                 if(notEmpty(obj.getRoasting_list())){
                     bannerList = new ArrayList<String>();
@@ -172,9 +176,12 @@ public class HomeFragment extends BaseFragment {
         }));
     }
 
-    @OnClick({R.id.iv_home_msg, R.id.ll_home_zhibao,R.id.ll_home_zixun, R.id.ll_home_xiadan,R.id.tv_home_city})
+    @OnClick({R.id.iv_home_msg, R.id.ll_home_zhibao,R.id.ll_home_zixun, R.id.ll_home_xiadan,R.id.ll_home_order,R.id.tv_home_city})
     protected void onViewClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_home_order:
+                STActivity(MyOrderListActivity.class);
+                break;
             case R.id.ll_home_zhibao:
                 STActivity(ZhiBaoZhongXinListActivity.class);
                 break;

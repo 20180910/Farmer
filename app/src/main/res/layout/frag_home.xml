@@ -166,6 +166,32 @@
                             android:text="植保"
                             />
                     </LinearLayout>
+                    <LinearLayout
+                        android:id="@+id/ll_home_order"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        >
+
+                        <com.github.customview.MyImageView
+                            android:id="@+id/iv_home_order"
+                            android:layout_width="56dp"
+                            android:layout_height="56dp"
+                            android:src="@drawable/dingdan"
+                            app:my_iv_radius="28dp"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginTop="5dp"
+                            android:gravity="center"
+                            android:text="订单"
+                            />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <ImageView

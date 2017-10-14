@@ -32,6 +32,67 @@ public class LoginObj  extends BaseObj{
     private String distribution_yard;
     private String address;
 
+    private  int live_province_id;
+    private  String live_province;
+
+    private  int live_city_id;
+    private  String live_city;
+
+    private  int live_area_id;
+    private  String live_area;
+
+
+
+    public String getLive_province() {
+        return live_province;
+    }
+
+    public void setLive_province(String live_province) {
+        this.live_province = live_province;
+    }
+
+
+
+    public String getLive_city() {
+        return live_city;
+    }
+
+    public void setLive_city(String live_city) {
+        this.live_city = live_city;
+    }
+
+    public int getLive_province_id() {
+        return live_province_id;
+    }
+
+    public void setLive_province_id(int live_province_id) {
+        this.live_province_id = live_province_id;
+    }
+
+    public int getLive_city_id() {
+        return live_city_id;
+    }
+
+    public void setLive_city_id(int live_city_id) {
+        this.live_city_id = live_city_id;
+    }
+
+    public int getLive_area_id() {
+        return live_area_id;
+    }
+
+    public void setLive_area_id(int live_area_id) {
+        this.live_area_id = live_area_id;
+    }
+
+    public String getLive_area() {
+        return live_area;
+    }
+
+    public void setLive_area(String live_area) {
+        this.live_area = live_area;
+    }
+
     public String getAddress() {
         return address;
     }

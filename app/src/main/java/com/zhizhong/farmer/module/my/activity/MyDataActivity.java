@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.my.activity;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
@@ -15,6 +16,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,8 +29,11 @@ import com.github.androidtools.SPUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.rx.IOCallBack;
 import com.github.baseclass.view.MyDialog;
+import com.github.baseclass.view.pickerview.OptionsPopupWindow;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
@@ -36,17 +41,21 @@ import com.zhizhong.farmer.base.BaseActivity;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.home.activity.SelectUserActivity;
+import com.zhizhong.farmer.module.my.bean.CityBean;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
 import com.zhizhong.farmer.tools.BitmapUtils;
 import com.zhizhong.farmer.tools.ImageUtils;
+import com.zhizhong.farmer.tools.StreamUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import butterknife.BindView;
@@ -75,12 +84,26 @@ public class MyDataActivity extends BaseActivity {
     MyTextView tv_info_commit;
     @BindView(R.id.et_info_address)
     TextView et_info_address;
+    @BindView(R.id.tv_info_area)
+    TextView tv_info_area;
 
 
     private BottomSheetDialog selectPhotoDialog;
     private String imgUrl="";
     private String address="";
 
+
+    private OptionsPopupWindow pwOptions;
+    private ArrayList<String> options1Items;
+    private ArrayList<ArrayList<String>> options2Items;
+    private ArrayList<ArrayList<ArrayList<String>>> options3Items;
+    private List<CityBean> cityBean;
+    private int areaId1;
+    private int areaId2;
+    private int areaId3;
+    private String province;
+    private String city;
+    private String area;
 
     @Override
     protected int getContentView() {
@@ -94,6 +117,19 @@ public class MyDataActivity extends BaseActivity {
         String avatar = SPUtils.getPrefString(mContext, Config.avatar, null);
         String mobile = SPUtils.getPrefString(mContext, Config.mobile, null);
         String address = SPUtils.getPrefString(mContext, Config.address, null);
+
+        province = SPUtils.getPrefString(mContext, Config.province, null);
+        city     = SPUtils.getPrefString(mContext, Config.city, null);
+        area     = SPUtils.getPrefString(mContext, Config.area, null);
+        areaId1 = SPUtils.getPrefInt(mContext, Config.province_id, 0);
+        areaId2 = SPUtils.getPrefInt(mContext, Config.city_id, 0);
+        areaId3 = SPUtils.getPrefInt(mContext, Config.area_id, 0);
+
+        if(!TextUtils.isEmpty(province)){
+            tv_info_area.setText(province +","+ city +","+ area);
+        }else{
+            tv_info_area.setText("请选择地区");
+        }
         et_info_name.setText(nickName);
         et_info_tel.setText(mobile);
         et_info_address.setText(address);
@@ -107,9 +143,13 @@ public class MyDataActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.ll_info_img, R.id.ll_info_updatepwd, R.id.tv_info_exit, R.id.tv_info_commit})
+    @OnClick({R.id.tv_info_area,R.id.ll_info_img, R.id.ll_info_updatepwd, R.id.tv_info_exit, R.id.tv_info_commit})
     protected void onViewClick(View view) {
         switch (view.getId()) {
+            case R.id.tv_info_area:
+                PhoneUtils.hiddenKeyBoard(mContext);
+                selectArea();
+                break;
             case R.id.ll_info_img:
                 PhoneUtils.hiddenKeyBoard(mContext);
                 showSelectPhotoDialog();
@@ -282,6 +322,9 @@ public class MyDataActivity extends BaseActivity {
         map.put("avatar",imgUrl);
         map.put("nickname",name);
         map.put("mobile",mobile);
+        map.put("live_province",areaId1+"");
+        map.put("live_city",areaId2+"");
+        map.put("live_area",areaId3+"");
         map.put("address", address);
         map.put("sign", GetSign.getSign(map));
         addSubscription(ApiRequest.setFarmerInfo(map).subscribe(new MySub<BaseObj>(mContext) {
@@ -300,6 +343,13 @@ public class MyDataActivity extends BaseActivity {
                 if(!TextUtils.isEmpty(address)){
                     SPUtils.setPrefString(mContext,Config.address,address);
                 }
+                SPUtils.setPrefString(mContext, Config.province,province);
+                SPUtils.setPrefString(mContext, Config.city, city);
+                SPUtils.setPrefString(mContext, Config.area,area);
+
+                SPUtils.setPrefInt(mContext, Config.province_id, areaId1);
+                SPUtils.setPrefInt(mContext, Config.city_id,areaId2);
+                SPUtils.setPrefInt(mContext, Config.area_id, areaId3);
             }
         }));
 
@@ -341,4 +391,79 @@ public class MyDataActivity extends BaseActivity {
         STActivity(intent,TGYMyActivity.class);
         finish();*/
     }
+
+    private void selectArea() {
+        PhoneUtils.hiddenKeyBoard(mContext);
+        showLoading();
+        RXStart(new IOCallBack<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                initAddressDialog();
+                subscriber.onNext(null);
+                subscriber.onCompleted();
+            }
+            @Override
+            public void onMyNext(String s) {
+                dismissLoading();
+                pwOptions = new OptionsPopupWindow(mContext, "选择地区");
+                // 三级联动效果
+                pwOptions.setPicker(options1Items, options2Items, options3Items, true);
+                // 设置默认选中的三级项目
+                pwOptions.setSelectOptions(0, 0, 0);
+                // 监听确定选择按钮
+                pwOptions.setOnoptionsSelectListener((options1, option2, options3) -> {
+                    // 返回的分别是三个级别的选中位置
+                    /*String area = options1Items.get(options1) + ","
+                            + options2Items.get(options1).get(option2) + ","
+                            + options3Items.get(options1).get(option2).get(options3);*/
+                    province=options1Items.get(options1);
+                    city=options2Items.get(options1).get(option2) ;
+                    area=options3Items.get(options1).get(option2).get(options3);
+
+                    areaId1 = MyDataActivity.this.cityBean.get(options1).getId();
+                    areaId2 = MyDataActivity.this.cityBean.get(options1).getClass_list().get(option2).getId();
+                    areaId3 = MyDataActivity.this.cityBean.get(options1).getClass_list().get(option2).getClass_list().get(options3).getId();
+                    Log.i("areaId===", areaId1 +"-"+ areaId2 +"-"+ areaId3);
+                    tv_info_area.setText(province+","+city+","+area);
+                });
+                pwOptions.showAtLocation(tv_info_area, Gravity.BOTTOM, ActionBar.LayoutParams.WRAP_CONTENT,PhoneUtils.getNavigationBarHeight(mContext));
+            }
+        });
+    }
+
+    private void initAddressDialog() {
+        options1Items = new ArrayList<String>();
+        options2Items = new ArrayList<ArrayList<String>>();
+        options3Items = new ArrayList<ArrayList<ArrayList<String>>>();
+        String areaJson = StreamUtils.get(this, R.raw.area);
+        province(areaJson);
+        // 地址选择器
+    }
+    private void province(String strJson) {
+        cityBean = new Gson().fromJson(strJson,
+                new TypeToken<List<CityBean>>() {
+                }.getType());
+        ArrayList<String> item2;
+        ArrayList<ArrayList<String>> item3;
+        for (int i = 0; i < cityBean.size(); i++) {
+            CityBean city= cityBean.get(i);
+            options1Items.add(city.getTitle());
+            item2=new ArrayList<>();
+            item3=new ArrayList<ArrayList<String>>();
+            for (int j = 0; j < city.getClass_list().size(); j++) {
+                CityBean citySecond=city.getClass_list().get(j);
+                item2.add(citySecond.getTitle());
+                ArrayList<String> lastItem = new ArrayList<String>();
+                for (int k = 0; k < citySecond.getClass_list().size(); k++) {
+                    CityBean cityThird=citySecond.getClass_list().get(k);
+                    lastItem.add(cityThird.getTitle());
+                }
+                item3.add(lastItem);
+            }
+            options2Items.add(item2);
+            options3Items.add(item3);
+        }
+    }
+
+
 }

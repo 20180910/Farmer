@@ -204,6 +204,14 @@ public class LoginActivity extends BaseActivity {
         SPUtils.setPrefInt(mContext,Config.level,obj.getUser_level());
         SPUtils.setPrefInt(mContext,Config.authentication,obj.getIs_authentication());
 
+        SPUtils.setPrefString(mContext, Config.province, obj.getLive_province());
+        SPUtils.setPrefString(mContext, Config.city, obj.getLive_city());
+        SPUtils.setPrefString(mContext, Config.area, obj.getLive_area());
+
+        SPUtils.setPrefInt(mContext, Config.province_id, obj.getLive_province_id());
+        SPUtils.setPrefInt(mContext, Config.city_id, obj.getLive_city_id());
+        SPUtils.setPrefInt(mContext, Config.area_id, obj.getLive_area_id());
+
         LocalBroadcastManager.getInstance(mContext).sendBroadcast(new Intent(Config.Bro.operation));
         finish();
     }

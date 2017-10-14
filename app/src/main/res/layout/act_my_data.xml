@@ -152,6 +152,44 @@
                         />
                 </LinearLayout>
                 <LinearLayout
+                    android:id="@+id/ll_info_area"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:orientation="horizontal"
+                    android:background="@color/white"
+                    android:layout_marginTop="2px"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所属地区"
+                        android:textSize="14sp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_info_area"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical|right"
+                        android:text="请选择地区"
+                        android:textColor="@color/gray_33"
+                        android:textSize="14sp"
+                        android:paddingRight="15dp"
+                        android:maxLines="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:layout_marginLeft="15dp"
+                        />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/jiantou_right"
+                        />
+                </LinearLayout>
+                <LinearLayout
                     android:id="@+id/ll_info_address"
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -190,7 +228,6 @@
                         android:src="@drawable/jiantou_right"
                         />
                 </LinearLayout>
-
                 <TextView
                     android:id="@+id/tv_info_exit"
                     android:layout_width="match_parent"
