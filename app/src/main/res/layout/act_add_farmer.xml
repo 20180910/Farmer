@@ -38,7 +38,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="6"
+                        android:ems="5"
                         android:text="农户姓名"
                         />
 
@@ -70,8 +70,8 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="6"
-                        android:text="手机号"
+                        android:ems="5"
+                        android:text="联系方式"
                         />
 
                     <com.github.customview.MyEditText
@@ -103,21 +103,27 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="6"
-                        android:text="居住地址"
+                        android:ems="5"
+                        android:text="所属地区"
                         />
 
-                    <com.github.customview.MyEditText
-                        android:id="@+id/et_add_farmer_juzhu"
+                    <TextView
+                        android:id="@+id/tv_add_farmer_area"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:hint="请输入居住地址"
+                        android:hint="请选择所属地区"
                         android:gravity="center_vertical"
                         android:textSize="14sp"
                         android:maxLines="1"
                         android:inputType="text"
                         android:imeOptions="actionNext"
+                        android:layout_marginLeft="7dp"
+                        />
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/img58"
                         />
                 </LinearLayout>
 
@@ -135,7 +141,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="6"
+                        android:ems="5"
                         android:text="农田地址"
                         />
 
@@ -166,7 +172,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="6"
+                        android:ems="5"
                         android:text="作物"
                         />
 
@@ -184,7 +190,6 @@
                         android:layout_marginLeft="7dp"
                         />
                 </LinearLayout>
-
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="45dp"
@@ -199,7 +204,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:ems="6"
+                        android:ems="5"
                         android:text="亩数"
                         />
 
@@ -217,7 +222,31 @@
                         android:maxLength="6"
                         />
                 </LinearLayout>
-
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_add_farmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2px"
+                    >
+                </android.support.v7.widget.RecyclerView>
+                <LinearLayout
+                    android:id="@+id/ll_add_farmer_zuo_wu"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="添加作物"
+                        android:textColor="@color/blue"
+                        />
+                </LinearLayout>
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
         <com.github.customview.MyLinearLayout
@@ -236,13 +265,12 @@
                 android:layout_alignParentBottom="true"
                 android:layout_margin="10dp"
                 android:gravity="center"
-                android:text="提交"
+                android:text="添加"
                 android:textColor="@color/white"
                 app:my_tv_corner_radius="22dp"
                 app:my_tv_press="@color/blue_press"
                 app:my_tv_solid="@color/blue"
                 />
         </com.github.customview.MyLinearLayout>
-
     </RelativeLayout>
 </LinearLayout>

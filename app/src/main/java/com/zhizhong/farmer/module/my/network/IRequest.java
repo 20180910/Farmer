@@ -3,6 +3,11 @@ package com.zhizhong.farmer.module.my.network;
 
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
+import com.zhizhong.farmer.module.my.network.request.AddFarmerItem;
+import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
+import com.zhizhong.farmer.module.my.network.response.FenXiaoDetailObj;
+import com.zhizhong.farmer.module.my.network.response.FenXiaoObj;
+import com.zhizhong.farmer.module.my.network.response.LoginObj;
 import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
 import com.zhizhong.farmer.module.my.network.response.OnlineAccountObj;
 import com.zhizhong.farmer.module.my.network.response.OrderDetailObj;
@@ -14,10 +19,6 @@ import com.zhizhong.farmer.module.my.network.response.XiaJiObj;
 import com.zhizhong.farmer.module.my.network.response.ZuoWuObj;
 import com.zhizhong.farmer.module.tgyaccount.network.response.AccountObj;
 import com.zhizhong.farmer.module.tgyaccount.network.response.BankObj;
-import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
-import com.zhizhong.farmer.module.my.network.response.FenXiaoDetailObj;
-import com.zhizhong.farmer.module.my.network.response.FenXiaoObj;
-import com.zhizhong.farmer.module.my.network.response.LoginObj;
 import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageDetailObj;
 import com.zhizhong.farmer.module.tuiguangyuan.network.response.MessageObj;
 
@@ -146,8 +147,13 @@ public interface IRequest {
     Observable<ResponseObj<BaseObj>> deleteMyFarmer(@Query("mf_id") String mf_id, @Query("sign") String sign);
 
     //添加农户
+    @Deprecated
     @GET("api/Farmer/GetAddMyFarmer")
-    Observable<ResponseObj<BaseObj>> addMyFarmer(@QueryMap Map<String,String> map);
+    Observable<ResponseObj<BaseObj>> addMyFarmerOld(@QueryMap Map<String,String> map);
+
+    //添加农户
+    @POST("api/Farmer/PostAddMyFarmer")
+    Observable<ResponseObj<BaseObj>> addMyFarmer(@QueryMap Map<String,String> map, @Body AddFarmerItem item);
 
     //编辑农户-获取农户信息
     @GET("api/Farmer/GetEditMyFarmer")

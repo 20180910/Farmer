@@ -10,7 +10,7 @@ public class CityBean {
     private int id;
     private String title;
     private String parent_id;
-    private List<CityBean> class_list;
+    private List<CityBean> pca_list;
 
     public int getId() {
         return id;
@@ -36,11 +36,11 @@ public class CityBean {
         this.parent_id = parent_id;
     }
 
-    public List<CityBean> getClass_list() {
-        return class_list;
+    public List<CityBean> getPca_list() {
+        return pca_list;
     }
 
-    public void setClass_list(List<CityBean> class_list) {
-        this.class_list = class_list;
+    public void setPca_list(List<CityBean> pca_list) {
+        this.pca_list = pca_list;
     }
 }

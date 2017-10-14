@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.my.network;
 
 import com.github.retrofitutil.NetWorkManager;
+import com.zhizhong.farmer.module.my.network.request.AddFarmerItem;
 import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
 import com.zhizhong.farmer.tools.RxResult;
 
@@ -112,8 +113,8 @@ public class ApiRequest {
     public static Observable getMyFarmer(String mf_id,String sign){
         return getCommonClient().getMyFarmer(mf_id, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-    public static Observable addMyFarmer(Map map){
-        return getCommonClient().addMyFarmer(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    public static Observable addMyFarmer(Map map,AddFarmerItem item){
+        return getCommonClient().addMyFarmer(map,item).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable updateMyFarmer(Map map){
         return getCommonClient().updateMyFarmer(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());

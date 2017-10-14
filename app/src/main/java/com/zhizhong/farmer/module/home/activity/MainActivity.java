@@ -25,7 +25,7 @@ import com.zhizhong.farmer.module.home.network.ApiRequest;
 import com.zhizhong.farmer.module.home.network.response.PayTypeObj;
 import com.zhizhong.farmer.module.my.activity.LoginActivity;
 import com.zhizhong.farmer.module.my.fragment.MyFragment;
-import com.zhizhong.farmer.module.order.fragment.XiaDingDanFragment;
+import com.zhizhong.farmer.module.order.fragment.NewXiaDingDanFragment;
 import com.zhizhong.farmer.module.zixun.fragment.ZiXunFragment;
 
 import butterknife.BindView;
@@ -39,7 +39,7 @@ public class MainActivity extends BaseActivity {
 
     HomeFragment homeFragment;
     ZiXunFragment ziXunFragment;
-    XiaDingDanFragment xiaDingDanFragment;
+    NewXiaDingDanFragment xiaDingDanFragment;
     MyFragment myFragment;
     @BindView(R.id.rb_home_shouye)
     MyRadioButton rb_home_shouye;
@@ -215,7 +215,7 @@ public class MainActivity extends BaseActivity {
     private void xiaDan() {
         selectButton = rb_home_xdd;
         if (xiaDingDanFragment == null) {
-            xiaDingDanFragment = new XiaDingDanFragment();
+            xiaDingDanFragment = new NewXiaDingDanFragment();
             getSupportFragmentManager().beginTransaction().add(R.id.layout_main_content, xiaDingDanFragment).commitAllowingStateLoss();
         } else {
             showFragment(xiaDingDanFragment);

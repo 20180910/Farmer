@@ -350,6 +350,8 @@ public class MyDataActivity extends BaseActivity {
                 SPUtils.setPrefInt(mContext, Config.province_id, areaId1);
                 SPUtils.setPrefInt(mContext, Config.city_id,areaId2);
                 SPUtils.setPrefInt(mContext, Config.area_id, areaId3);
+
+                setResult(RESULT_OK);
             }
         }));
 
@@ -393,7 +395,6 @@ public class MyDataActivity extends BaseActivity {
     }
 
     private void selectArea() {
-        PhoneUtils.hiddenKeyBoard(mContext);
         showLoading();
         RXStart(new IOCallBack<String>() {
             @Override
@@ -421,8 +422,8 @@ public class MyDataActivity extends BaseActivity {
                     area=options3Items.get(options1).get(option2).get(options3);
 
                     areaId1 = MyDataActivity.this.cityBean.get(options1).getId();
-                    areaId2 = MyDataActivity.this.cityBean.get(options1).getClass_list().get(option2).getId();
-                    areaId3 = MyDataActivity.this.cityBean.get(options1).getClass_list().get(option2).getClass_list().get(options3).getId();
+                    areaId2 = MyDataActivity.this.cityBean.get(options1).getPca_list().get(option2).getId();
+                    areaId3 = MyDataActivity.this.cityBean.get(options1).getPca_list().get(option2).getPca_list().get(options3).getId();
                     Log.i("areaId===", areaId1 +"-"+ areaId2 +"-"+ areaId3);
                     tv_info_area.setText(province+","+city+","+area);
                 });
@@ -450,12 +451,12 @@ public class MyDataActivity extends BaseActivity {
             options1Items.add(city.getTitle());
             item2=new ArrayList<>();
             item3=new ArrayList<ArrayList<String>>();
-            for (int j = 0; j < city.getClass_list().size(); j++) {
-                CityBean citySecond=city.getClass_list().get(j);
+            for (int j = 0; j < city.getPca_list().size(); j++) {
+                CityBean citySecond=city.getPca_list().get(j);
                 item2.add(citySecond.getTitle());
                 ArrayList<String> lastItem = new ArrayList<String>();
-                for (int k = 0; k < citySecond.getClass_list().size(); k++) {
-                    CityBean cityThird=citySecond.getClass_list().get(k);
+                for (int k = 0; k < citySecond.getPca_list().size(); k++) {
+                    CityBean cityThird=citySecond.getPca_list().get(k);
                     lastItem.add(cityThird.getTitle());
                 }
                 item3.add(lastItem);

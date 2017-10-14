@@ -17,6 +17,7 @@ public class OrderDefaultDataObj extends BaseObj {
 
     private String farmer_name;
     private String mobile;
+    private String addresss;
     private List<ListBean> list;
 
     public String getFarmer_name() {
@@ -29,6 +30,14 @@ public class OrderDefaultDataObj extends BaseObj {
 
     public String getMobile() {
         return mobile;
+    }
+
+    public String getAddresss() {
+        return addresss;
+    }
+
+    public void setAddresss(String addresss) {
+        this.addresss = addresss;
     }
 
     public void setMobile(String mobile) {

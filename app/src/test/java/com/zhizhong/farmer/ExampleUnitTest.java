@@ -39,6 +39,16 @@ public class ExampleUnitTest {
     }
     @Test
     public void bbb() throws Exception {
+        aa();
+    }
 
+    private void aa() {
+        for (int i = 0; i < 3; i++) {
+            if(i==2){
+                System.out.println(i);
+                break;
+            }
+        }
+        System.out.println(1111111111);
     }
 }

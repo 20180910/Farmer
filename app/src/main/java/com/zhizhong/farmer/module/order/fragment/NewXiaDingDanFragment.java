@@ -26,10 +26,11 @@ import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.home.event.GetPhoneEvent;
+import com.zhizhong.farmer.module.my.activity.MyDataActivity;
 import com.zhizhong.farmer.module.my.activity.MyVouchersActivity;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.order.Constant;
-import com.zhizhong.farmer.module.order.activity.SelectOhterFarmerActivity;
+import com.zhizhong.farmer.module.order.activity.NewSelectOhterFarmerActivity;
 import com.zhizhong.farmer.module.order.network.ApiRequest;
 import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 import com.zhizhong.farmer.module.order.network.response.OrderDefaultDataObj;
@@ -61,6 +62,9 @@ public class NewXiaDingDanFragment extends BaseFragment {
     @BindView(R.id.tv_xia_order_phone)
     TextView tv_xia_order_phone;
 
+    @BindView(R.id.tv_xia_order_weizhi)
+    TextView tv_xia_order_weizhi;
+
     @BindView(R.id.tv_xiadan_zuowu)
     TextView tv_xiadan_zuowu;
     @BindView(R.id.tv_xiadan_ms)
@@ -71,6 +75,7 @@ public class NewXiaDingDanFragment extends BaseFragment {
     TextView tv_xiadan_end_time;
     @BindView(R.id.tv_xia_order_farmer)
     TextView tv_xia_order_farmer;
+
 
     private Date startDate,endDate;
     private List<OrderDefaultDataObj.ListBean> zuoWuList;
@@ -119,6 +124,7 @@ public class NewXiaDingDanFragment extends BaseFragment {
             public void onMyNext(OrderDefaultDataObj obj) {
                 tv_xia_order_name.setText(obj.getFarmer_name());
                 tv_xia_order_phone.setText(obj.getMobile());
+                tv_xia_order_weizhi.setText(obj.getAddresss());
                 zuoWuList = obj.getList();
                 if(TextUtils.isEmpty(getSStr(tv_xia_order_phone))){
                     showMsg("请完善联系方式");
@@ -135,13 +141,17 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 if(TextUtils.isEmpty(getSStr(tv_xiadan_zuowu))){
                     showMsg("请先选择作物");
                     return;
+                }else if(TextUtils.isEmpty(getSStr(tv_xia_order_weizhi))){
+                    showMsg("请完善位置信息");
+                    STActivityForResult(MyDataActivity.class,300);
+                    return;
                 }
                 Intent intent=new Intent();
                 intent.putExtra(Constant.IParam.crops,getSStr(tv_xiadan_zuowu));
                 if(notEmpty(otherFarmerList)){
                     intent.putExtra(Constant.IParam.otherFarmerBean,new Gson().toJson(otherFarmerList));
                 }
-                STActivityForResult(intent,SelectOhterFarmerActivity.class,100);
+                STActivityForResult(intent,NewSelectOhterFarmerActivity.class,100);
             break;
             case R.id.ll_xiadan_vouchers:
                 Intent intentVoucher=new Intent(Constant.IParam.select_voucher);
@@ -289,6 +299,10 @@ public class NewXiaDingDanFragment extends BaseFragment {
                     VouchersObj voucher= (VouchersObj) data.getSerializableExtra(Constant.IParam.voucher);
                     couponsId=voucher.getCoupons_id()+"";
                     tv_xiadan_voucher.setText("抵用券"+voucher.getFace_value()+"元");
+                    break;
+                case 300:
+                    showLoading();
+                    getData();
                     break;
             }
         }
