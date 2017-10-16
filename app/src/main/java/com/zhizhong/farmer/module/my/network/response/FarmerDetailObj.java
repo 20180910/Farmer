@@ -6,26 +6,24 @@ import com.zhizhong.farmer.module.my.network.request.ZuoWuItem;
 import java.util.List;
 
 /**
- * Created by administartor on 2017/8/18.
+ * Created by administartor on 2017/10/16.
  */
 
-public class MyFarmerObj  extends BaseObj{
-
-
+public class FarmerDetailObj extends BaseObj {
     /**
-     * id : 49
-     * farmers_name : 啦啦啦
-     * phone_number : 153875
+     * id : 50
+     * farmers_name : 张三
+     * phone_number : 15623698523
      * farmland_province_id : 1770
      * farmland_province : 北京市
      * farmland_city_id : 1804
      * farmland_city : 北京市
      * farmland_area_id : 2174
      * farmland_area : 东城区
-     * farmland_addresss : 好咯
-     * crops_list : [{"my_farmers_crops_id":4,"crops":"水稻","area":1},{"my_farmers_crops_id":5,"crops":"测试","area":2},{"my_farmers_crops_id":6,"crops":"花生","area":3},{"my_farmers_crops_id":7,"crops":"小麦","area":4},{"my_farmers_crops_id":8,"crops":"大豆","area":5},{"my_farmers_crops_id":9,"crops":"早稻","area":6},{"my_farmers_crops_id":10,"crops":"玉米","area":7}]
+     * farmland_addresss : 太可怜了
+     * crops_list : [{"crops":"","area":""}]
      */
-    private boolean isSelect;
+
     private int id;
     private String farmers_name;
     private String phone_number;
@@ -37,14 +35,6 @@ public class MyFarmerObj  extends BaseObj{
     private String farmland_area;
     private String farmland_addresss;
     private List<ZuoWuItem> crops_list;
-
-    public boolean isSelect() {
-        return isSelect;
-    }
-
-    public void setSelect(boolean select) {
-        isSelect = select;
-    }
 
     public int getId() {
         return id;
@@ -135,4 +125,3 @@ public class MyFarmerObj  extends BaseObj{
     }
 
 }
-

@@ -2,121 +2,138 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:background="@color/background_f2"
+              android:orientation="vertical"
     >
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/white"
-    android:paddingTop="10dp"
-    android:paddingRight="10dp"
-    android:paddingLeft="10dp"
-    android:layout_marginBottom="10dp"
-    >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:id="@+id/tv_my_farmer_name"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            tools:text="张三丰"
-            android:textColor="@color/gray_33"
-            />
-        <TextView
-            android:id="@+id/tv_my_farmer_phone"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="18877661345"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="10dp"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="作物："
-            />
-        <TextView
-            android:id="@+id/tv_my_farmer_zw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="早稻"
-            />
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="亩数："
-            android:layout_marginLeft="30dp"
-            />
-        <TextView
-            android:id="@+id/tv_my_farmer_ms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="500亩"
-            />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
         android:layout_marginTop="5dp"
         >
-        <TextView
-            android:layout_width="wrap_content"
+
+        <LinearLayout
+            android:id="@+id/ll_farmer_list"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="地址："
-            />
-        <TextView
-            android:id="@+id/tv_my_farmer_address"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="上海市浦东新区康桥镇周园路1228号"
-            />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2px"
-        android:layout_marginTop="10dp"
-        android:background="@color/background_f2"
-        />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical|right"
-        android:paddingRight="10dp"
-        >
-        <TextView
-            android:id="@+id/tv_my_farmer_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="编辑"
+            android:layout_weight="1"
+            android:background="@color/white"
             android:gravity="center_vertical"
-            android:drawableLeft="@drawable/img36"
-            android:drawablePadding="3dp"
-            />
-        <TextView
-            android:id="@+id/tv_my_farmer_delete"
-            android:layout_width="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:text="农户姓名"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_farmer_list_name"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    tools:text="张三"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:text="联系方式"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_farmer_list_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:textSize="14sp"
+                    tools:text="13838455438"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginTop="2px"
+                android:background="@color/white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ems="5"
+                    android:text="位置"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_farmer_list_address"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:textSize="14sp"
+                    tools:text="上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市上海市"
+                    />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_farmer_list_check"
+            android:layout_width="35dp"
             android:layout_height="match_parent"
-            android:text="删除"
-            android:layout_marginLeft="30dp"
-            android:drawableLeft="@drawable/delete"
-            android:gravity="center_vertical"
-            android:drawablePadding="3dp"
-            />
+            android:background="@color/white"
+            android:gravity="center"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:id="@+id/iv_farmer_list_check"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img16_small_normal"
+                />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </LinearLayout>

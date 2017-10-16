@@ -140,7 +140,7 @@ public interface IRequest {
 
     //我的农户列表
     @GET("api/Farmer/GetMyFarmerList")
-    Observable<ResponseObj<List<MyFarmerObj>>> getMyFarmerList(@Query("user_id") String news_id, @Query("sign") String sign);
+    Observable<ResponseObj<List<MyFarmerObj>>> getMyFarmerList(@QueryMap Map<String,String> map);
 
     //删除我的农户
     @GET("api/Farmer/GetDelMyFarmer")
@@ -151,13 +151,17 @@ public interface IRequest {
     @GET("api/Farmer/GetAddMyFarmer")
     Observable<ResponseObj<BaseObj>> addMyFarmerOld(@QueryMap Map<String,String> map);
 
-    //添加农户
+    //添加农户-编辑保存
     @POST("api/Farmer/PostAddMyFarmer")
     Observable<ResponseObj<BaseObj>> addMyFarmer(@QueryMap Map<String,String> map, @Body AddFarmerItem item);
 
     //编辑农户-获取农户信息
     @GET("api/Farmer/GetEditMyFarmer")
     Observable<ResponseObj<MyFarmerObj>> getMyFarmer(@Query("mf_id") String mf_id, @Query("sign") String sign);
+
+    //编辑农户-获取农户信息-删除作物
+    @GET("api/Farmer/GetDelMyFarmerCrops")
+    Observable<ResponseObj<BaseObj>> deleteMyFarmerZuoWu(@QueryMap Map<String,String> map);
 
     //编辑保存农户
     @GET("api/Farmer/GetSaveMyFarmer")

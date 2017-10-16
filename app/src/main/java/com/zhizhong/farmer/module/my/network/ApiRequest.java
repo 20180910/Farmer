@@ -104,14 +104,17 @@ public class ApiRequest {
     public static Observable getMsgDetail(String msgId,String sign){
         return getCommonClient().getMsgDetail(msgId, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-    public static Observable getMyFarmerList(String userId,String sign){
-        return getCommonClient().getMyFarmerList(userId, sign).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    public static Observable getMyFarmerList(Map  map){
+        return getCommonClient().getMyFarmerList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
     public static Observable deleteMyFarmer(String mf_id,String sign){
         return getCommonClient().deleteMyFarmer(mf_id, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable getMyFarmer(String mf_id,String sign){
         return getCommonClient().getMyFarmer(mf_id, sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
+    public static Observable deleteMyFarmerZuoWu(Map map){
+        return getCommonClient().deleteMyFarmerZuoWu(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable addMyFarmer(Map map,AddFarmerItem item){
         return getCommonClient().addMyFarmer(map,item).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());

@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.my.activity;
 
 import android.app.ActionBar;
+import android.content.DialogInterface;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.androidtools.PhoneUtils;
@@ -23,6 +25,7 @@ import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.baseclass.adapter.RecyclerViewHolder;
 import com.github.baseclass.rx.IOCallBack;
+import com.github.baseclass.view.MyDialog;
 import com.github.baseclass.view.pickerview.OptionsPopupWindow;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
@@ -55,7 +58,7 @@ import rx.Subscriber;
  * Created by administartor on 2017/8/5.
  */
 
-public class AddFarmerActivity extends BaseActivity {
+public class AddFarmerActivity extends BaseActivity{
     @BindView(R.id.et_add_farmer_name)
     MyEditText et_add_farmer_name;
     @BindView(R.id.et_add_farmer_phone)
@@ -64,17 +67,17 @@ public class AddFarmerActivity extends BaseActivity {
     TextView tv_add_farmer_area;
     @BindView(R.id.et_add_farmer_nongtian)
     MyEditText et_add_farmer_nongtian;
-    @BindView(R.id.tv_add_farmer_zw)
-    TextView tv_add_farmer_zw;
-    @BindView(R.id.et_add_farmer_ms)
-    MyEditText et_add_farmer_ms;
+//    @BindView(R.id.tv_add_farmer_zw)
+//    TextView tv_add_farmer_zw;
+//    @BindView(R.id.et_add_farmer_ms)
+//    MyEditText et_add_farmer_ms;
     @BindView(R.id.tv_add_farmer_commit)
     MyTextView tv_add_farmer_commit;
     @BindView(R.id.rv_add_farmer)
     RecyclerView rv_add_farmer;
     private String id;
     private String type;
-
+    private String editOrAdd="1";
 
     private BaseRecyclerAdapter adapter;
     @Override
@@ -87,10 +90,15 @@ public class AddFarmerActivity extends BaseActivity {
     protected void initView() {
         type = getIntent().getStringExtra("type");
         if(Constant.IParam.editFarmer.equals(type)){
-            id = getIntent().getStringExtra("id");
-            showProgress();
-            getData();
+            editOrAdd="1";
+            setAppTitle("编辑农户");
+            tv_add_farmer_commit.setText("保存");
+        }else{
+            editOrAdd="2";
+            setAppTitle("添加农户");
+            tv_add_farmer_commit.setText("添加");
         }
+
 
         adapter=new BaseRecyclerAdapter<ZuoWuItem>(mContext,R.layout.item_add_farmer_zuo_wu) {
             @Override
@@ -115,13 +123,6 @@ et_add_farmer_item_ms*/
                             ms = Integer.parseInt(num);
                         }
                         mList.get(holder.getAdapterPosition()).setArea(ms);
-                        /*Handler handler=new Handler(getMainLooper());
-                        handler.post(new Runnable() {
-                            @Override
-                            public void run() {
-                                notifyDataSetChanged();
-                            }
-                        });*/
                     }
                 });
 
@@ -139,9 +140,63 @@ et_add_farmer_item_ms*/
             public void bindData(RecyclerViewHolder holder, int position, ZuoWuItem bean) {
                         holder.setText(R.id.tv_add_farmer_item_zw,bean.getCrops())
                                 .setText(R.id.et_add_farmer_item_ms,bean.getArea()+"");
+
+                LinearLayout ll_add_farmer_item_delete = (LinearLayout) holder.getView(R.id.ll_add_farmer_item_delete);
+                if(position==0){
+                    ll_add_farmer_item_delete.setVisibility(View.INVISIBLE);
+                }else{
+                    ll_add_farmer_item_delete.setVisibility(View.VISIBLE);
+                }
+                ll_add_farmer_item_delete.setOnClickListener(new MyOnClickListener() {
+                    @Override
+                    protected void onNoDoubleClick(View view) {
+                        MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
+                        mDialog.setMessage("是否删除当前作物?");
+                        mDialog.setNegativeButton(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        mDialog.setPositiveButton(new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                                if(bean.getType()==1){
+                                    mList.remove(position);
+                                    notifyDataSetChanged();
+                                }else{
+                                  deleteZuoWu(position,bean.getMy_farmers_crops_id());
+                                }
+                            }
+                        });
+                        mDialog.create().show();
+                    }
+
+                    private void deleteZuoWu(int position,int my_farmers_crops_id) {
+                        showLoading();
+                        Map<String,String>map=new HashMap<String,String>();
+                        map.put("user_id",getUserId());
+                        map.put("mf_coprs_id",my_farmers_crops_id+"");
+                        map.put("mf_id",id);
+                        map.put("sign",GetSign.getSign(map));
+                        addSubscription(ApiRequest.deleteMyFarmerZuoWu(map).subscribe(new MySub<BaseObj>(mContext) {
+                            @Override
+                            public void onMyNext(BaseObj obj) {
+                                showMsg(obj.getMsg());
+                                mList.remove(position);
+                                notifyDataSetChanged();
+                            }
+                        }));
+                    }
+                });
             }
         };
-        adapter.setList(null);
+        ZuoWuItem item=new ZuoWuItem();
+        item.setType(1);
+        List<ZuoWuItem> list = new ArrayList();
+        list.add(item);
+        adapter.setList(list);
         rv_add_farmer.setNestedScrollingEnabled(false);
         rv_add_farmer.setLayoutManager(new LinearLayoutManager(mContext));
         rv_add_farmer.setAdapter(adapter);
@@ -154,31 +209,34 @@ et_add_farmer_item_ms*/
             public void onMyNext(MyFarmerObj obj) {
                 et_add_farmer_name.setText(obj.getFarmers_name());
                 et_add_farmer_phone.setText(obj.getPhone_number());
-                tv_add_farmer_area.setText(obj.getAddresss());
+                tv_add_farmer_area.setText(obj.getFarmland_province()+","+obj.getFarmland_city()+","+obj.getFarmland_area());
                 et_add_farmer_nongtian.setText(obj.getFarmland_addresss());
-                tv_add_farmer_zw.setText(obj.getCrops());
-                et_add_farmer_ms.setText(obj.getArea());
+                List<ZuoWuItem> crops_list = obj.getCrops_list();
+                adapter.setList(crops_list,true);
+                areaId1=obj.getFarmland_province_id();
+                areaId2=obj.getFarmland_city_id();
+                areaId3=obj.getFarmland_area_id();
+//                tv_add_farmer_zw.setText(obj.get());
+//                et_add_farmer_ms.setText(obj.getArea());
             }
         }));
     }
 
     @Override
     protected void initData() {
-
+        if(Constant.IParam.editFarmer.equals(type)){
+            id = getIntent().getStringExtra("id");
+            showProgress();
+            getData();
+        }
     }
 
-    @OnClick({R.id.ll_add_farmer_zuo_wu,R.id.tv_add_farmer_area,R.id.tv_add_farmer_commit,R.id.tv_add_farmer_zw})
+    @OnClick({R.id.ll_add_farmer_zuo_wu,R.id.tv_add_farmer_area,R.id.tv_add_farmer_commit})
     protected void onViewClick(View v) {
         switch (v.getId()){
             case R.id.ll_add_farmer_zuo_wu:
-                if(TextUtils.isEmpty(getSStr(tv_add_farmer_zw))){
-                    showMsg("请选择作物");
-                    return;
-                }else if(TextUtils.isEmpty(getSStr(et_add_farmer_ms))){
-                    showMsg("请输入当前作物亩数");
-                    return;
-                }
                 ZuoWuItem item=new ZuoWuItem();
+                item.setType(1);
                 List<ZuoWuItem> list = new ArrayList();
                 list.add(item);
                 adapter.addList(list,true);
@@ -188,8 +246,6 @@ et_add_farmer_item_ms*/
                 String phone=getSStr(et_add_farmer_phone);
                 String juzhu=getSStr(tv_add_farmer_area);
                 String nongtian=getSStr(et_add_farmer_nongtian);
-                String zw=getSStr(tv_add_farmer_zw);
-                String ms=getSStr(et_add_farmer_ms);
                 if(TextUtils.isEmpty(name)){
                     showMsg("农户姓名不能为空");
                     return;
@@ -201,15 +257,6 @@ et_add_farmer_item_ms*/
                     return;
                 }else if(TextUtils.isEmpty(nongtian )){
                     showMsg("农田地址不能为空");
-                    return;
-                }else if(TextUtils.isEmpty(zw )){
-                    showMsg("作物不能为空");
-                    return;
-                }else if(TextUtils.isEmpty( ms)){
-                    showMsg("亩数不能为空");
-                    return;
-                }else if(Integer.parseInt(ms)<=0){
-                    showMsg("亩数不能为0");
                     return;
                 }
                 if(adapter.getList()!=null&&adapter.getList().size()>0){
@@ -230,15 +277,12 @@ et_add_farmer_item_ms*/
                         return;
                     }
                 }
-                if(Constant.IParam.editFarmer.equals(type)){
-                    editFarmer(name,phone,juzhu,nongtian,zw,ms);
-                }else{
-                    addFarmer(name,phone,juzhu,nongtian,zw,Integer.parseInt(ms));
-                }
+
+                addOrEditFarmer(name,phone,juzhu,nongtian );
             break;
-            case R.id.tv_add_farmer_zw:
-                getZuoWu(-1);
-                break;
+           /* case R.id.tv_add_farmer_zw:
+//                getZuoWu(-1);
+                break;*/
             case R.id.tv_add_farmer_area:
 //                getZuoWu();
                 PhoneUtils.hiddenKeyBoard(mContext);
@@ -269,12 +313,21 @@ et_add_farmer_item_ms*/
                     @Override
                     protected void onNoDoubleClick(View view) {
                         zuoWuDialog.dismiss();
-                        if(position==-1){
-                            tv_add_farmer_zw.setText(bean.getCrop_name());
-                        }else{
+                        boolean flag=true;//判断是否添加了相同作物
+                        if(notEmpty(adapter.getList())){
+                            for (int j = 0; j <adapter.getList().size(); j++) {
+                                if(bean.getCrop_name().equals(((ZuoWuItem)adapter.getList().get(j)).getCrops())){
+                                    flag=false;
+                                    showMsg("不能添加相同的作物");
+                                    break;
+                                }
+                            }
+                        }
+                        if(flag){
                             ((ZuoWuItem)adapter.getList().get(position)).setCrops(bean.getCrop_name());
                             adapter.notifyDataSetChanged();
                         }
+
                     }
                 });
             }
@@ -295,30 +348,17 @@ et_add_farmer_item_ms*/
         zuoWuDialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         zuoWuDialog.show();
     }
-    private void editFarmer(String name, String phone, String juzhu, String nongtian, String zw, String ms) {
-        showLoading();
-        Map<String,String> map=new HashMap<String,String>();
-        map.put("mf_id",id);
-        map.put("farmers_name",name);
-        map.put("phone_number",phone);
-        map.put("crops",zw);
-        map.put("area",ms);
-        map.put("address",juzhu);
-        map.put("farmland_addresss",nongtian);
-        map.put("sign", GetSign.getSign(map));
-        addSubscription(ApiRequest.updateMyFarmer(map).subscribe(new MySub<BaseObj>(mContext) {
-            @Override
-            public void onMyNext(BaseObj obj) {
-                showMsg(obj.getMsg());
-                setResult(RESULT_OK);
-                finish();
-            }
-        }));
-    }
 
-    private void addFarmer(String name, String phone, String juzhu, String nongtian, String zw, int ms) {
+
+    private void addOrEditFarmer(String name, String phone, String juzhu, String nongtian ) {
         showLoading();
         Map<String,String> map=new HashMap<String,String>();
+        map.put("type",editOrAdd);
+        if(TextUtils.isEmpty(id)){//添加
+            map.put("mf_id","0");
+        }else{//编辑
+            map.put("mf_id",id);
+        }
         map.put("user_id",getUserId());
         map.put("farmers_name",name);
         map.put("phone_number",phone);
@@ -331,17 +371,12 @@ et_add_farmer_item_ms*/
         map.put("sign", GetSign.getSign(map));
         AddFarmerItem item=new AddFarmerItem();
         List<ZuoWuItem> body=new ArrayList<>();
-        ZuoWuItem zuoWuBean= new ZuoWuItem();
-        zuoWuBean.setCrops(zw);
-        zuoWuBean.setArea(ms);
-        body.add(zuoWuBean);
         if(adapter.getList()!=null&&adapter.getList().size()>0){
             for (int i = 0; i < adapter.getList().size(); i++) {
                 ZuoWuItem zuoWu= (ZuoWuItem) adapter.getList().get(i);
                 body.add(zuoWu);
             }
         }
-
         item.setBody(body);
         addSubscription(ApiRequest.addMyFarmer(map,item).subscribe(new MySub<BaseObj>(mContext) {
             @Override

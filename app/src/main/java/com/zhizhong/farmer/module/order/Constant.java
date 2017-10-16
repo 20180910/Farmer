@@ -7,6 +7,7 @@ package com.zhizhong.farmer.module.order;
 public class Constant {
 
     public static class IParam{
+        public static final String type="type";
         public static final String crops="crops";
         public static final String title="title";
         public static final String categoryId="categoryId";

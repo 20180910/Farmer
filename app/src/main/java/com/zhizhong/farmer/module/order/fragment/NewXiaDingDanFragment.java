@@ -27,10 +27,10 @@ import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.home.event.GetPhoneEvent;
 import com.zhizhong.farmer.module.my.activity.MyDataActivity;
+import com.zhizhong.farmer.module.my.activity.MyFarmerActivity;
 import com.zhizhong.farmer.module.my.activity.MyVouchersActivity;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.order.Constant;
-import com.zhizhong.farmer.module.order.activity.NewSelectOhterFarmerActivity;
 import com.zhizhong.farmer.module.order.network.ApiRequest;
 import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 import com.zhizhong.farmer.module.order.network.response.OrderDefaultDataObj;
@@ -148,10 +148,8 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 }
                 Intent intent=new Intent();
                 intent.putExtra(Constant.IParam.crops,getSStr(tv_xiadan_zuowu));
-                if(notEmpty(otherFarmerList)){
-                    intent.putExtra(Constant.IParam.otherFarmerBean,new Gson().toJson(otherFarmerList));
-                }
-                STActivityForResult(intent,NewSelectOhterFarmerActivity.class,100);
+                intent.putExtra(Constant.IParam.type,2);
+                STActivityForResult(intent,MyFarmerActivity.class,100);
             break;
             case R.id.ll_xiadan_vouchers:
                 Intent intentVoucher=new Intent(Constant.IParam.select_voucher);
