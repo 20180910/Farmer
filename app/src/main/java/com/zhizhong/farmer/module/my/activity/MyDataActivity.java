@@ -32,8 +32,6 @@ import com.github.baseclass.view.MyDialog;
 import com.github.baseclass.view.pickerview.OptionsPopupWindow;
 import com.github.customview.MyEditText;
 import com.github.customview.MyTextView;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
@@ -396,16 +394,17 @@ public class MyDataActivity extends BaseActivity {
 
     private void selectArea() {
         showLoading();
-        RXStart(new IOCallBack<String>() {
+        String rnd=getRnd();
+        String sign = getSign("rnd",rnd);
+        addSubscription(ApiRequest.getAllCity(rnd,sign).subscribe(new MySub<List<CityBean>>(mContext) {
             @Override
-            public void call(Subscriber<? super String> subscriber) {
-                initAddressDialog();
-                subscriber.onNext(null);
-                subscriber.onCompleted();
-            }
-            @Override
-            public void onMyNext(String s) {
-                dismissLoading();
+            public void onMyNext(List<CityBean> list) {
+                cityBean=list;
+                options1Items = new ArrayList<String>();
+                options2Items = new ArrayList<ArrayList<String>>();
+                options3Items = new ArrayList<ArrayList<ArrayList<String>>>();
+//                String areaJson = StreamUtils.get(mContext, R.raw.area);
+                province(null);
                 pwOptions = new OptionsPopupWindow(mContext, "选择地区");
                 // 三级联动效果
                 pwOptions.setPicker(options1Items, options2Items, options3Items, true);
@@ -429,7 +428,41 @@ public class MyDataActivity extends BaseActivity {
                 });
                 pwOptions.showAtLocation(tv_info_area, Gravity.BOTTOM, ActionBar.LayoutParams.WRAP_CONTENT,PhoneUtils.getNavigationBarHeight(mContext));
             }
-        });
+        }));
+        /*RXStart(new IOCallBack<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                initAddressDialog();
+                subscriber.onNext(null);
+                subscriber.onCompleted();
+            }
+            @Override
+            public void onMyNext(String s) {
+                dismissLoading();
+                pwOptions = new OptionsPopupWindow(mContext, "选择地区");
+                // 三级联动效果
+                pwOptions.setPicker(options1Items, options2Items, options3Items, true);
+                // 设置默认选中的三级项目
+                pwOptions.setSelectOptions(0, 0, 0);
+                // 监听确定选择按钮
+                pwOptions.setOnoptionsSelectListener((options1, option2, options3) -> {
+                    // 返回的分别是三个级别的选中位置
+                    *//*String area = options1Items.get(options1) + ","
+                            + options2Items.get(options1).get(option2) + ","
+                            + options3Items.get(options1).get(option2).get(options3);*//*
+                    province=options1Items.get(options1);
+                    city=options2Items.get(options1).get(option2) ;
+                    area=options3Items.get(options1).get(option2).get(options3);
+
+                    areaId1 = MyDataActivity.this.cityBean.get(options1).getId();
+                    areaId2 = MyDataActivity.this.cityBean.get(options1).getPca_list().get(option2).getId();
+                    areaId3 = MyDataActivity.this.cityBean.get(options1).getPca_list().get(option2).getPca_list().get(options3).getId();
+                    Log.i("areaId===", areaId1 +"-"+ areaId2 +"-"+ areaId3);
+                    tv_info_area.setText(province+","+city+","+area);
+                });
+                pwOptions.showAtLocation(tv_info_area, Gravity.BOTTOM, ActionBar.LayoutParams.WRAP_CONTENT,PhoneUtils.getNavigationBarHeight(mContext));
+            }
+        });*/
     }
 
     private void initAddressDialog() {
@@ -441,9 +474,9 @@ public class MyDataActivity extends BaseActivity {
         // 地址选择器
     }
     private void province(String strJson) {
-        cityBean = new Gson().fromJson(strJson,
+        /*cityBean = new Gson().fromJson(strJson,
                 new TypeToken<List<CityBean>>() {
-                }.getType());
+                }.getType());*/
         ArrayList<String> item2;
         ArrayList<ArrayList<String>> item3;
         for (int i = 0; i < cityBean.size(); i++) {

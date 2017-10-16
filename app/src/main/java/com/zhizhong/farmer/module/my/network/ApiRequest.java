@@ -26,6 +26,9 @@ public class ApiRequest {
     private static IRequest getGeneralStringClient(){
         return NetWorkManager.getGeneralStringClient().create(IRequest.class);
     }
+    public static Observable getAllCity(String rnd, String sign){
+        return getCommonClient().getAllCity(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getRegisterXieYi(String rnd, String sign){
         return getCommonClient().getRegisterXieYi(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

@@ -94,8 +94,13 @@ public class MyFarmerActivity extends BaseActivity implements LoadMoreAdapter.On
                         mList.get(position).setSelect(!bean.isSelect());
                     }
                 });
+                if(TextUtils.isEmpty(crops)){
+                    ll_farmer_list_check.setVisibility(View.GONE);
+                }else{
+                    ll_farmer_list_check.setVisibility(View.VISIBLE);
+                }
 
-                holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                ll_farmer_list.setOnLongClickListener(new View.OnLongClickListener() {
                     @Override
                     public boolean onLongClick(View view) {
                         MyDialog.Builder mDialog=new MyDialog.Builder(mContext);
@@ -177,6 +182,26 @@ public class MyFarmerActivity extends BaseActivity implements LoadMoreAdapter.On
                 STActivityForResult(AddFarmerActivity.class,100);
             break;
             case R.id.tv_my_farmer_add:
+                if(notEmpty(adapter.getList())){
+                    int coun=0;
+                    for (int i = 0; i < adapter.getList().size(); i++) {
+                        MyFarmerObj obj= (MyFarmerObj) adapter.getList().get(i);
+                        if(obj.isSelect()){
+                            coun++;
+                        }
+                    }
+                    if(coun>0){
+                        Intent intent=new Intent();
+
+                        setResult(RESULT_OK,intent);
+                        finish();
+                    }else{
+                        showMsg("请选择农户");
+                    }
+                }else{
+                    showMsg("请选择农户");
+                }
+
             break;
         }
     }

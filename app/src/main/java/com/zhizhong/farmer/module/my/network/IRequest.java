@@ -3,6 +3,7 @@ package com.zhizhong.farmer.module.my.network;
 
 import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.ResponseObj;
+import com.zhizhong.farmer.module.my.bean.CityBean;
 import com.zhizhong.farmer.module.my.network.request.AddFarmerItem;
 import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
 import com.zhizhong.farmer.module.my.network.response.FenXiaoDetailObj;
@@ -37,6 +38,10 @@ import rx.Observable;
  */
 
 public interface IRequest {
+
+    //获取全部省市区
+    @GET("api/Lib/GetProvinceCityArea")
+    Observable<ResponseObj<List<CityBean>>> getAllCity(@Query("rnd") String rnd, @Query("sign") String sign);
 
     //注册授权协议
     @GET("api/Farmer/GetFarmerAgreement")
