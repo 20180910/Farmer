@@ -20,8 +20,11 @@ import com.zhizhong.farmer.base.BaseObj;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
+import com.zhizhong.farmer.module.my.network.request.ZuoWuItem;
 import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
+import com.zhizhong.farmer.module.order.network.request.XiaDingDanItem;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -183,16 +186,32 @@ public class MyFarmerActivity extends BaseActivity implements LoadMoreAdapter.On
             break;
             case R.id.tv_my_farmer_add:
                 if(notEmpty(adapter.getList())){
-                    int coun=0;
+                    int count=0;
+                    int cropsNum=0;
+                    XiaDingDanItem item=new XiaDingDanItem();
+                    List<XiaDingDanItem.BodyBean> body=new ArrayList<>();
                     for (int i = 0; i < adapter.getList().size(); i++) {
                         MyFarmerObj obj= (MyFarmerObj) adapter.getList().get(i);
                         if(obj.isSelect()){
-                            coun++;
+                            for (int j = 0; j <obj.getCrops_list().size(); j++) {
+                                ZuoWuItem crops = obj.getCrops_list().get(j);
+                                if(crops.getCrops().equals(this.crops)){
+                                    int num =  crops.getArea() ;
+                                    cropsNum+=num;
+                                }
+                            }
+                            count++;
+                            XiaDingDanItem.BodyBean bodyBean = new XiaDingDanItem.BodyBean();
+                            bodyBean.setFarmer_id(obj.getId());
+                            body.add(bodyBean);
                         }
                     }
-                    if(coun>0){
+                    if(count>0){
+                        item.setBody(body);
                         Intent intent=new Intent();
-
+                        intent.putExtra(Constant.IParam.xiaDanBean,item);
+                        intent.putExtra(Constant.IParam.xiaDanBeanMuShu,cropsNum);
+                        intent.putExtra(Constant.IParam.xiaDanBeanCount,count);
                         setResult(RESULT_OK,intent);
                         finish();
                     }else{

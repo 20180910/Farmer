@@ -35,6 +35,9 @@ public class Constant {
         public static final int deleteDefaultAccount=200;
     }
     public static class IParam{
+        public static final String xiaDanBean="xiaDanBean";
+        public static final String xiaDanBeanMuShu="xiaDanBeanMuShu";
+        public static final String xiaDanBeanCount="xiaDanBeanCount";
         public static final String phone="phone";
         public static final String name="name";
         public static final String user_id="user_id";

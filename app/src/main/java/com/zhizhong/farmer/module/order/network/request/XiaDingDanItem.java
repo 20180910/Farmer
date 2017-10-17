@@ -9,6 +9,7 @@ import java.util.List;
 
 public class XiaDingDanItem implements Serializable{
 
+
     private List<BodyBean> body;
 
     public List<BodyBean> getBody() {
@@ -25,60 +26,6 @@ public class XiaDingDanItem implements Serializable{
          */
 
         private int farmer_id;
-        private String name;
-        private int ms;
-        private String diseases_pests;
-        private String zhuji;
-        private String weifei;
-        private String longyao;
-
-        public int getMs() {
-            return ms;
-        }
-
-        public void setMs(int ms) {
-            this.ms = ms;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getDiseases_pests() {
-            return diseases_pests;
-        }
-
-        public void setDiseases_pests(String diseases_pests) {
-            this.diseases_pests = diseases_pests;
-        }
-
-        public String getZhuji() {
-            return zhuji;
-        }
-
-        public void setZhuji(String zhuji) {
-            this.zhuji = zhuji;
-        }
-
-        public String getWeifei() {
-            return weifei;
-        }
-
-        public void setWeifei(String weifei) {
-            this.weifei = weifei;
-        }
-
-        public String getLongyao() {
-            return longyao;
-        }
-
-        public void setLongyao(String longyao) {
-            this.longyao = longyao;
-        }
 
         public int getFarmer_id() {
             return farmer_id;

@@ -111,7 +111,7 @@ public class SelectOhterFarmerActivity extends BaseActivity implements LoadMoreA
                     if(item.isSelect()&&item.isSelectHaiChong()){
                         bodyBean= new XiaDingDanItem.BodyBean();
                         bodyBean.setFarmer_id(item.getId());
-                        bodyBean.setMs(item.getArea());
+                       /* bodyBean.setMs(item.getArea());
                         bodyBean.setName(item.getFarmers_name());
                         bodyBean.setDiseases_pests(item.getHaiChong());
                         if(item.isNeedZhuJi()){
@@ -128,7 +128,7 @@ public class SelectOhterFarmerActivity extends BaseActivity implements LoadMoreA
                             bodyBean.setLongyao("需要");
                         }else{
                             bodyBean.setLongyao("自购");
-                        }
+                        }*/
                         orderList.add(bodyBean);
                     }
                 }

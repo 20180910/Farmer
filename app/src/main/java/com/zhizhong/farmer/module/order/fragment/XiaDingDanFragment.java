@@ -277,9 +277,9 @@ public class XiaDingDanFragment extends BaseFragment {
                     int countMS=0;
                     StringBuffer farmer=new StringBuffer();
                     for (int i = 0; i < list.size(); i++) {
-                        XiaDingDanItem.BodyBean bodyBean = list.get(i);
+                       /* XiaDingDanItem.BodyBean bodyBean = list.get(i);
                         countMS=countMS+bodyBean.getMs();
-                        farmer.append(bodyBean.getName()+",");
+                        farmer.append(bodyBean.getName()+",");*/
                     }
                     farmer.deleteCharAt(farmer.lastIndexOf(","));
                     tv_xia_order_farmer.setText(farmer.toString());

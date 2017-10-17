@@ -355,7 +355,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_nong_yao"
+                        android:id="@+id/cb_xiadan_nong_yao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -386,7 +386,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_zhu_ji"
+                        android:id="@+id/cb_xiadan_zhu_ji"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -417,7 +417,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_wei_fei"
+                        android:id="@+id/cb_xiadan_wei_fei"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -511,7 +511,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_bao_chi"
+                        android:id="@+id/cb_xiadan_bao_chi"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -541,7 +541,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_bao_zhu"
+                        android:id="@+id/cb_xiadan_bao_zhu"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -571,7 +571,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_chong_dian"
+                        android:id="@+id/cb_xiadan_chong_dian"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -601,7 +601,7 @@
                         android:textSize="15sp"
                         />
                     <com.github.customview.MyCheckBox
-                        android:id="@+id/tv_xiadan_qu_shui"
+                        android:id="@+id/cb_xiadan_qu_shui"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

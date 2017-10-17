@@ -32,6 +32,7 @@ import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.home.event.GetPhoneEvent;
 import com.zhizhong.farmer.module.my.activity.MyDataActivity;
 import com.zhizhong.farmer.module.my.activity.MyFarmerActivity;
+import com.zhizhong.farmer.module.my.activity.MyOrderListActivity;
 import com.zhizhong.farmer.module.my.activity.MyVouchersActivity;
 import com.zhizhong.farmer.module.my.network.response.VouchersObj;
 import com.zhizhong.farmer.module.order.Constant;
@@ -84,24 +85,24 @@ public class NewXiaDingDanFragment extends BaseFragment {
     TextView tv_xia_order_farmer;
     @BindView(R.id.tv_xiadan_fang_zhi)
     TextView tv_xiadan_fang_zhi;
-    @BindView(R.id.tv_xiadan_nong_yao)
-    MyCheckBox tv_xiadan_nong_yao;
-    @BindView(R.id.tv_xiadan_zhu_ji)
-    MyCheckBox tv_xiadan_zhu_ji;
-    @BindView(R.id.tv_xiadan_wei_fei)
-    MyCheckBox tv_xiadan_wei_fei;
+    @BindView(R.id.cb_xiadan_nong_yao)
+    MyCheckBox cb_xiadan_nong_yao;
+    @BindView(R.id.cb_xiadan_zhu_ji)
+    MyCheckBox cb_xiadan_zhu_ji;
+    @BindView(R.id.cb_xiadan_wei_fei)
+    MyCheckBox cb_xiadan_wei_fei;
     @BindView(R.id.et_xiadan_dk)
     MyEditText et_xiadan_dk;
     @BindView(R.id.et_xiadan_zhang_ai_wu)
     MyEditText et_xiadan_zhang_ai_wu;
-    @BindView(R.id.tv_xiadan_bao_chi)
-    MyCheckBox tv_xiadan_bao_chi;
-    @BindView(R.id.tv_xiadan_bao_zhu)
-    MyCheckBox tv_xiadan_bao_zhu;
-    @BindView(R.id.tv_xiadan_chong_dian)
-    MyCheckBox tv_xiadan_chong_dian;
-    @BindView(R.id.tv_xiadan_qu_shui)
-    MyCheckBox tv_xiadan_qu_shui;
+    @BindView(R.id.cb_xiadan_bao_chi)
+    MyCheckBox cb_xiadan_bao_chi;
+    @BindView(R.id.cb_xiadan_bao_zhu)
+    MyCheckBox cb_xiadan_bao_zhu;
+    @BindView(R.id.cb_xiadan_chong_dian)
+    MyCheckBox cb_xiadan_chong_dian;
+    @BindView(R.id.cb_xiadan_qu_shui)
+    MyCheckBox cb_xiadan_qu_shui;
 
 
     private Date startDate, endDate;
@@ -144,11 +145,12 @@ public class NewXiaDingDanFragment extends BaseFragment {
         showProgress();
         getData();
     }
-
+    private OrderDefaultDataObj orderDefaultDataObj;
     private void getData() {
         addSubscription(ApiRequest.getOrderDefaultData(getUserId(), getSign()).subscribe(new MySub<OrderDefaultDataObj>(mContext, pl_load) {
             @Override
             public void onMyNext(OrderDefaultDataObj obj) {
+                orderDefaultDataObj = obj;
                 tv_xia_order_name.setText(obj.getFarmer_name());
                 tv_xia_order_phone.setText(obj.getMobile());
                 tv_xia_order_weizhi.setText(obj.getAddresss());
@@ -157,6 +159,10 @@ public class NewXiaDingDanFragment extends BaseFragment {
                     showMsg("请完善联系方式");
                     return;
                 }
+                cb_xiadan_nong_yao.setText(obj.getPesticide().getTitle());
+                cb_xiadan_zhu_ji.setText(obj.getAdditives().getTitle());
+                cb_xiadan_wei_fei.setText(obj.getFertilizer().getTitle());
+
             }
         }));
     }
@@ -196,14 +202,26 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 if (TextUtils.isEmpty(getSStr(tv_xia_order_phone))) {
                     showMsg("请完善联系方式");
                     return;
-                } else if (TextUtils.isEmpty(getSStr(tv_xia_order_farmer))) {
+                } else if (TextUtils.isEmpty(getSStr(tv_xia_order_farmer))||xiaDingDanItem==null) {
                     showMsg("请选择其他农户");
                     return;
-                } else if (startDate == null) {
+                } else if (TextUtils.isEmpty(getSStr(tv_xiadan_fang_zhi))) {
+                    showMsg("请选择防治内容");
+                    return;
+                }else if (startDate == null) {
                     showMsg("请选择作业日期");
                     return;
                 } else if (endDate == null) {
                     showMsg("请选择结束日期");
+                    return;
+                }else if (TextUtils.isEmpty(getSStr(et_xiadan_dk))) {
+                    showMsg("请填写地况");
+                    return;
+                }else if (TextUtils.isEmpty(getSStr(et_xiadan_zhang_ai_wu))) {
+                    showMsg("请填写障碍物");
+                    return;
+                }else if (TextUtils.isEmpty(getSStr(et_xiadan_zhuan_chang_num))) {
+                    showMsg("请填写转场次数");
                     return;
                 }
                 xiaDingDan();
@@ -302,8 +320,23 @@ public class NewXiaDingDanFragment extends BaseFragment {
         map.put("coupons_id", couponsId);
         map.put("crops", getSStr(tv_xiadan_zuowu));
         map.put("area", getSStr(tv_xiadan_ms));
+        map.put("diseasespest", getSStr(tv_xiadan_fang_zhi));
         map.put("begin_time", getSStr(tv_xiadan_start_time));
         map.put("end_time", getSStr(tv_xiadan_end_time));
+
+        map.put("pesticide_id", cb_xiadan_nong_yao.isChecked()?orderDefaultDataObj.getPesticide().getId()+"":"0");//农药ID(不用传0)
+        map.put("additives_id", cb_xiadan_zhu_ji.isChecked()?orderDefaultDataObj.getAdditives().getId()+"":"0");//助剂ID(不用传0)
+        map.put("fertilizer_id",cb_xiadan_wei_fei.isChecked()?orderDefaultDataObj.getFertilizer().getId()+"":"0");//微肥ID(不用传0)
+
+        map.put("condition", getSStr(et_xiadan_dk));//地况
+        map.put("obstacles", getSStr(et_xiadan_zhang_ai_wu));//障碍物
+
+        map.put("is_andy", cb_xiadan_bao_chi.isChecked()?"1":"0");//包吃(1是 0否)
+        map.put("is_encase", cb_xiadan_bao_zhu.isChecked()?"1":"0");//包住(1是 0否)
+        map.put("is_rechargeable", cb_xiadan_chong_dian.isChecked()?"1":"0");//可充电(1是 0否)
+        map.put("is_getwater", cb_xiadan_qu_shui.isChecked()?"1":"0");//可取水(1是 0否)
+        map.put("transitions_number", getSStr(et_xiadan_zhuan_chang_num));//转场次数
+
         map.put("sign", GetSign.getSign(map));
         addSubscription(ApiRequest.xiaDingDan(map, xiaDingDanItem).subscribe(new MySub<BaseObj>(mContext) {
             @Override
@@ -323,6 +356,8 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 et_xiadan_zhuan_chang_num.setText(null);
                 et_xiadan_dk.setText(null);
                 et_xiadan_zhang_ai_wu.setText(null);
+
+                STActivity(MyOrderListActivity.class);
 
             }
         }));
@@ -367,9 +402,11 @@ public class NewXiaDingDanFragment extends BaseFragment {
                         zuoWuDialog.dismiss();
                         if (!bean.getCrop_name().equals(getSStr(tv_xiadan_zuowu))) {
                             tv_xia_order_farmer.setText(null);
+                            tv_xiadan_zuowu.setText(bean.getCrop_name());
+                            tv_xiadan_ms.setText("0");
+                            xiaDingDanItem=null;
                         }
-                        tv_xiadan_zuowu.setText(bean.getCrop_name());
-                        tv_xiadan_ms.setText(bean.getArea() + "");
+
                     }
                 });
             }
@@ -397,10 +434,12 @@ public class NewXiaDingDanFragment extends BaseFragment {
         if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case 100:
+                    xiaDingDanItem = (XiaDingDanItem) data.getSerializableExtra(Constant.IParam.xiaDanBean);
+                    int muShuNum = data.getIntExtra(Constant.IParam.xiaDanBeanMuShu,0);
+                    int farmerCount = data.getIntExtra(Constant.IParam.xiaDanBeanCount,0);
+                    tv_xia_order_farmer.setText(farmerCount+"家农户");
                     /*String str = (String) data.getSerializableExtra(Constant.IParam.otherFarmerBean);
                     otherFarmerList = new Gson().fromJson(str,new TypeToken<List<OtherFarmerObj>>(){}.getType());
-
-                    xiaDingDanItem = (XiaDingDanItem) data.getSerializableExtra(Constant.IParam.xiaDanBean);
                     List<XiaDingDanItem.BodyBean>list = xiaDingDanItem.getBody();
                     int countMS=0;
                     StringBuffer farmer=new StringBuffer();
@@ -412,6 +451,7 @@ public class NewXiaDingDanFragment extends BaseFragment {
                     farmer.deleteCharAt(farmer.lastIndexOf(","));
                     tv_xia_order_farmer.setText(farmer.toString());
                     tv_xiadan_ms.setText(countMS+"");*/
+                    tv_xiadan_ms.setText(muShuNum+"");
                     break;
                 case 1000:
                     VouchersObj voucher = (VouchersObj) data.getSerializableExtra(Constant.IParam.voucher);

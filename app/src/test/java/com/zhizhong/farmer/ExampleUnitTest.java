@@ -41,6 +41,11 @@ public class ExampleUnitTest {
     public void bbb() throws Exception {
         aa();
     }
+    @Test
+    public void asdf() throws Exception {
+        String a="0910";
+        System.out.println(Integer.parseInt(a));
+    }
 
     private void aa() {
         for (int i = 0; i < 3; i++) {

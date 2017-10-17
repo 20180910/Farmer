@@ -18,5 +18,7 @@ public class Constant {
         public static final String select_voucher="select_voucher";
         public static final String otherFarmerBean="otherFarmerBean";
         public static final String xiaDanBean="xiaDanBean";
+        public static final String xiaDanBeanMuShu="xiaDanBeanMuShu";
+        public static final String xiaDanBeanCount="xiaDanBeanCount";
     }
 }

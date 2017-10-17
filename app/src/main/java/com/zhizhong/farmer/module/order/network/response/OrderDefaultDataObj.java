@@ -19,6 +19,33 @@ public class OrderDefaultDataObj extends BaseObj {
     private String mobile;
     private String addresss;
     private List<ListBean> list;
+    private NongYaoBean pesticide;
+    private NongYaoBean additives;
+    private NongYaoBean fertilizer;
+
+    public NongYaoBean getPesticide() {
+        return pesticide;
+    }
+
+    public void setPesticide(NongYaoBean pesticide) {
+        this.pesticide = pesticide;
+    }
+
+    public NongYaoBean getAdditives() {
+        return additives;
+    }
+
+    public void setAdditives(NongYaoBean additives) {
+        this.additives = additives;
+    }
+
+    public NongYaoBean getFertilizer() {
+        return fertilizer;
+    }
+
+    public void setFertilizer(NongYaoBean fertilizer) {
+        this.fertilizer = fertilizer;
+    }
 
     public String getFarmer_name() {
         return farmer_name;
@@ -75,6 +102,26 @@ public class OrderDefaultDataObj extends BaseObj {
 
         public void setArea(int area) {
             this.area = area;
+        }
+    }
+    public static class NongYaoBean{
+        private int id;
+        private String title;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getTitle() {
+            return title;
+        }
+
+        public void setTitle(String title) {
+            this.title = title;
         }
     }
 }
