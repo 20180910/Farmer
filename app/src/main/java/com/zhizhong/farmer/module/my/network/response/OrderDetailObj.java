@@ -7,27 +7,34 @@ import com.zhizhong.farmer.base.BaseObj;
  */
 
 public class OrderDetailObj extends BaseObj {
+
     /**
-     * farmer_name : 范磊
-     * farmer_phone : 13872228829
-     * site : 上海市普陀区真北路1780号42号
-     * order_status : 待完善
-     * order_no : N201708211541267304
-     * add_time : 2017/8/21  15:41
-     * pay_way :
-     * pay_status : 未支付
+     * farmer_name : 哟嚯4
+     * farmer_phone : 15601772924
+     * site : 上海市长宁区兆丰大厦
+     * order_status : 已完成
+     * order_no : N201710171208106600
+     * add_time : 2017/10/17  13:18
+     * pay_way : 线下
+     * pay_status : 已支付
      * pay_message :
-     * crops : 玉米
-     * price : 待定价
-     * area : 130499亩
+     * crops : 大豆
+     * price : 10.00元/亩
+     * area : 76亩
      * youhui : 0
-     * total_price : 待定价
-     * request_time : 2017/8/21~2017/8/22  (1天)
+     * total : 760.00
+     * prevent_content : 纹枯病
+     * pesticide_title :
+     * additives_title :
+     * fertilizer_title :
+     * paf_total : 0
+     * total_price : 0.00
+     * request_time : 2017/10/17~2017/10/20  (3天)
      * transitions_number :
      * transitions_instructions :
-     * condition :
-     * obstacles :
-     * remark : 张一丰:需要微肥、需要助剂、需要农药、病虫害(纹枯病)。1近距离:需要微肥、自购助剂、自购农药、病虫害(害虫)。
+     * condition : 平原
+     * obstacles : 平原
+     * remark : 111
      * kefu_phone : 400-800-9888
      */
 
@@ -44,6 +51,12 @@ public class OrderDetailObj extends BaseObj {
     private String price;
     private String area;
     private double youhui;
+    private String total;
+    private String prevent_content;
+    private String pesticide_title;
+    private String additives_title;
+    private String fertilizer_title;
+    private double paf_total;
     private String total_price;
     private String request_time;
     private String transitions_number;
@@ -155,6 +168,54 @@ public class OrderDetailObj extends BaseObj {
 
     public void setYouhui(double youhui) {
         this.youhui = youhui;
+    }
+
+    public String getTotal() {
+        return total;
+    }
+
+    public void setTotal(String total) {
+        this.total = total;
+    }
+
+    public String getPrevent_content() {
+        return prevent_content;
+    }
+
+    public void setPrevent_content(String prevent_content) {
+        this.prevent_content = prevent_content;
+    }
+
+    public String getPesticide_title() {
+        return pesticide_title;
+    }
+
+    public void setPesticide_title(String pesticide_title) {
+        this.pesticide_title = pesticide_title;
+    }
+
+    public String getAdditives_title() {
+        return additives_title;
+    }
+
+    public void setAdditives_title(String additives_title) {
+        this.additives_title = additives_title;
+    }
+
+    public String getFertilizer_title() {
+        return fertilizer_title;
+    }
+
+    public void setFertilizer_title(String fertilizer_title) {
+        this.fertilizer_title = fertilizer_title;
+    }
+
+    public double getPaf_total() {
+        return paf_total;
+    }
+
+    public void setPaf_total(double paf_total) {
+        this.paf_total = paf_total;
     }
 
     public String getTotal_price() {

@@ -31,6 +31,7 @@ import com.zhizhong.farmer.module.my.bean.WXPay;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.response.OrderDetailObj;
 import com.zhizhong.farmer.module.order.activity.PaySuccessActivity;
+import com.zhizhong.farmer.tools.AndroidUtils;
 import com.zhizhong.farmer.tools.alipay.AliPay;
 import com.zhizhong.farmer.tools.alipay.OrderInfoUtil2_0;
 import com.zhizhong.farmer.tools.alipay.PayResult;
@@ -97,6 +98,19 @@ public class OrderDetailsActivity extends BaseActivity {
     @BindView(R.id.ll_order_detail_commit)
     LinearLayout ll_order_detail_commit;
 
+    @BindView(R.id.tv_order_detail_bingchong)
+    TextView tv_order_detail_bingchong;
+    @BindView(R.id.tv_order_detail_nongyao)
+    TextView tv_order_detail_nongyao;
+    @BindView(R.id.tv_order_detail_zhuji)
+    TextView tv_order_detail_zhuji;
+    @BindView(R.id.tv_order_detail_weifei)
+    TextView tv_order_detail_weifei;
+    @BindView(R.id.tv_order_detail_fzxx_xj)
+    TextView tv_order_detail_fzxx_xj;
+    @BindView(R.id.tv_order_detail_total)
+    TextView tv_order_detail_total;
+
     private double totalPrice;
     private String orderNo;
     private int type;
@@ -127,15 +141,16 @@ public class OrderDetailsActivity extends BaseActivity {
             @Override
             public void onMyNext(OrderDetailObj obj) {
                 orderDetailObj = obj;
-                if(type== Constant.type_2){
-                    double total=Double.parseDouble(obj.getTotal_price());
-                    orderBean=new OrderBean();
-                    orderBean.body="飞农宝订单";
-                    orderBean.nonceStr=getRnd();
-                    orderBean.out_trade_no=obj.getOrder_no();
+                if (type == Constant.type_2) {
+                    double total =  Double.parseDouble(obj.getTotal_price());
+                    orderBean = new OrderBean();
+                    orderBean.body = "飞农宝订单";
+                    orderBean.nonceStr = getRnd();
+                    orderBean.out_trade_no = obj.getOrder_no();
 //                    orderBean.totalFee=2*100/2;
-                    orderBean.totalFee=total*100/2;
-                    orderBean.IP="192.168.0.1";
+                    orderBean.totalFee = total * 100 / 2;
+//                    orderBean.IP = "192.168.0.1";
+                    orderBean.IP = AndroidUtils.getIP(mContext);
                     totalPrice = total;
                 }
                 tv_order_detail_name.setText(obj.getFarmer_name());
@@ -158,15 +173,26 @@ public class OrderDetailsActivity extends BaseActivity {
                 tv_order_detail_remark.setText(obj.getRemark());
                 tv_order_detail_tel.setText(obj.getKefu_phone());
                 tv_order_detail_youhui.setText("-¥" + obj.getYouhui());
+
+                tv_order_detail_bingchong.setText(obj.getPrevent_content());
+                tv_order_detail_nongyao.setText(obj.getPesticide_title());
+                tv_order_detail_zhuji.setText(obj.getAdditives_title());
+                tv_order_detail_weifei.setText(obj.getFertilizer_title());
+
                 if (type == Constant.type_2) {
 
                     tv_order_detail_zj.setText(obj.getTotal_price() + "元");
+                    tv_order_detail_fzxx_xj.setText(obj.getPaf_total()+"元");
+                    tv_order_detail_total.setText(obj.getTotal_price()+"元");
                     ll_order_detail_kefu.setVisibility(View.GONE);
 
                     ll_order_detail_youhui.setVisibility(View.VISIBLE);
                     ll_order_detail_commit.setVisibility(View.VISIBLE);
                 } else {
-                    tv_order_detail_zj.setText(obj.getTotal_price());
+                    tv_order_detail_zj.setText(obj.getTotal_price() );
+                    tv_order_detail_fzxx_xj.setText(obj.getPaf_total()+"元");
+                    tv_order_detail_total.setText(obj.getTotal_price());
+
                     ll_order_detail_kefu.setVisibility(View.VISIBLE);
 
                     ll_order_detail_youhui.setVisibility(View.GONE);
@@ -218,7 +244,7 @@ public class OrderDetailsActivity extends BaseActivity {
         payDialog.setOnKeyListener(new DialogInterface.OnKeyListener() {
             @Override
             public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
-                if(payDialog.isShowing()&&keyCode== KeyEvent.KEYCODE_BACK){
+                if (payDialog.isShowing() && keyCode == KeyEvent.KEYCODE_BACK) {
                     payDialog.dismiss();
                     return true;
                 }
@@ -264,21 +290,21 @@ public class OrderDetailsActivity extends BaseActivity {
     }
 
     private void onLinePay() {
-        Intent intent=new Intent();
-        intent.putExtra(Constant.IParam.orderNo,orderNo);
-        STActivity(intent,OfflinePayActivity.class);
+        Intent intent = new Intent();
+        intent.putExtra(Constant.IParam.orderNo, orderNo);
+        STActivity(intent, OfflinePayActivity.class);
     }
 
     private void zhiFuBaoPay() {
-        double total=Double.parseDouble(orderDetailObj.getTotal_price());
+        double total =  Double.parseDouble(orderDetailObj.getTotal_price());
 //        double total=0.02;
-        AliPay bean=new AliPay();
-        bean.setTotal_amount(total/2);
+        AliPay bean = new AliPay();
+        bean.setTotal_amount(total / 2);
         bean.setOut_trade_no(orderDetailObj.getOrder_no());
-        bean.setSubject(orderDetailObj.getOrder_no()+"订单交易");
+        bean.setSubject(orderDetailObj.getOrder_no() + "订单交易");
         bean.setBody("飞农宝订单");
         String notifyUrl = SPUtils.getPrefString(mContext, Config.payType_ZFB, null);
-        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(bean,notifyUrl);
+        Map<String, String> params = OrderInfoUtil2_0.buildOrderParamMap(bean, notifyUrl);
         String orderParam = OrderInfoUtil2_0.buildOrderParam(params);
 
         String sign = OrderInfoUtil2_0.getSign(params, Config.zhifubao_rsa2, true);
@@ -292,6 +318,7 @@ public class OrderDetailsActivity extends BaseActivity {
                 subscriber.onNext(result);
                 subscriber.onCompleted();
             }
+
             @Override
             public void onMyNext(Map map) {
                 PayResult payResult = new PayResult(map);
@@ -299,35 +326,36 @@ public class OrderDetailsActivity extends BaseActivity {
                  对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
                  */
                 String resultInfo = payResult.getResult();// 同步返回需要验证的信息
-                Log.i("==========","1=========="+resultInfo);
+                Log.i("==========", "1==========" + resultInfo);
                 String resultStatus = payResult.getResultStatus();
-                Log.i("==========","2=========="+resultStatus);
+                Log.i("==========", "2==========" + resultStatus);
                 // 判断resultStatus 为9000则代表支付成功
                 if (TextUtils.equals(resultStatus, "9000")) {
                     // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                     Toast.makeText(mContext, "支付成功", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent();
+                    Intent intent = new Intent();
                     intent.setAction("alipay");
-                    intent.putExtra(Config.IParam.alipay,true);
+                    intent.putExtra(Config.IParam.alipay, true);
                     STActivity(intent, PaySuccessActivity.class);
-                } else if(TextUtils.equals(resultStatus, "6001")){
+                } else if (TextUtils.equals(resultStatus, "6001")) {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     Toast.makeText(mContext, "支付取消", Toast.LENGTH_SHORT).show();
                     /*Intent intent=new Intent();
                     intent.setAction("alipay");
                     intent.putExtra(Config.IParam.alipay,false);
                     STActivity(intent, PaySuccessActivity.class);*/
-                }else{
+                } else {
                     // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                     Toast.makeText(mContext, "支付失败", Toast.LENGTH_SHORT).show();
-                    Intent intent=new Intent();
+                    Intent intent = new Intent();
                     intent.setAction("alipay");
-                    intent.putExtra(Config.IParam.alipay,false);
+                    intent.putExtra(Config.IParam.alipay, false);
                     STActivity(intent, PaySuccessActivity.class);
                 }
             }
         });
     }
+
     private void weiXinPay() {
         new WXPay(mContext).pay(orderBean);
     }
