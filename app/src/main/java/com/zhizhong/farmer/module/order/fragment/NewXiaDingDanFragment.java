@@ -159,9 +159,27 @@ public class NewXiaDingDanFragment extends BaseFragment {
                     showMsg("请完善联系方式");
                     return;
                 }
-                cb_xiadan_nong_yao.setText(obj.getPesticide().getTitle());
-                cb_xiadan_zhu_ji.setText(obj.getAdditives().getTitle());
-                cb_xiadan_wei_fei.setText(obj.getFertilizer().getTitle());
+                if(obj.getPesticide()==null){
+                    cb_xiadan_nong_yao.setText("无");
+                    cb_xiadan_nong_yao.setEnabled(false);
+                }else{
+                    cb_xiadan_nong_yao.setText(obj.getPesticide().getTitle());
+                    cb_xiadan_nong_yao.setEnabled(true);
+                }
+                if(obj.getAdditives()==null){
+                    cb_xiadan_zhu_ji.setText("无");
+                    cb_xiadan_zhu_ji.setEnabled(false);
+                }else{
+                    cb_xiadan_zhu_ji.setText(obj.getAdditives().getTitle());
+                    cb_xiadan_zhu_ji.setEnabled(true);
+                }
+                if(obj.getFertilizer()==null){
+                    cb_xiadan_wei_fei.setText("无");
+                    cb_xiadan_wei_fei.setEnabled(false);
+                }else{
+                    cb_xiadan_wei_fei.setText(obj.getFertilizer().getTitle());
+                    cb_xiadan_wei_fei.setEnabled(true);
+                }
 
             }
         }));
