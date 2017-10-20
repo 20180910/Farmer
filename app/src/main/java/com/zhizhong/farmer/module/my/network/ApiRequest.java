@@ -140,4 +140,7 @@ public class ApiRequest {
     public static Observable onLinePay(Map map){
         return getCommonClient().onLinePay(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getVIPLevel(String userId,String sign){
+        return getCommonClient().getVIPLevel(userId,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
 }

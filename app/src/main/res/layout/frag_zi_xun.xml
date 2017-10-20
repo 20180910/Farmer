@@ -61,8 +61,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:text="农药"
-                                app:my_radio_checked="@drawable/down_select"
-                                app:my_radio_normal="@drawable/down_normal"
                                 app:my_radio_checked_color="@color/blue"
                                 app:my_radio_normal_color="@color/gray_33"
                                 android:gravity="center"
@@ -71,6 +69,8 @@
                                 android:textSize="14sp"
                                 android:drawablePadding="4dp"
                                 android:checked="true"
+                                android:paddingRight="10dp"
+                                android:paddingLeft="10dp"
                                 />
                             <View
                                 android:layout_width="0dp"
@@ -81,8 +81,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:text="种子"
-                                app:my_radio_checked="@drawable/down_select"
-                                app:my_radio_normal="@drawable/down_normal"
                                 app:my_radio_checked_color="@color/blue"
                                 app:my_radio_normal_color="@color/gray_33"
                                 android:gravity="center"
@@ -90,6 +88,8 @@
                                 android:button="@null"
                                 android:drawablePadding="4dp"
                                 android:textSize="14sp"
+                                android:paddingRight="10dp"
+                                android:paddingLeft="10dp"
                                 />
                             <View
                                 android:layout_width="0dp"
@@ -100,8 +100,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:text="化肥"
-                                app:my_radio_checked="@drawable/down_select"
-                                app:my_radio_normal="@drawable/down_normal"
                                 app:my_radio_checked_color="@color/blue"
                                 app:my_radio_normal_color="@color/gray_33"
                                 android:gravity="center"
@@ -109,6 +107,8 @@
                                 android:button="@null"
                                 android:textSize="14sp"
                                 android:drawablePadding="4dp"
+                                android:paddingRight="10dp"
+                                android:paddingLeft="10dp"
                                 />
                             <View
                                 android:layout_width="0dp"
@@ -119,8 +119,6 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:text="机械"
-                                app:my_radio_checked="@drawable/down_select"
-                                app:my_radio_normal="@drawable/down_normal"
                                 app:my_radio_checked_color="@color/blue"
                                 app:my_radio_normal_color="@color/gray_33"
                                 android:gravity="center"
@@ -128,6 +126,8 @@
                                 android:button="@null"
                                 android:textSize="14sp"
                                 android:drawablePadding="4dp"
+                                android:paddingRight="10dp"
+                                android:paddingLeft="10dp"
                                 />
                             <View
                                 android:layout_width="0dp"

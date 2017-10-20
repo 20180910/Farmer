@@ -8,6 +8,7 @@ import com.zhizhong.farmer.module.my.network.request.AddFarmerItem;
 import com.zhizhong.farmer.module.my.network.request.UploadImgItem;
 import com.zhizhong.farmer.module.my.network.response.FenXiaoDetailObj;
 import com.zhizhong.farmer.module.my.network.response.FenXiaoObj;
+import com.zhizhong.farmer.module.my.network.response.LevelObj;
 import com.zhizhong.farmer.module.my.network.response.LoginObj;
 import com.zhizhong.farmer.module.my.network.response.MyFarmerObj;
 import com.zhizhong.farmer.module.my.network.response.OnlineAccountObj;
@@ -190,5 +191,9 @@ public interface IRequest {
     //在线转账
     @GET("api/Farmer/GetPayCredential")
     Observable<ResponseObj<BaseObj>> onLinePay(@QueryMap Map<String,String> map);
+
+    //在线转账
+    @GET("api/Farmer/GetFarmerLevel")
+    Observable<ResponseObj<LevelObj>> getVIPLevel(@Query("user_id") String user_id, @Query("sign") String sign);
 }
 

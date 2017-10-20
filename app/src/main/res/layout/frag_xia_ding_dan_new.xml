@@ -521,6 +521,7 @@
                         app:my_checkbox_checked="@drawable/img16_small"
                         app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:checked="true"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -551,6 +552,7 @@
                         app:my_checkbox_checked="@drawable/img16_small"
                         app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:checked="true"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -581,6 +583,7 @@
                         app:my_checkbox_checked="@drawable/img16_small"
                         app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:checked="true"
                         />
                 </LinearLayout>
                 <LinearLayout
@@ -611,6 +614,7 @@
                         app:my_checkbox_checked="@drawable/img16_small"
                         app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:checked="true"
                         />
                 </LinearLayout>
                 <LinearLayout

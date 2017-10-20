@@ -15,6 +15,7 @@ import com.zhizhong.farmer.module.my.activity.MyDataActivity;
 import com.zhizhong.farmer.module.my.activity.MyFarmerActivity;
 import com.zhizhong.farmer.module.my.activity.MyFenXiaoActivity;
 import com.zhizhong.farmer.module.my.activity.MyOrderListActivity;
+import com.zhizhong.farmer.module.my.activity.VIPLevelActivity;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -78,9 +79,12 @@ public class MyFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.iv_my_set, R.id.tv_my_data, R.id.tv_my_farmer, R.id.tv_my_fenxiao, R.id.ll_my_order,R.id.tv_my_dws,R.id.tv_my_dqr, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
+    @OnClick({R.id.ll_my_vip,R.id.iv_my_set, R.id.tv_my_data, R.id.tv_my_farmer, R.id.tv_my_fenxiao, R.id.ll_my_order,R.id.tv_my_dws,R.id.tv_my_dqr, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})
     public void onViewClick(View view) {
         switch (view.getId()) {
+            case R.id.ll_my_vip://VIP
+                STActivity(VIPLevelActivity.class);
+                break;
             case R.id.iv_my_set://设置
                 STActivity(MyDataActivity.class);
                 break;

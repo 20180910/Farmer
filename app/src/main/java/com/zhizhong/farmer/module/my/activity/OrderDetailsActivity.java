@@ -181,7 +181,7 @@ public class OrderDetailsActivity extends BaseActivity {
 
                 if (type == Constant.type_2) {
 
-                    tv_order_detail_zj.setText(obj.getTotal_price() + "元");
+                    tv_order_detail_zj.setText(obj.getTotal() + "元");
                     tv_order_detail_fzxx_xj.setText(obj.getPaf_total()+"元");
                     tv_order_detail_total.setText(obj.getTotal_price()+"元");
                     ll_order_detail_kefu.setVisibility(View.GONE);
@@ -189,7 +189,7 @@ public class OrderDetailsActivity extends BaseActivity {
                     ll_order_detail_youhui.setVisibility(View.VISIBLE);
                     ll_order_detail_commit.setVisibility(View.VISIBLE);
                 } else {
-                    tv_order_detail_zj.setText(obj.getTotal_price() );
+                    tv_order_detail_zj.setText(obj.getTotal() );
                     tv_order_detail_fzxx_xj.setText(obj.getPaf_total()+"元");
                     tv_order_detail_total.setText(obj.getTotal_price());
 
