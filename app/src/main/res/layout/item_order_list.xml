@@ -150,7 +150,7 @@
                 android:layout_marginTop="10dp"
                 tools:text="上海市"
                 android:textColor="@color/gray_33"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
         </LinearLayout>
 
@@ -183,7 +183,7 @@
                 android:layout_marginTop="10dp"
                 tools:text="早稻"
                 android:textColor="@color/gray_33"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
         </LinearLayout>
 
@@ -216,7 +216,7 @@
                 android:layout_marginTop="10dp"
                 tools:text="12元/亩"
                 android:textColor="@color/gray_33"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
         </LinearLayout>
 
@@ -249,7 +249,7 @@
                 android:layout_marginTop="10dp"
                 tools:text="500亩"
                 android:textColor="@color/gray_33"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 />
         </LinearLayout>
     </LinearLayout>
