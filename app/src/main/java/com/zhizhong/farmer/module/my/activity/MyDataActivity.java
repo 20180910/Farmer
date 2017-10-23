@@ -5,8 +5,6 @@ import android.app.ActionBar;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.provider.MediaStore;
@@ -48,7 +46,6 @@ import com.zhizhong.farmer.tools.StreamUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -60,6 +57,7 @@ import butterknife.BindView;
 import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 import rx.Subscriber;
+import top.zibin.luban.Luban;
 
 /**
  * Created by administartor on 2017/8/3.
@@ -258,16 +256,14 @@ public class MyDataActivity extends BaseActivity {
             @Override
             public void call(Subscriber<? super String> subscriber) {
                 String newPath= ImageUtils.filePath;
-                String name=ImageUtils.fileName;
-                String smallBitmapPath = ImageUtils.getSmallBitmap(imgSaveName, newPath, name);
+                ImageUtils.makeFolder(newPath);
                 FileInputStream fis = null;
                 try {
-                    fis = new FileInputStream(smallBitmapPath);
-                    Bitmap bitmap  = BitmapFactory.decodeStream(fis);
-                    String imgStr = BitmapUtils.bitmapToString(bitmap);
+                    List<File> files = Luban.with(mContext).load(imgSaveName).get();
+                    String imgStr = BitmapUtils.bitmapToString2(files.get(0));
                     subscriber.onNext(imgStr);
                     subscriber.onCompleted();
-                } catch (FileNotFoundException e) {
+                } catch (Exception e) {
                     e.printStackTrace();
                     subscriber.onError(e);
                 }
