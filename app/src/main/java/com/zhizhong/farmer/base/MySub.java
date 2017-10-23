@@ -34,6 +34,11 @@ public abstract class MySub<T> extends Subscriber<T> {
         this.pfl=pfl;
         this.progressLayout=pl;
     }
+    public MySub(Context ctx,ProgressLayout pl, PtrFrameLayout pfl) {
+        this.context = ctx;
+        this.pfl=pfl;
+        this.progressLayout=pl;
+    }
     public MySub(Context ctx, boolean noHiddenLoad) {
         this.context = ctx;
         this.noHiddenLoad = noHiddenLoad;

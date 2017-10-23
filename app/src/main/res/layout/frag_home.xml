@@ -52,6 +52,13 @@
             android:src="@drawable/img4"
             />
     </com.github.customview.MyRelativeLayout>
+<in.srain.cube.views.ptr.PtrClassicFrameLayout
+    android:id="@id/pcfl_refresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:ptr_resistance="2.1"
+    app:ptr_ratio_of_header_height_to_refresh="1.2"
+    >
 
     <com.zhizhong.farmer.view.ProgressLayout
         android:id="@id/pl_load"
@@ -59,6 +66,7 @@
         android:layout_height="match_parent">
 
         <android.support.v4.widget.NestedScrollView
+            android:id="@+id/nsv_home"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -500,6 +508,8 @@
      -->
 
             </LinearLayout>
+
         </android.support.v4.widget.NestedScrollView>
     </com.zhizhong.farmer.view.ProgressLayout>
+</in.srain.cube.views.ptr.PtrClassicFrameLayout>
 </LinearLayout>

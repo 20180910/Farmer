@@ -1,9 +1,11 @@
 package com.zhizhong.farmer.module.home.fragment;
 
 import android.content.Intent;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +39,8 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import in.srain.cube.views.ptr.PtrFrameLayout;
+import in.srain.cube.views.ptr.PtrHandler;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -53,6 +57,8 @@ public class HomeFragment extends BaseFragment {
     RecyclerView rv_home_zixun;
     @BindView(R.id.rv_home_zhibao)
     RecyclerView rv_home_zhibao;
+    @BindView(R.id.nsv_home)
+    NestedScrollView nsv_home;
 
 
     @BindView(R.id.bn_home)
@@ -74,6 +80,7 @@ public class HomeFragment extends BaseFragment {
     TextView tv_home_city;
 
     LoadMoreAdapter ziXunAdapter, zhiBaoAdapter;
+    public int scrollY;
     @Override
     protected int getContentView() {
         return R.layout.frag_home;
@@ -130,6 +137,30 @@ public class HomeFragment extends BaseFragment {
         rv_home_zhibao.setNestedScrollingEnabled(false);
         rv_home_zhibao.setLayoutManager(new LinearLayoutManager(mContext));
         rv_home_zhibao.setAdapter(zhiBaoAdapter);
+
+
+        pcfl.setPtrHandler(new PtrHandler() {
+            @Override
+            public boolean checkCanDoRefresh(PtrFrameLayout frame, View content, View header) {
+                if(scrollY<=0){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            @Override
+            public void onRefreshBegin(PtrFrameLayout frame) {
+                getHomeImg();
+                getHomeData();
+            }
+        });
+        nsv_home.setOnScrollChangeListener(new NestedScrollView.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                HomeFragment.this.scrollY = scrollY;
+                Log.i("===","==="+scrollY);
+            }
+        });
     }
 
     @Override
@@ -167,7 +198,7 @@ public class HomeFragment extends BaseFragment {
 
     private void getHomeData() {
         String rnd = getRnd();
-        addSubscription(ApiRequest.getHomeData(rnd, getSign("rnd", rnd)).subscribe(new MySub<HomeDataObj>(mContext, pl_load) {
+        addSubscription(ApiRequest.getHomeData(rnd, getSign("rnd", rnd)).subscribe(new MySub<HomeDataObj>(mContext, pl_load,pcfl) {
             @Override
             public void onMyNext(HomeDataObj obj) {
                 ziXunAdapter.setList(obj.getInformation_list(), true);
