@@ -34,7 +34,7 @@ public interface IRequest {
 
     //首页
     @GET("api/Farmer/GetHomePageBottom")
-    Observable<ResponseObj<HomeDataObj>> getHomeData(@Query("rnd") String rnd, @Query("sign") String sign);
+    Observable<ResponseObj<HomeDataObj>> getHomeData(@QueryMap Map<String,String>map);
 
     //首页-图片
     @GET("api/Farmer/GetHomePageTop")

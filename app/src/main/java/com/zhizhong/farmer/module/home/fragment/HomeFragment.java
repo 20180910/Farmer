@@ -10,17 +10,23 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.baidu.location.BDAbstractLocationListener;
+import com.baidu.location.BDLocation;
+import com.baidu.location.LocationClient;
+import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.model.LatLng;
 import com.bumptech.glide.Glide;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.baseclass.rx.RxBus;
 import com.github.customview.MyImageView;
 import com.youth.banner.Banner;
+import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.home.Constant;
-import com.zhizhong.farmer.module.home.activity.CityActivity;
 import com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinDetailActivity;
 import com.zhizhong.farmer.module.home.activity.ZhiBaoZhongXinListActivity;
 import com.zhizhong.farmer.module.home.event.XiaDanEvent;
@@ -35,7 +41,9 @@ import com.zhizhong.farmer.module.zixun.activity.ZiXunDetailActivity;
 import com.zhizhong.farmer.tools.GlideLoader;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -81,6 +89,10 @@ public class HomeFragment extends BaseFragment {
 
     LoadMoreAdapter ziXunAdapter, zhiBaoAdapter;
     public int scrollY;
+    private boolean isFirstLoc=true;
+    private String city="";
+    private String area="";
+
     @Override
     protected int getContentView() {
         return R.layout.frag_home;
@@ -88,6 +100,7 @@ public class HomeFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        baiDuMap();
         app_title.setText("飞农宝");
         ziXunAdapter = new LoadMoreAdapter<HomeDataObj.InformationListBean>(mContext, R.layout.item_zi_xun, 0) {
             @Override
@@ -158,16 +171,17 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onScrollChange(NestedScrollView v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
                 HomeFragment.this.scrollY = scrollY;
-                Log.i("===","==="+scrollY);
             }
         });
     }
+
 
     @Override
     protected void initData() {
         showProgress();
         getHomeImg();
         getHomeData();
+
     }
 
     private void getHomeImg() {
@@ -197,8 +211,11 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void getHomeData() {
-        String rnd = getRnd();
-        addSubscription(ApiRequest.getHomeData(rnd, getSign("rnd", rnd)).subscribe(new MySub<HomeDataObj>(mContext, pl_load,pcfl) {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("city", city);
+        map.put("area", area);
+        map.put("sign", GetSign.getSign(map));
+        addSubscription(ApiRequest.getHomeData(map).subscribe(new MySub<HomeDataObj>(mContext, pl_load,pcfl) {
             @Override
             public void onMyNext(HomeDataObj obj) {
                 ziXunAdapter.setList(obj.getInformation_list(), true);
@@ -230,7 +247,7 @@ public class HomeFragment extends BaseFragment {
                 }
                 break;
             case R.id.tv_home_city:
-                STActivityForResult(CityActivity.class,1000);
+//                STActivityForResult(CityActivity.class,1000);
                 break;
         }
     }
@@ -246,7 +263,6 @@ public class HomeFragment extends BaseFragment {
                     break;
             }
         }
-
     }
 
     @Override
@@ -261,6 +277,68 @@ public class HomeFragment extends BaseFragment {
         super.onResume();
         if (bn_home != null&&bannerList!=null) {
             bn_home.startAutoPlay();
+        }
+    }
+
+    public MyLocationListenner myListener = new MyLocationListenner();
+
+    private void baiDuMap() {
+        // 定位初始化
+        LocationClient mLocClient = new LocationClient(mContext);
+        mLocClient.registerLocationListener(myListener);
+        LocationClientOption option = new LocationClientOption();
+        option.setLocationMode(LocationClientOption.LocationMode.Hight_Accuracy);
+        //可选，默认高精度，设置定位模式，高精度，低功耗，仅设备
+        option.setCoorType("bd09ll");
+        //可选，默认gcj02，设置返回的定位结果坐标系
+        int span=1000;
+        option.setScanSpan(span);
+        //可选，默认0，即仅定位一次，设置发起定位请求的间隔需要大于等于1000ms才是有效的
+        option.setIsNeedAddress(true);
+        //可选，设置是否需要地址信息，默认不需要
+        option.setOpenGps(true);
+        //可选，默认false,设置是否使用gps
+        option.setLocationNotify(true);
+        //可选，默认false，设置是否当GPS有效时按照1S/1次频率输出GPS结果
+        option.setIsNeedLocationDescribe(true);
+        //可选，默认false，设置是否需要位置语义化结果，可以在BDLocation.getLocationDescribe里得到，结果类似于“在北京天安门附近”
+        option.setIsNeedLocationPoiList(true);
+        //可选，默认false，设置是否需要POI结果，可以在BDLocation.getPoiList里得到
+        option.setIgnoreKillProcess(false);
+        //可选，默认true，定位SDK内部是一个SERVICE，并放到了独立进程，设置是否在stop的时候杀死这个进程，默认不杀死
+        option.setEnableSimulateGps(false);
+        //可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
+        mLocClient.setLocOption(option);
+        mLocClient.start();
+    }
+    public class MyLocationListenner extends BDAbstractLocationListener {
+
+        @Override
+        public void onReceiveLocation(BDLocation location) {
+            // map view 销毁后不在处理新接收的位置
+            if (location == null  )
+                return;
+
+//            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
+            if (isFirstLoc) {
+                MyLocationData locData = new MyLocationData.Builder()
+                        .accuracy(location.getRadius())
+                        // 此处设置开发者获取到的方向信息，顺时针0-360
+                        .direction(100).latitude(location.getLatitude())
+                        .longitude(location.getLongitude()).build();
+                isFirstLoc = false;
+                LatLng ll = new LatLng(location.getLatitude(),
+                        location.getLongitude());
+
+                Log.i("===",location.getAddrStr()+"=="+location.getCity()+"==="+location.getDistrict());
+                city=location.getCity();
+                area=location.getDistrict();
+                tv_home_city.setText(location.getCity());
+                getHomeData();
+            }
+        }
+
+        public void onReceivePoi(BDLocation poiLocation) {
         }
     }
 }

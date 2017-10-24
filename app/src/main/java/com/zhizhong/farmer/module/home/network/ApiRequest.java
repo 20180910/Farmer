@@ -36,8 +36,8 @@ public class ApiRequest {
     public static Observable getZhiBaoDetail( String eppo_id,String sign){
         return getCommonClient().getZhiBaoDetail(eppo_id,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
-    public static Observable getHomeData( String rnd,String sign){
-        return getCommonClient().getHomeData(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    public static Observable getHomeData(Map map){
+        return getCommonClient().getHomeData(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
     public static Observable getHomeImg( String rnd,String sign){
         return getCommonClient().getHomeImg(rnd,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());

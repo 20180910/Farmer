@@ -37,6 +37,11 @@ android {
             dirs 'libs'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs "libs"
+        }
+    }
     compileOptions {
         targetCompatibility 1.8
         sourceCompatibility 1.8
@@ -91,5 +96,6 @@ dependencies {
     compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
 //    compile files('libs/wechat-sdk-android-with-mta-1.1.7.jar')
 
+    compile files('libs/BaiduLBS_Android.jar')
     compile 'top.zibin:Luban:1.1.3'
 }
