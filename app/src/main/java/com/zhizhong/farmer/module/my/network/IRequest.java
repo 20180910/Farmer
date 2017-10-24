@@ -75,6 +75,10 @@ public interface IRequest {
     @GET("api/Farmer/GetSetUserAvatar")
     Observable<ResponseObj<BaseObj>> uploadImgForInfo(@QueryMap Map<String,String> map);
 
+    //退出登录
+    @GET("api/Lib/GetLogOut")
+    Observable<ResponseObj<BaseObj>> exitApp(@QueryMap Map<String,String> map);
+
     //农户密码修改
     @GET("api/Farmer/GetSetNewPassword")
     Observable<ResponseObj<BaseObj>> setNewPassword(@QueryMap Map<String,String> map);

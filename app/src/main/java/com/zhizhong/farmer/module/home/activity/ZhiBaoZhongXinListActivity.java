@@ -7,8 +7,10 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.github.androidtools.SPUtils;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
+import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseActivity;
@@ -78,6 +80,8 @@ public class ZhiBaoZhongXinListActivity extends BaseActivity implements LoadMore
         Map<String,String> map=new HashMap<String,String>();
         map.put("page",page+"");
         map.put("pagesize",pageSize+"");
+        map.put("city", SPUtils.getPrefString(mContext, Config.city,"0"));
+        map.put("area", SPUtils.getPrefString(mContext, Config.area,"0"));
         map.put("sign", GetSign.getSign(map));
         addSubscription(ApiRequest.getZhiBaoList(map).subscribe(new MySub<List<ZhiBaoObj>>(mContext,pcfl,pl_load) {
             @Override

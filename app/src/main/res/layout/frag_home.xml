@@ -27,6 +27,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:maxWidth="80dp"
+            android:visibility="gone"
             />
 
         <TextView

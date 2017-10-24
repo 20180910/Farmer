@@ -14,14 +14,15 @@ import com.baidu.location.BDAbstractLocationListener;
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.bumptech.glide.Glide;
+import com.github.androidtools.SPUtils;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
 import com.github.baseclass.rx.RxBus;
 import com.github.customview.MyImageView;
 import com.youth.banner.Banner;
+import com.zhizhong.farmer.Config;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
@@ -321,11 +322,11 @@ public class HomeFragment extends BaseFragment {
 
 //            mBaiduMap.setMapStatus(MapStatusUpdateFactory.newMapStatus(new MapStatus.Builder().zoom(15).build()));
             if (isFirstLoc) {
-                MyLocationData locData = new MyLocationData.Builder()
+                /*MyLocationData locData = new MyLocationData.Builder()
                         .accuracy(location.getRadius())
                         // 此处设置开发者获取到的方向信息，顺时针0-360
                         .direction(100).latitude(location.getLatitude())
-                        .longitude(location.getLongitude()).build();
+                        .longitude(location.getLongitude()).build();*/
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(),
                         location.getLongitude());
@@ -333,6 +334,8 @@ public class HomeFragment extends BaseFragment {
                 Log.i("===",location.getAddrStr()+"=="+location.getCity()+"==="+location.getDistrict());
                 city=location.getCity();
                 area=location.getDistrict();
+                SPUtils.setPrefString(mContext, Config.city,city);
+                SPUtils.setPrefString(mContext, Config.area,area);
                 tv_home_city.setText(location.getCity());
                 getHomeData();
             }

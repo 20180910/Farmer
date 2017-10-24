@@ -159,7 +159,7 @@ public class MyDataActivity extends BaseActivity {
                         .setNegativeButton((dialog, which) -> dialog.dismiss())
                         .setPositiveButton((dialog, which) -> {
                             dialog.dismiss();
-                            exitLogin();
+                            prepareExit();
                         });
                 mDialog.create().show();
                 break;
@@ -183,6 +183,23 @@ public class MyDataActivity extends BaseActivity {
         }
     }
 
+    private void prepareExit() {
+        showLoading();
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("user_id",getUserId());
+        map.put("sign",GetSign.getSign(map));
+        addSubscription(ApiRequest.exitApp(map).subscribe(new MySub<BaseObj>(mContext) {
+            @Override
+            public void onMyNext(BaseObj obj) {
+                exitLogin();
+            }
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+                exitLogin();
+            }
+        }));
+    }
 
 
     private void showSelectPhotoDialog() {

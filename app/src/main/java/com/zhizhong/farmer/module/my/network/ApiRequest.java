@@ -56,6 +56,9 @@ public class ApiRequest {
     public static Observable uploadImgForInfo(Map map){
         return getCommonClient().uploadImgForInfo(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable exitApp(Map map){
+        return getCommonClient().exitApp(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable setNewPassword(Map map){
         return getCommonClient().setNewPassword(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
