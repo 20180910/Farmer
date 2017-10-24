@@ -7,6 +7,7 @@ import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -398,6 +399,7 @@ public class NewXiaDingDanFragment extends BaseFragment {
             @Override
             public void onTimeSelect(Date date, View v) {
                 String time = DateUtils.dateToString(date);
+                Log.i("========","========"+date.getTime());
                 if (type == 0) {
                     startDate = date;
                     tv_xiadan_start_time.setText(time);
