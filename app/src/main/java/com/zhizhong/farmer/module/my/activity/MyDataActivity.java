@@ -363,6 +363,7 @@ public class MyDataActivity extends BaseActivity {
                 SPUtils.setPrefInt(mContext, Config.area_id, areaId3);
 
                 setResult(RESULT_OK);
+                finish();
             }
         }));
 

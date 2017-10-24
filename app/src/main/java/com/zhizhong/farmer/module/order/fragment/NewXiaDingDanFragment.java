@@ -1,6 +1,7 @@
 package com.zhizhong.farmer.module.order.fragment;
 
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.util.SparseArrayCompat;
@@ -10,6 +11,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 
 import com.bigkoo.pickerview.TimePickerView;
 import com.github.androidtools.DateUtils;
+import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.inter.MyOnClickListener;
 import com.github.baseclass.adapter.LoadMoreAdapter;
 import com.github.baseclass.adapter.LoadMoreViewHolder;
@@ -70,6 +73,8 @@ public class NewXiaDingDanFragment extends BaseFragment {
     TextView tv_xia_order_phone;
     @BindView(R.id.et_xiadan_zhuan_chang_num)
     EditText et_xiadan_zhuan_chang_num;
+    @BindView(R.id.v_xia_dan)
+    View v_xia_dan;
 
     @BindView(R.id.tv_xia_order_weizhi)
     TextView tv_xia_order_weizhi;
@@ -126,7 +131,9 @@ public class NewXiaDingDanFragment extends BaseFragment {
 
     @Override
     protected void initView() {
+        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         app_title.setText("下单");
+//        setInput();
     }
 
     @Override
@@ -491,6 +498,24 @@ public class NewXiaDingDanFragment extends BaseFragment {
             }
         }
     }
+    private void setInput() {
+        /*final View rootView = ((ViewGroup) baseView.findViewById(android.R.id.content))
+                .getChildAt(0);*/
+        final View decorView = getActivity().getWindow().getDecorView();
+        decorView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
 
+            @Override
+            public void onGlobalLayout() {
+                Rect rect= new Rect();
+                decorView.getWindowVisibleDisplayFrame(rect);
+                int screenHeight = decorView.getRootView().getHeight();
+                int heightDifferent = screenHeight - rect.bottom- PhoneUtils.getNavigationBarHeight(mContext);
+               /* FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) rootView.getLayoutParams();
+                lp.setMargins(0, 0, 0, heightDifferent);
+                rootView.requestLayout();*/
+                v_xia_dan.setPadding(0,0,0,heightDifferent);
+            }
+        });
+    }
 
 }

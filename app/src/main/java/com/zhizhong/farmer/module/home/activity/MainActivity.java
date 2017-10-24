@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 
+import com.github.androidtools.PhoneUtils;
 import com.github.androidtools.SPUtils;
 import com.github.androidtools.StatusBarUtils;
 import com.github.baseclass.rx.MySubscriber;
@@ -170,9 +171,15 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initData() {
     }
-
+    public void hiddenKeyBoard(){
+        boolean b = PhoneUtils.keyBoardIsOpen(mContext);
+        if(b){
+            PhoneUtils.hiddenKeyBoard(mContext);
+        }
+    }
     @OnClick({R.id.rb_home_shouye, R.id.rb_home_zixun, R.id.rb_home_xdd,R.id.rb_home_my})
     protected void onViewClick(View v) {
+        hiddenKeyBoard();
         switch (v.getId()) {
             case R.id.rb_home_shouye:
                 selectHome();

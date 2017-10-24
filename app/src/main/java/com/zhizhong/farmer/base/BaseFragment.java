@@ -34,6 +34,8 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
     private boolean isFirstLoadData=true;
     private boolean isPrepared;
     protected PtrClassicFrameLayout pcfl;
+    protected View baseView;
+
     /************************************************/
     protected abstract int getContentView();
     protected abstract void initView();
@@ -46,9 +48,9 @@ public abstract class BaseFragment extends IBaseFragment implements View.OnClick
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(getContentView(), container, false);
-        mUnBind = ButterKnife.bind(this, view);
-        return view;
+        baseView = inflater.inflate(getContentView(), container, false);
+        mUnBind = ButterKnife.bind(this, baseView);
+        return baseView;
     }
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
