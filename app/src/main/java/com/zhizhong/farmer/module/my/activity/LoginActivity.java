@@ -88,19 +88,7 @@ public class LoginActivity extends BaseActivity {
                         String unionid = m.get("unionid");
                         String name = m.get("name");
                         String profile_image_url = m.get("profile_image_url");
-                        Map<String,String>map=new HashMap<String,String>();
-                        map.put("platform","2");
-                        map.put("open",unionid);
-                        map.put("nickname",name);
-                        map.put("avatar",profile_image_url);
-                        map.put("type","2");
-                        map.put("sign",GetSign.getSign(map));
-                        addSubscription(ApiRequest.platformLogin(map).subscribe(new MySub<LoginObj>(mContext) {
-                            @Override
-                            public void onMyNext(LoginObj obj) {
-                                loginResult(obj);
-                            }
-                        }));
+                        loginApp("2",unionid, name, profile_image_url);
                     }
 
                     @Override
@@ -138,20 +126,7 @@ public class LoginActivity extends BaseActivity {
                         String uid = m.get("uid");
                         String name = m.get("name");
                         String profile_image_url = m.get("profile_image_url");
-                        Map<String,String>map=new HashMap<String,String>();
-                        map.put("platform","1");
-                        map.put("open",uid);
-                        map.put("nickname",name);
-                        map.put("avatar",profile_image_url);
-                        map.put("type","2");
-                        map.put("sign",GetSign.getSign(map));
-                        addSubscription(ApiRequest.platformLogin(map).subscribe(new MySub<LoginObj>(mContext) {
-                            @Override
-                            public void onMyNext(LoginObj obj) {
-                                loginResult(obj);
-                            }
-                        }));
-
+                        loginApp("1",uid,name, profile_image_url);
                     }
 
                     @Override
@@ -186,6 +161,23 @@ public class LoginActivity extends BaseActivity {
                 STActivityForResult(RegisterActivity.class,1000);
                 break;
         }
+    }
+
+    private void loginApp(String platform,String unionid, String name, String profile_image_url) {
+        Map<String,String> map=new HashMap<String,String>();
+        map.put("platform",platform);
+        map.put("open",unionid);
+        map.put("nickname",name);
+        map.put("avatar",profile_image_url);
+        map.put("type","2");
+        map.put("RegistrationID",SPUtils.getPrefString(mContext,Config.jiguangRegistrationId,""));
+        map.put("sign", GetSign.getSign(map));
+        addSubscription(ApiRequest.platformLogin(map).subscribe(new MySub<LoginObj>(mContext) {
+            @Override
+            public void onMyNext(LoginObj obj) {
+                loginResult(obj);
+            }
+        }));
     }
 
     private void loginResult(LoginObj obj) {

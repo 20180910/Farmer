@@ -11,6 +11,11 @@ public class Config {
     public static final String weixing_miyao = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASC";
     public static final String weixing_mch_id = "1487620172";//商户号
 
+
+    public static final String jipush_app_key = "575b9f5d70bb3d3244558125";
+    public static final String jipush_app_secret = "478e06c2ccba09b0e7cb6161";
+    public static final String jiguangRegistrationId = "jiguangRegistrationId";
+
     public static final String zhifubao_app_id = "2017090408546889";//支付宝appid
     public static final String zhifubao_pid = "2088721635652474";
 //    public static final String zhifubao_rsa2 = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA8DnOksNQ5AGIFjvjZkufa/eSafj39Tnml5b45Xq3UZ1/1ZUoQRULnFETc7bCqIwp2dXeYa6vZS6WstwIikagWKRYBlpzu+DoID4UEt7sZIzwVmXHzUjjA+tQ6VQtKM1Is7Ow7fa1QGX3JDMP1f/eo6BnuwPdCcE5EHq3+OytFB6SRVPrnnahnh8vlnBF7cifH5EiALOM0PliwDln4CSnfuGO6IC73qpc8IIFFFj/sIGTHldVXFta5v6lgIHQ3f1rf2iSkmktK4dQDEsqjDZ6zZkbyjg8MiabzpeLFh9uC7J7OsQY4d5sBXIabEHnI+/OHZd2CaNGsk1D0Z65fr8RnQIDAQAB";//支付宝公钥
