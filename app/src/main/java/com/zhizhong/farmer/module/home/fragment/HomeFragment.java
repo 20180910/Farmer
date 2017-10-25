@@ -219,8 +219,8 @@ public class HomeFragment extends BaseFragment {
         addSubscription(ApiRequest.getHomeData(map).subscribe(new MySub<HomeDataObj>(mContext, pl_load,pcfl) {
             @Override
             public void onMyNext(HomeDataObj obj) {
-                ziXunAdapter.setList(obj.getInformation_list(), true);
-                zhiBaoAdapter.setList(obj.getEppocenter_list(), true);
+                ziXunAdapter.setList(obj.getInformation_list(),true);
+                zhiBaoAdapter.setList(obj.getEppocenter_list(),true);
             }
         }));
     }
