@@ -76,7 +76,7 @@ public class MyFragment extends BaseFragment {
 
     @Override
     public void again() {
-
+        initData();
     }
 
     @OnClick({R.id.ll_my_vip,R.id.iv_my_set, R.id.tv_my_data, R.id.tv_my_farmer, R.id.tv_my_fenxiao, R.id.ll_my_order,R.id.tv_my_dws,R.id.tv_my_dqr, R.id.tv_my_djd, R.id.tv_my_yjd, R.id.tv_my_complete})

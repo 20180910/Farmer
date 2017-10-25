@@ -70,6 +70,7 @@ public class VIPLevelActivity extends BaseActivity {
             public void onMyNext(LevelObj obj) {
                 tv_vip_level.setText(obj.getUser_level()+"");
                 tv_vip_content.setText(obj.getContent());
+                SPUtils.setPrefInt(mContext,Config.level,obj.getUser_level());
                 switch (obj.getUser_level()){
                     case 0:
                         tv_vip_num0.setSolidColor(getResources().getColor(R.color.gray_d7));
