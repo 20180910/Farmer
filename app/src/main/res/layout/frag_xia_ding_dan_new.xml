@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              xmlns:tools="http://schemas.android.com/tools"
               android:background="@color/background_f2"
               android:orientation="vertical"
     >
@@ -14,6 +14,7 @@
         android:paddingLeft="10dp"
         app:my_rl_bottom_line="true"
         >
+
         <TextView
             android:id="@id/app_title"
             android:layout_width="wrap_content"
@@ -26,6 +27,7 @@
             tools:text="title"
             />
     </com.github.customview.MyRelativeLayout>
+
     <com.zhizhong.farmer.view.ProgressLayout
         android:id="@id/pl_load"
         android:layout_width="match_parent"
@@ -36,22 +38,25 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/ll_xdd_commit"
             android:background="@color/background_f2">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 >
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
+                    android:layout_marginBottom="2px"
                     android:layout_marginTop="5dp"
+                    android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:layout_marginBottom="2px"
-                    android:background="@color/white"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -65,10 +70,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:text="范雷"
                         android:textSize="15sp"
+                        tools:text="范雷"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -93,10 +99,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        tools:text="16589456231"
                         android:textSize="15sp"
+                        tools:text="16589456231"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/ll_xiadan_select_other_weizhi"
                     android:layout_width="match_parent"
@@ -108,23 +115,25 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:ems="5"
                         android:text="位置"
                         android:textSize="15sp"
-                        android:ems="5"
                         />
+
                     <TextView
                         android:id="@+id/tv_xia_order_weizhi"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        tools:text="上海市普陀区安曼新城"
-                        android:hint="点击完善位置信息"
-                        android:gravity="center_vertical"
-                        android:maxLines="2"
                         android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:hint="点击完善位置信息"
+                        android:maxLines="2"
+                        tools:text="上海市普陀区安曼新城"
                         />
                     <!--<ImageView
                         android:layout_width="10dp"
@@ -136,8 +145,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="2px"
+                    android:layout_marginTop="5dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -158,16 +167,18 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
                         android:hint="请选择作物"
                         android:textSize="15sp"
-                        android:gravity="center_vertical"
                         />
+
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="18dp"
                         android:src="@drawable/img58"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:id="@+id/ll_xiadan_select_other_farmer"
                     android:layout_width="match_parent"
@@ -183,26 +194,29 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:ems="5"
                         android:text="农户"
                         android:textSize="15sp"
-                        android:ems="5"
                         />
+
                     <TextView
                         android:id="@+id/tv_xia_order_farmer"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:hint="请选择农户"
-                        android:gravity="center_vertical"
-                        android:maxLines="2"
                         android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:hint="请选择农户"
+                        android:maxLines="2"
                         />
+
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="18dp"
                         android:src="@drawable/img58"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -221,15 +235,17 @@
                         android:text="亩数"
                         android:textSize="15sp"
                         />
+
                     <TextView
                         android:id="@+id/tv_xiadan_ms"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
                         android:gravity="center_vertical"
+                        android:textSize="15sp"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -248,15 +264,17 @@
                         android:text="防治内容"
                         android:textSize="15sp"
                         />
+
                     <TextView
                         android:id="@+id/tv_xiadan_fang_zhi"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:hint="请选择防治内容"
                         android:gravity="center_vertical"
+                        android:hint="请选择防治内容"
+                        android:textSize="15sp"
                         />
+
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="18dp"
@@ -267,8 +285,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="2px"
+                    android:layout_marginTop="5dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -289,9 +307,9 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
                         android:gravity="center_vertical"
                         android:hint="请选择作业日期"
+                        android:textSize="15sp"
                         />
 
                     <ImageView
@@ -300,6 +318,7 @@
                         android:src="@drawable/img58"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -317,14 +336,15 @@
                         android:text="结束时间"
                         android:textSize="15sp"
                         />
+
                     <TextView
                         android:id="@+id/tv_xiadan_end_time"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:gravity="center_vertical"
                         android:layout_weight="1"
-                        android:textSize="15sp"
+                        android:gravity="center_vertical"
                         android:hint="请选择结束日期"
+                        android:textSize="15sp"
                         />
 
                     <ImageView
@@ -338,13 +358,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="2px"
+                    android:layout_marginTop="5dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
-                    android:layout_marginTop="5dp"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -352,20 +373,22 @@
                         android:text="农药"
                         android:textSize="15sp"
                         />
+
                     <com.github.customview.MyCheckBox
                         android:id="@+id/cb_xiadan_nong_yao"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
-                        tools:text="先正达农药特惠包(10元/亩)"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
+                        tools:text="先正达农药特惠包(10元/亩)"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -376,6 +399,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -383,20 +407,22 @@
                         android:text="助剂"
                         android:textSize="15sp"
                         />
+
                     <com.github.customview.MyCheckBox
                         android:id="@+id/cb_xiadan_zhu_ji"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
-                        tools:text="先正达农药特惠包(10元/亩)"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
+                        tools:text="先正达农药特惠包(10元/亩)"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
@@ -407,6 +433,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -414,50 +441,101 @@
                         android:text="微肥"
                         android:textSize="15sp"
                         />
+
                     <com.github.customview.MyCheckBox
                         android:id="@+id/cb_xiadan_wei_fei"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
-                        tools:text="先正达农药特惠包(10元/亩)"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
+                        tools:text="先正达农药特惠包(10元/亩)"
                         />
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginBottom="2px"
+                    android:layout_marginTop="5dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
+
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="40dp"
                         android:ems="5"
                         android:text="地况"
                         android:textSize="15sp"
+                        android:gravity="center_vertical"
                         />
-                    <com.github.customview.MyEditText
-                        android:id="@+id/et_xiadan_dk"
+
+                    <TextView
+                        android:id="@+id/tv_xiadan_dk"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:hint="请选择地况"
+                        android:paddingLeft="0dp"
+                        android:textSize="15sp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/img58"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:ems="5"
+                        android:text="障碍物"
                         android:textSize="15sp"
                         android:gravity="center_vertical"
-                        android:hint="请输入地况"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_xiadan_zhang_ai_wu"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:hint="请选择障碍物"
+                        android:text=""
                         android:paddingLeft="0dp"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"
+                        android:textSize="15sp"
+                        android:maxLines="3"
+                        android:ellipsize="end"
+                        />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/img58"
                         />
                 </LinearLayout>
 
@@ -471,36 +549,7 @@
                     android:paddingLeft="10dp"
                     android:paddingRight="10dp"
                     >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="5"
-                        android:text="障碍物"
-                        android:textSize="15sp"
-                        />
-                    <com.github.customview.MyEditText
-                        android:id="@+id/et_xiadan_zhang_ai_wu"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:hint="请输入障碍物"
-                        android:paddingLeft="0dp"
-                        android:inputType="text"
-                        android:imeOptions="actionNext"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="2px"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -508,149 +557,26 @@
                         android:text="是否包吃"
                         android:textSize="15sp"
                         />
+
                     <com.github.customview.MyCheckBox
                         android:id="@+id/cb_xiadan_bao_chi"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
                         android:button="@null"
                         android:checked="true"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
                         />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:layout_marginBottom="2px"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="5"
-                        android:text="是否包住"
-                        android:textSize="15sp"
-                        />
-                    <com.github.customview.MyCheckBox
-                        android:id="@+id/cb_xiadan_bao_zhu"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
-                        android:button="@null"
-                        android:checked="true"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="2px"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="5"
-                        android:text="可充电"
-                        android:textSize="15sp"
-                        />
-                    <com.github.customview.MyCheckBox
-                        android:id="@+id/cb_xiadan_chong_dian"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
-                        android:button="@null"
-                        android:checked="true"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="2px"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="5"
-                        android:text="可取水"
-                        android:textSize="15sp"
-                        />
-                    <com.github.customview.MyCheckBox
-                        android:id="@+id/cb_xiadan_qu_shui"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        app:my_checkbox_checked_drawable="right"
-                        app:my_checkbox_checked="@drawable/img16_small"
-                        app:my_checkbox_normal="@drawable/img16_small_normal"
-                        android:button="@null"
-                        android:checked="true"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginBottom="2px"
-                    android:background="@color/white"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingLeft="10dp"
-                    android:paddingRight="10dp"
-                    >
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="5"
-                        android:text="转场次数"
-                        android:textSize="15sp"
-                        />
-                    <com.github.customview.MyEditText
-                        android:id="@+id/et_xiadan_zhuan_chang_num"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:textSize="15sp"
-                        android:gravity="center_vertical"
-                        android:hint="请输入转场次数"
-                        android:paddingLeft="0dp"
-                        android:inputType="number"
-                        android:imeOptions="actionNext"
-                        />
-                </LinearLayout>
-                <LinearLayout
-                    android:id="@+id/ll_xiadan_vouchers"
-                    android:layout_width="match_parent"
-                    android:layout_height="40dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -661,24 +587,168 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="选择抵用券"
-                        android:textSize="15sp"
                         android:ems="5"
+                        android:text="是否包住"
+                        android:textSize="15sp"
                         />
-                    <TextView
-                        android:id="@+id/tv_xiadan_voucher"
-                        android:layout_width="wrap_content"
+
+                    <com.github.customview.MyCheckBox
+                        android:id="@+id/cb_xiadan_bao_zhu"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
                         android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        tools:text="抵用券3元"
-                        android:textColor="@color/blue"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
                         />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="5"
+                        android:text="可充电"
+                        android:textSize="15sp"
+                        />
+
+                    <com.github.customview.MyCheckBox
+                        android:id="@+id/cb_xiadan_chong_dian"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="5"
+                        android:text="可取水"
+                        android:textSize="15sp"
+                        />
+
+                    <com.github.customview.MyCheckBox
+                        android:id="@+id/cb_xiadan_qu_shui"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:button="@null"
+                        android:checked="true"
+                        android:gravity="center_vertical"
+                        android:textSize="15sp"
+                        app:my_checkbox_checked="@drawable/img16_small"
+                        app:my_checkbox_checked_drawable="right"
+                        app:my_checkbox_normal="@drawable/img16_small_normal"
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="2px"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="5"
+                        android:text="转场次数"
+                        android:textSize="15sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_xiadan_zhuan_chang_num"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:hint="请选择转场次数"
+                        android:paddingLeft="0dp"
+                        android:textSize="15sp"
+                        />
+
                     <ImageView
                         android:layout_width="10dp"
                         android:layout_height="18dp"
                         android:src="@drawable/img58"
                         />
                 </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_xiadan_vouchers"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="5"
+                        android:text="选择抵用券"
+                        android:textSize="15sp"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_xiadan_voucher"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textColor="@color/blue"
+                        tools:text="抵用券3元"
+                        />
+
+                    <ImageView
+                        android:layout_width="10dp"
+                        android:layout_height="18dp"
+                        android:src="@drawable/img58"
+                        />
+                </LinearLayout>
+
                 <View
                     android:id="@+id/v_xia_dan"
                     android:layout_width="match_parent"
@@ -687,31 +757,33 @@
                     />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
+
         <com.github.customview.MyLinearLayout
             android:id="@+id/ll_xdd_commit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_alignParentBottom="true"
-            app:my_ll_top_line="true"
+            android:orientation="vertical"
             app:my_ll_border_color="@color/background_f2"
+            app:my_ll_top_line="true"
             >
+
             <com.github.customview.MyTextView
                 android:id="@+id/tv_xdd_commit"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="44dp"
-                android:text="提交订单"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_marginRight="10dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
+                android:text="提交订单"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:my_tv_corner_radius="22dp"
-                app:my_tv_solid="@color/blue"
                 app:my_tv_press="@color/blue_press"
+                app:my_tv_solid="@color/blue"
                 />
         </com.github.customview.MyLinearLayout>
     </com.zhizhong.farmer.view.ProgressLayout>

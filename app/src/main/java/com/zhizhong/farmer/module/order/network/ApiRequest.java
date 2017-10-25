@@ -39,6 +39,9 @@ public class ApiRequest {
     public static Observable xiaDingDan(Map map,XiaDingDanItem item){
         return getCommonClient().xiaDingDan(map,item).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }
+    public static Observable getDiKuang(Map map){
+        return getCommonClient().getDiKuang(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
+    }
 
 
 }

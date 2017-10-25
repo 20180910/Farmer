@@ -37,4 +37,8 @@ public interface IRequest {
     @POST("api/Farmer/PostPlaceOrder")
     Observable<ResponseObj<BaseObj>> xiaDingDan(@QueryMap Map<String,String> map, @Body XiaDingDanItem item);
 
+    //获取地况/障碍物列表
+    @GET("api/Farmer/GetConditionObstacles")
+    Observable<ResponseObj<List<HaiChongObj>>> getDiKuang(@QueryMap Map<String,String> map);
+
 }

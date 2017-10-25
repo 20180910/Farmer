@@ -13,10 +13,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.WindowManager;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bigkoo.pickerview.OptionsPickerView;
 import com.bigkoo.pickerview.TimePickerView;
 import com.github.androidtools.DateUtils;
 import com.github.androidtools.PhoneUtils;
@@ -27,7 +27,6 @@ import com.github.baseclass.rx.MySubscriber;
 import com.github.baseclass.rx.RxBus;
 import com.github.baseclass.view.Loading;
 import com.github.customview.MyCheckBox;
-import com.github.customview.MyEditText;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
@@ -46,6 +45,7 @@ import com.zhizhong.farmer.module.order.network.response.HaiChongObj;
 import com.zhizhong.farmer.module.order.network.response.OrderDefaultDataObj;
 import com.zhizhong.farmer.module.order.network.response.OtherFarmerObj;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -71,8 +71,8 @@ public class NewXiaDingDanFragment extends BaseFragment {
     TextView tv_xia_order_name;
     @BindView(R.id.tv_xia_order_phone)
     TextView tv_xia_order_phone;
-    @BindView(R.id.et_xiadan_zhuan_chang_num)
-    EditText et_xiadan_zhuan_chang_num;
+    @BindView(R.id.tv_xiadan_zhuan_chang_num)
+    TextView tv_xiadan_zhuan_chang_num;
     @BindView(R.id.v_xia_dan)
     View v_xia_dan;
 
@@ -97,10 +97,10 @@ public class NewXiaDingDanFragment extends BaseFragment {
     MyCheckBox cb_xiadan_zhu_ji;
     @BindView(R.id.cb_xiadan_wei_fei)
     MyCheckBox cb_xiadan_wei_fei;
-    @BindView(R.id.et_xiadan_dk)
-    MyEditText et_xiadan_dk;
-    @BindView(R.id.et_xiadan_zhang_ai_wu)
-    MyEditText et_xiadan_zhang_ai_wu;
+    @BindView(R.id.tv_xiadan_dk)
+    TextView tv_xiadan_dk;
+    @BindView(R.id.tv_xiadan_zhang_ai_wu)
+    TextView tv_xiadan_zhang_ai_wu;
     @BindView(R.id.cb_xiadan_bao_chi)
     MyCheckBox cb_xiadan_bao_chi;
     @BindView(R.id.cb_xiadan_bao_zhu)
@@ -198,8 +198,10 @@ public class NewXiaDingDanFragment extends BaseFragment {
             }
         }));
     }
-
-    @OnClick({R.id.tv_xiadan_fang_zhi, R.id.ll_xiadan_vouchers, R.id.tv_xdd_commit, R.id.ll_xiadan_select_other_farmer, R.id.tv_xiadan_zuowu, R.id.tv_xiadan_start_time, R.id.tv_xiadan_end_time})
+/*tv_xiadan_dk
+tv_xiadan_zhang_ai_wu
+tv_xiadan_zhuan_chang_num*/
+    @OnClick({R.id.tv_xiadan_dk,R.id.tv_xiadan_zhang_ai_wu,R.id.tv_xiadan_zhuan_chang_num,R.id.tv_xiadan_fang_zhi, R.id.ll_xiadan_vouchers, R.id.tv_xdd_commit, R.id.ll_xiadan_select_other_farmer, R.id.tv_xiadan_zuowu, R.id.tv_xiadan_start_time, R.id.tv_xiadan_end_time})
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.ll_xiadan_select_other_farmer:
@@ -227,6 +229,15 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 }
                 getChongHai();
                 break;
+            case R.id.tv_xiadan_dk:
+                getDiKuangAndZAW(1);
+                break;
+            case R.id.tv_xiadan_zhang_ai_wu:
+                getDiKuangAndZAW(2);
+                break;
+            case R.id.tv_xiadan_zhuan_chang_num:
+                selectZhuanChangNum();
+                break;
             case R.id.tv_xiadan_zuowu:
                 getZuoWu();
                 break;
@@ -234,8 +245,11 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 if (TextUtils.isEmpty(getSStr(tv_xia_order_phone))) {
                     showMsg("请完善联系方式");
                     return;
-                } else if (TextUtils.isEmpty(getSStr(tv_xia_order_farmer))||xiaDingDanItem==null) {
-                    showMsg("请选择其他农户");
+                } else if (TextUtils.isEmpty(getSStr(tv_xiadan_zuowu))) {
+                    showMsg("请选择作物");
+                    return;
+                }  else if (TextUtils.isEmpty(getSStr(tv_xia_order_farmer))||xiaDingDanItem==null) {
+                    showMsg("请选择农户");
                     return;
                 } else if (TextUtils.isEmpty(getSStr(tv_xiadan_fang_zhi))) {
                     showMsg("请选择防治内容");
@@ -246,14 +260,14 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 } else if (endDate == null) {
                     showMsg("请选择结束日期");
                     return;
-                }else if (TextUtils.isEmpty(getSStr(et_xiadan_dk))) {
-                    showMsg("请填写地况");
+                }else if (TextUtils.isEmpty(getSStr(tv_xiadan_dk))) {
+                    showMsg("请选择地况");
                     return;
-                }else if (TextUtils.isEmpty(getSStr(et_xiadan_zhang_ai_wu))) {
-                    showMsg("请填写障碍物");
+                }else if (TextUtils.isEmpty(getSStr(tv_xiadan_zhang_ai_wu))) {
+                    showMsg("请选择障碍物");
                     return;
-                }else if (TextUtils.isEmpty(getSStr(et_xiadan_zhuan_chang_num))) {
-                    showMsg("请填写转场次数");
+                }else if (TextUtils.isEmpty(getSStr(tv_xiadan_zhuan_chang_num))) {
+                    showMsg("请选择转场次数");
                     return;
                 }
                 xiaDingDan();
@@ -267,17 +281,50 @@ public class NewXiaDingDanFragment extends BaseFragment {
         }
     }
 
+    private void selectZhuanChangNum() {
+        List<String>options1Items=new ArrayList<>();
+        options1Items.add("0");
+        options1Items.add("1");
+        options1Items.add("2");
+        options1Items.add("3");
+        options1Items.add("4");
+        options1Items.add("5");
+        options1Items.add("6");
+        //条件选择器
+        OptionsPickerView pvOptions = new  OptionsPickerView.Builder(mContext, new OptionsPickerView.OnOptionsSelectListener() {
+            @Override
+            public void onOptionsSelect(int options1, int option2, int options3 ,View v) {
+                tv_xiadan_zhuan_chang_num.setText(options1Items.get(options1));
+                Log.i("===",options1Items.get(options1)+"==="+options1);
+            }
+        }).build();
+        pvOptions.setPicker(options1Items, null, null);
+        pvOptions.show();
+    }
+
+    private void getDiKuangAndZAW(int type) {
+        Loading.show(mContext);
+        Map<String,String>map=new HashMap<String,String>();
+        map.put("type",type+"");
+        map.put("sign",GetSign.getSign(map));
+        ApiRequest.getDiKuang(map).subscribe(new MySub<List<HaiChongObj>>(mContext) {
+            @Override
+            public void onMyNext(List<HaiChongObj> list) {
+                getChongHaiList(list,type);//0虫害，1地况，2障碍物
+            }
+        });
+    }
+
     private void getChongHai() {
         Loading.show(mContext);
         ApiRequest.getHaiChongList(getSStr(tv_xiadan_zuowu), GetSign.getSign("crops", getSStr(tv_xiadan_zuowu))).subscribe(new MySub<List<HaiChongObj>>(mContext) {
             @Override
             public void onMyNext(List<HaiChongObj> list) {
-                getChongHaiList(list);
+                getChongHaiList(list,0);//0虫害，1地况，2障碍物
             }
         });
     }
-
-    private void getChongHaiList(List<HaiChongObj> list) {
+    private void getChongHaiList(List<HaiChongObj> list,int type) {
         BottomSheetDialog dialog = new BottomSheetDialog(mContext);
         SparseArrayCompat<HaiChongObj> sparseArray = new SparseArrayCompat();
         adapter = new LoadMoreAdapter<HaiChongObj>(mContext, R.layout.item_chonghai_other_farmer, 0) {
@@ -327,16 +374,22 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 if (sparseArray.size() > 0) {
                     StringBuffer sb = new StringBuffer();
                     for (int i = 0; i < sparseArray.size(); i++) {
-                        if (sparseArray.get(i) != null) {
-                            sb.append(sparseArray.get(i).getTitle() + ",");
+                        if (sparseArray.valueAt(i) != null) {
+                            sb.append(sparseArray.valueAt(i).getTitle() + "、");
                         }
                     }
                     String title = sb.toString();
-                    int indexOf = sb.lastIndexOf(",");
+                    int indexOf = sb.lastIndexOf("、");
                     if (indexOf != -1) {
                         title = sb.deleteCharAt(indexOf).toString();
                     }
-                    tv_xiadan_fang_zhi.setText(title);
+                    if(type==0){
+                        tv_xiadan_fang_zhi.setText(title);
+                    }else if(type==1){
+                        tv_xiadan_dk.setText(title);
+                    }else if(type==2){
+                        tv_xiadan_zhang_ai_wu.setText(title);
+                    }
                 }
             }
         });
@@ -360,14 +413,14 @@ public class NewXiaDingDanFragment extends BaseFragment {
         map.put("additives_id", cb_xiadan_zhu_ji.isChecked()?orderDefaultDataObj.getAdditives().getId()+"":"0");//助剂ID(不用传0)
         map.put("fertilizer_id",cb_xiadan_wei_fei.isChecked()?orderDefaultDataObj.getFertilizer().getId()+"":"0");//微肥ID(不用传0)
 
-        map.put("condition", getSStr(et_xiadan_dk));//地况
-        map.put("obstacles", getSStr(et_xiadan_zhang_ai_wu));//障碍物
+        map.put("condition", getSStr(tv_xiadan_dk));//地况
+        map.put("obstacles", getSStr(tv_xiadan_zhang_ai_wu));//障碍物
 
         map.put("is_andy", cb_xiadan_bao_chi.isChecked()?"1":"0");//包吃(1是 0否)
         map.put("is_encase", cb_xiadan_bao_zhu.isChecked()?"1":"0");//包住(1是 0否)
         map.put("is_rechargeable", cb_xiadan_chong_dian.isChecked()?"1":"0");//可充电(1是 0否)
         map.put("is_getwater", cb_xiadan_qu_shui.isChecked()?"1":"0");//可取水(1是 0否)
-        map.put("transitions_number", getSStr(et_xiadan_zhuan_chang_num));//转场次数
+        map.put("transitions_number", getSStr(tv_xiadan_zhuan_chang_num));//转场次数
 
         map.put("sign", GetSign.getSign(map));
         addSubscription(ApiRequest.xiaDingDan(map, xiaDingDanItem).subscribe(new MySub<BaseObj>(mContext) {
@@ -385,9 +438,9 @@ public class NewXiaDingDanFragment extends BaseFragment {
                 couponsId = "0";
                 tv_xiadan_voucher.setText(null);
 
-                et_xiadan_zhuan_chang_num.setText(null);
-                et_xiadan_dk.setText(null);
-                et_xiadan_zhang_ai_wu.setText(null);
+                tv_xiadan_zhuan_chang_num.setText(null);
+                tv_xiadan_dk.setText(null);
+                tv_xiadan_zhang_ai_wu.setText(null);
 
                 STActivity(MyOrderListActivity.class);
 
