@@ -36,6 +36,20 @@
             tools:text="待完善"
             android:textColor="@color/blue"
             />
+        <com.github.customview.MyTextView
+            android:id="@+id/tv_order_type_complete"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="确认完成"
+            android:textColor="@color/blue"
+            app:my_tv_all_line="true"
+            app:my_tv_border_color="@color/blue"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            />
     </LinearLayout>
     <View
         android:layout_width="match_parent"

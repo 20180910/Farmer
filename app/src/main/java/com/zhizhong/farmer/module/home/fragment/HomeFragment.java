@@ -229,7 +229,11 @@ public class HomeFragment extends BaseFragment {
     protected void onViewClick(View v) {
         switch (v.getId()) {
             case R.id.ll_home_order:
-                STActivity(MyOrderListActivity.class);
+                if (TextUtils.isEmpty(getUserId())) {
+                    STActivity(LoginActivity.class);
+                } else {
+                    STActivity(MyOrderListActivity.class);
+                }
                 break;
             case R.id.ll_home_zhibao:
                 STActivity(ZhiBaoZhongXinListActivity.class);

@@ -6,12 +6,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.baseclass.adapter.LoadMoreAdapter;
+import com.github.baseclass.rx.MySubscriber;
+import com.github.baseclass.rx.RxBus;
 import com.zhizhong.farmer.GetSign;
 import com.zhizhong.farmer.R;
 import com.zhizhong.farmer.base.BaseFragment;
 import com.zhizhong.farmer.base.MySub;
 import com.zhizhong.farmer.module.my.Constant;
 import com.zhizhong.farmer.module.my.adapter.AllOrderAdapter;
+import com.zhizhong.farmer.module.my.event.GetOrderEvent;
 import com.zhizhong.farmer.module.my.network.ApiRequest;
 import com.zhizhong.farmer.module.my.network.response.OrderObj;
 
@@ -59,6 +62,19 @@ public class AllOrderFragment extends BaseFragment implements LoadMoreAdapter.On
             @Override
             public void onRefreshBegin(PtrFrameLayout frame) {
                 getData(1,false);
+            }
+        });
+    }
+
+    @Override
+    protected void initRxBus() {
+        super.initRxBus();
+        RxBus.getInstance().getEvent(GetOrderEvent.class).subscribe(new MySubscriber<GetOrderEvent>() {
+            @Override
+            public void onMyNext(GetOrderEvent getOrderEvent) {
+                if("5".equals(getArguments().getString(Constant.type,"0"))){
+                    getData(1,false);
+                }
             }
         });
     }

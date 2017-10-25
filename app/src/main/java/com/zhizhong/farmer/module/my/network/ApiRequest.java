@@ -131,6 +131,9 @@ public class ApiRequest {
     public static Observable getOrderList(Map map){
         return getCommonClient().getOrderList(map).compose(RxResult.appSchedulers()).compose(RxResult.listResult());
     }
+    public static Observable sureOrder(Map map){
+        return getCommonClient().sureOrder(map).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
+    }
     public static Observable getOrderDetail(String orderNo,String sign){
         return getCommonClient().getOrderDetail(orderNo,sign).compose(RxResult.appSchedulers()).compose(RxResult.handleResult());
     }

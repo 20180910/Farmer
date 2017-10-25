@@ -180,6 +180,9 @@ public interface IRequest {
     //获取订单列表
     @GET("api/Farmer/GetOrderList")
     Observable<ResponseObj<List<OrderObj>>> getOrderList(@QueryMap Map<String,String> map);
+    //确认完成订单
+    @GET("api/Farmer/GetConfirmCompleted")
+    Observable<ResponseObj<BaseObj>> sureOrder(@QueryMap Map<String,String> map);
 
     //获取订单详情
     @GET("api/Farmer/GetOrderMore")
