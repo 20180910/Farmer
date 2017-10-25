@@ -213,8 +213,8 @@ public class HomeFragment extends BaseFragment {
 
     private void getHomeData() {
         Map<String,String> map=new HashMap<String,String>();
-        map.put("city", city);
-        map.put("area", area);
+        map.put("city", city==null?"":city);
+        map.put("area", area==null?"":area);
         map.put("sign", GetSign.getSign(map));
         addSubscription(ApiRequest.getHomeData(map).subscribe(new MySub<HomeDataObj>(mContext, pl_load,pcfl) {
             @Override
