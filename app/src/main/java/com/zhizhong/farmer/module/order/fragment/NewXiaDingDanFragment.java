@@ -456,7 +456,7 @@ tv_xiadan_zhuan_chang_num*/
                 String time = DateUtils.dateToString(date);
                 Log.i("========","========"+date.getTime());
                 if (type == 0) {
-                    if(endDate!=null&&date.getTime()-endDate.getTime()>0){
+                    if(endDate!=null&&date.getTime()-endDate.getTime()>43200000){
                         showMsg("作业时间不能大于结束时间");
                     }else{
                         startDate = date;
@@ -464,7 +464,7 @@ tv_xiadan_zhuan_chang_num*/
                     }
                 } else {
 
-                    if(startDate!=null&&startDate.getTime()-date.getTime()>0){
+                    if(startDate!=null&&startDate.getTime()-date.getTime()>43200000){
                         showMsg("作业时间不能大于结束时间");
                     }else{
                         endDate = date;
