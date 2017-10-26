@@ -151,7 +151,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="待确认"
+            android:text="待支付"
             android:textSize="13dp"
             android:textColor="@color/gray_33"
             android:drawableTop="@drawable/img25"
