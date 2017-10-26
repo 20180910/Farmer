@@ -117,7 +117,7 @@ public class AllOrderAdapter extends LoadMoreAdapter<OrderObj> {
                 tv_order_type_complete.setVisibility(View.GONE);
             break;
             case 2:
-                tv_order_type.setText("待确认");
+                tv_order_type.setText("待支付");
                 tv_order_type.setTextColor(ContextCompat.getColor(mContext,R.color.blue));
                 tv_order_type.setVisibility(View.VISIBLE);
                 tv_order_type_complete.setVisibility(View.GONE);

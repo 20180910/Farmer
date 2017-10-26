@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.v4.content.LocalBroadcastManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 
@@ -31,6 +32,7 @@ import com.zhizhong.farmer.module.zixun.fragment.ZiXunFragment;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends BaseActivity {
 
@@ -113,9 +115,12 @@ public class MainActivity extends BaseActivity {
         //获取微信，支付宝支付的通知地址,支付方式1支付宝，2微信
         getZhiFuNotifyUrl("1");
         getZhiFuNotifyUrl("2");
-
+        String registrationID = JPushInterface.getRegistrationID(getApplicationContext());
+        Log.i("registrationID","=registrationID====="+registrationID);
+        if(!TextUtils.isEmpty(registrationID)){
+            SPUtils.setPrefString(getApplicationContext(),Config.jiguangRegistrationId,registrationID);
+        }
     }
-
     private void getZhiFuNotifyUrl(String type) {
         addSubscription(ApiRequest.getPayNotifyUrl(type,getSign("payment_type",type)).subscribe(new MySub<PayTypeObj>(mContext) {
             @Override

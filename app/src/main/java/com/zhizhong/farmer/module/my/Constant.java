@@ -15,7 +15,7 @@ public class Constant {
     public static final String update_name="update_name";
     public static final String update_phone="update_phone";
     public static final String type="type";
-    //类别(0全部 1待完善 2待确认 3待接单 4已接单 5已完成 6已取消)
+    //类别(0全部 1待完善 2待支付 3待接单 4已接单 5已完成 6已取消)
     public static final int type_0=0;
     public static final int type_1=1;
     public static final int type_2=2;
