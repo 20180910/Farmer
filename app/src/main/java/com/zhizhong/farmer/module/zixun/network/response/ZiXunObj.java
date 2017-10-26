@@ -18,6 +18,7 @@ public class ZiXunObj extends BaseObj{
 
     private int id;
     private String title;
+    private String author;
     private String image_url;
     private int page_view;
     private String add_time;
@@ -41,6 +42,14 @@ public class ZiXunObj extends BaseObj{
 
     public String getTitle() {
         return title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 
     public void setTitle(String title) {

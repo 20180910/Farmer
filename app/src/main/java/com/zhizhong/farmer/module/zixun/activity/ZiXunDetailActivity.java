@@ -29,6 +29,8 @@ public class ZiXunDetailActivity extends BaseActivity {
     TextView tv_zixun_detail_time;
     @BindView(R.id.wv_zixun_detail_content)
     WebView wv_zixun_detail_content;
+    @BindView(R.id.wv_zixun_detail_author)
+    WebView wv_zixun_detail_author;
 
     private String id;
 
@@ -42,6 +44,10 @@ public class ZiXunDetailActivity extends BaseActivity {
     @Override
     protected void initView() {
         id = getIntent().getStringExtra("id");
+
+//        WebSettings settings = wv_zixun_detail_author.getSettings();
+//        settings.setUseWideViewPort(true);
+//        settings.setLoadWithOverviewMode(true);
     }
 
     @Override
@@ -54,10 +60,12 @@ public class ZiXunDetailActivity extends BaseActivity {
         addSubscription(ApiRequest.getZiXunDetail(id, getSign("information_id", id)).subscribe(new MySub<ZiXunObj>(mContext,pl_load) {
             @Override
             public void onMyNext(ZiXunObj obj) {
+//                tv_zixun_detail_content.setText(obj.getContent());
+                wv_zixun_detail_author.loadDataWithBaseURL("about:blank", obj.getAuthor(), "text/html", "utf-8", null);
+                wv_zixun_detail_content.loadDataWithBaseURL("about:blank", getNewContent(obj.getContent()), "text/html", "utf-8", null);
+
                 tv_zixun_detail_title.setText(obj.getTitle());
                 tv_zixun_detail_time.setText(obj.getAdd_time());
-//                tv_zixun_detail_content.setText(obj.getContent());
-                wv_zixun_detail_content.loadDataWithBaseURL("about:blank", getNewContent(obj.getContent()), "text/html", "utf-8", null);
             }
         }));
     }
