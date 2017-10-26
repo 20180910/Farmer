@@ -2,6 +2,7 @@ package com.zhizhong.farmer;
 
 
 import android.app.Application;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.baidu.mapapi.SDKInitializer;
@@ -30,7 +31,10 @@ public class MyApplication extends Application {
 
         String registrationID = JPushInterface.getRegistrationID(getApplicationContext());
         Log.i("registrationID","registrationID====="+registrationID);
-        SPUtils.setPrefString(getApplicationContext(),Config.jiguangRegistrationId,registrationID);
+        if(!TextUtils.isEmpty(registrationID)){
+            SPUtils.setPrefString(getApplicationContext(),Config.jiguangRegistrationId,registrationID);
+        }
         UMShareAPI.get(this);
     }
+
 }
