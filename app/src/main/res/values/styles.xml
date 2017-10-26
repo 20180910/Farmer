@@ -19,6 +19,7 @@
     </style>
     <style name="spalshTheme" parent="AppTheme.NoActionBar">
         <item name="android:windowBackground">@drawable/spalsh</item>
+        <item name="android:windowFullscreen">true</item>
     </style>
     <style name="editTextStyle" parent="@style/Base.V7.Widget.AppCompat.EditText">
         <item name="android:editTextColor">@color/colorText</item>

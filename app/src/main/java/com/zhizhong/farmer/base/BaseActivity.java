@@ -9,7 +9,6 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -116,11 +115,6 @@ public abstract class BaseActivity extends IBaseActivity implements ProgressLayo
         }
         if(getContentView()!=0){
             setContentView(getContentView());
-        }
-        if(Build.VERSION.SDK_INT< Build.VERSION_CODES.LOLLIPOP){
-//            StatusBarUtils.setTransparent(this);
-            WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
-            localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
 
         ButterKnife.bind(this);
