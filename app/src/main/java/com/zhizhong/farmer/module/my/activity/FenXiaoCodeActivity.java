@@ -151,7 +151,7 @@ public class FenXiaoCodeActivity extends BaseActivity {
             @Override
             public void onMyNext(ShareDataObj obj) {
                 UMWeb web = new UMWeb(obj.getShare_link());
-                UMImage image=new UMImage(mContext,R.mipmap.ic_launcher);
+                UMImage image=new UMImage(mContext,R.drawable.default_img);
                 web.setTitle(obj.getTitle());//标题
                 web.setThumb(image);  //缩略图
                 web.setDescription(obj.getContent());//描述

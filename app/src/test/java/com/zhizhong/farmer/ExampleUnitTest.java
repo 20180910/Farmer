@@ -17,6 +17,12 @@ public class ExampleUnitTest {
         assertEquals(4, 2 + 2);
     }
     @Test
+    public void asdasdff() throws Exception {
+        String a="sendno=116517999&app_key=575b9f5d70bb3d3244558125&masterSecret=478e06c2ccba09b0e7cb6161&receiver_type=5&receiver_value=&msg_type=1&msg_content={\"n_builder_id\":\"00\",\"n_title\":\"订单执行完成\",\"n_content\":\"您的订单N201710271048305498飞首已执行完成,请注意查看\"}&platform=android,ios&verification_code=A80DA28BC901329F2E546197C7B5EDE7&apns_production=0";
+        byte[]aa=a.getBytes();
+        System.out.println(aa);
+    }
+    @Test
     public void wew() throws Exception {
 
         System.out.println(getPrice(2.2));  //111231.56

@@ -24,8 +24,7 @@ public class MyApplication extends Application {
         PlatformConfig.setQQZone(Config.qq_id, Config.qq_key);
         PlatformConfig.setSinaWeibo("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com");
         JPushInterface.setDebugMode(BuildConfig.DEBUG); 	// 设置开启日志,发布时请关闭日志
-        JPushInterface.init(this);     		// 初始化 JPush
-
+        JPushInterface.init(getApplicationContext());     		// 初始化 JPush
 
         UMShareAPI.get(this);
     }
