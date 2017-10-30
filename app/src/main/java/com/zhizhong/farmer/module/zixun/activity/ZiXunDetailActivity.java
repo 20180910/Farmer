@@ -44,7 +44,8 @@ public class ZiXunDetailActivity extends BaseActivity {
     @Override
     protected void initView() {
         id = getIntent().getStringExtra("id");
-
+//        wv_zixun_detail_author.setHorizontalScrollBarEnabled(false);//水平不显示
+//        wv_zixun_detail_content.setVerticalScrollBarEnabled(false); //垂直不显示
 //        WebSettings settings = wv_zixun_detail_author.getSettings();
 //        settings.setUseWideViewPort(true);
 //        settings.setLoadWithOverviewMode(true);
